@@ -1,0 +1,4 @@
+<% unless @instance.sent? %><div class="toolbar-right">
+  <%= start_form({:action => "edit",:id => @instance.id},:class => "float-right") %><%= hidden_field_tag("return",1) %><%= hidden_field("instance","sent",:value => 1) %><%= admin_button("Send this newsletter") %><%= end_form %>
+  <%= admin_button_link("Preview this newsletter",{:action => "preview"},:class => "float-right",:style => "margin-right:5px;") %>
+</div><% end %>

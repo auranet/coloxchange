@@ -1,0 +1,6 @@
+<% unless @instances.empty? %><% begin %>
+<% render :partial => "admin/autocomplete/#{@model_class.singularize}" -%>
+<script type="text/javascript">
+<%= render :partial => "admin/autocomplete/#{@model_class.singularize}" %>
+</script>
+<% rescue; end %><% end %><% for instance in @instances %><li id="<%= instance.send(params[:attribute] || :id) %>"><%= instance.name %></li><% end %>

@@ -1,0 +1,4 @@
+<div class="toolbar-right"><% if @instance.cached? %>
+  <%= link_to('<img alt="Cached" src="/global/admin/images/labels/cached.gif" />',{:action => "expire"},:class => "rollover") %><% end %>
+  <%= link_to('<img alt="Preview" src="/global/admin/images/labels/preview.gif" />',{:controller => "main",:action => "page_preview",:id => @instance.id},:class => "new") %>
+</div>

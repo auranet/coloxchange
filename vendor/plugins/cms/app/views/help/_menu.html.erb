@@ -1,0 +1,12 @@
+Menus are typically for advanced users only. Consult the tutorial for more information.
+<br />
+<br /><b>A brief overview</b>
+<br />Menus are the way in which users navigate your website. Most sites have at least two menus (primary and secondary); some have a third
+(tertiary). The menu feature of <%= Admin.app_name %> simply allows you to edit and reorganize those menus.
+<br /><br />Your site consists of two types of "pages": the ones you create (see <%= link_to "pages",{:action => "help",:model => "pages"},:class => "load-right" %>) and
+the ones we create. The ones we create are typically called "actions," reason being that "actions" require some kind of coding to have your application perform a
+specific function (an example would be processing a customer feedback form). "Pages," on the other hand, are the ones you create through this interface.
+<br /><br />Menu items can point to pages or actions, or any URL you choose.
+<br /><br />They can also build themselves based on a page's hierarchy. For example, if you have an "About Us" page with two sub-pages ("Our History" and "Our Team"),
+you might want that to be a menu option. Using the menu item builder, you can simply select a page to correspond to a menu item and tell it to copy that page's
+hierarchy into menu items.

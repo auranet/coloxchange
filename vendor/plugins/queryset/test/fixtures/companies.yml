@@ -1,0 +1,23 @@
+the_cover:
+  id: 1
+  name: "The Tattered Cover"
+
+pints:
+  id: 2
+  name: "Pint's Pub"
+
+mcawesome:
+  id: 3
+  name: "ReadyTalk"
+
+hotdogs:
+  id: 4
+  name: "Coors Field"
+
+regular_dogs:
+  id: 5
+  name: "The Livable Home"
+
+krik:
+  id: 6
+  name: "the Cherry Cricket"

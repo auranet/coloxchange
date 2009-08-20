@@ -1,0 +1,5 @@
+<div class="question">
+  Are you sure you want to delete this <%= class_name.tableize.humanize.singularize.downcase %>?
+  <br /><br />
+  <%%= button_link("Yes",{:confirm => "yes"}) %> or <%%= link_to("cancel",return_url) %>
+</div>

@@ -1,0 +1,6 @@
+<%= render :partial => "mail/header" %>
+<b><%= @quote.tracking_number %> (<%= @quote.name %>) has been updated to status "<%= @quote.status_name %>" on <%= site_name %>.</b>
+<br /><br />
+To view this quote, visit:
+<br /><br /><a href="<%= quote_url = "#{domain}/admin/quotes/#{@quote.id}" %>"><%= quote_url %></a>
+<%= render :partial => "mail/footer" %>

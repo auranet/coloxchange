@@ -1,0 +1,16 @@
+<script type="text/javascript">
+  var loader = $(window.opener.document.getElementById(window.name));
+  if (!loader) {
+    window.opener.location = window.opener.location.toString();
+  } else if (loader.tagName == "SELECT") {
+    var attach = new Element("option",{label:'<%= @instance.name.clean %>',value:<%= @instance.id || 1 %>}).setHTML("<%= @instance.name.clean %>");
+    attach.injectInside(loader);
+    attach.selected = true;
+    setTimeout("window.close();",1000);
+  } else if (loader.tagName == "DIV") {
+    var openerLocation = window.opener.location.toString();
+    openerLocation = openerLocation.substring(0,(openerLocation.lastIndexOf("?") == -1 ? openerLocation.length : openerLocation.lastIndexOf("?"))) + "/list/" + window.name;<% if params[:many] == "yes" %>
+    openerLocation += (openerLocation.indexOf("?") > -1 ? "&" : "?") + "many=yes";<% end %>
+    window.opener.ajax(openerLocation,{method:"get",onComplete:function(){window.close();},update:loader});
+  }
+</script>

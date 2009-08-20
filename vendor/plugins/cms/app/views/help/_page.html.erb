@@ -1,0 +1,28 @@
+Pages make up most of your site's content. You probably know this because you've probably already tried creating a few.
+<br /><br />Pages are hierarchical records, meaning they can have "sub-pages," which are simply pages belonging to one parent.
+<br /><br /><b>Example</b>
+<ul>
+  <li>
+    Homepage
+    <ul>
+      <li>
+        About Us
+        <ul>
+          <li>Our history</li>
+          <li>Our team</li>
+          <li>Our vision</li>
+        </ul>
+      </li>
+      <li>
+        Contact Us
+        <ul>
+          <li>E-mail</li>
+          <li>Phone</li>
+          <li>Support</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul><% if CMS.hierarchical_menus %>
+This hierarchical system is identical to the way your site's <%= link_to "menus",{:action => "help",:model => "menus"},:class => "load-right" %> are set up, which is why the two
+can be linked so closely.<% end %>

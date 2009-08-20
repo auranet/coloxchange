@@ -1,0 +1,17 @@
+<script type="text/javascript">
+  if (typeof(newOptions) == "undefined") var newOptions = {};
+  newOptions["<%= reflection_name %>"] = {onSelect:function(clicked,element,event) {
+  element.value = "";
+  var label = clicked.innerHTML;
+  var id = clicked.id;
+  var container = $("<%= reflection_name %>_reflection_items");
+  var label = new Element("label",{"class":"float-left",style:"width:33%;"}).setProperty("for","<%= reflection_name %>_" + id).setHTML("&nbsp;" + label);
+  var checkbox = new Element("input",{type:"checkbox",name:"instance[<%= reflection_name.singularize %>_ids][]",value:id,id:"<%= reflection_name %>_" + id});
+  checkbox.injectTop(label.injectInside(container)).checked = true;
+}};
+</script>
+<%= text_field_tag(reflection_name,"",:alt => url_for(:action => "search",:model => class_name,:id => nil),:class => "complete text") %>
+<div class="quiet">Type a name in the box</div>
+<div id="<%= reflection_name %>_reflection_items" style="margin-top:15px;"><%= hidden_field_tag("instance[#{reflection_name.singularize}_ids][]","",:id => "hidden_#{reflection_name}_ids") %>
+<% for instance in selected %><label class="float-left" for="<%= reflection_name %>_<%= instance.id %>" style="width:33%;"><%= check_box_tag("instance[#{reflection_name.singularize}_ids][]",instance.id,true,:id => "#{reflection_name}_#{instance.id}") %> <%= instance.name %> <span class="quiet">(<%= link_to("Edit",{:action => "edit",:external => "yes",:model => class_name,:id => instance.id,:many => "yes"},:class => "external",:rel => reflection_name) %>)</span></label><% end %>
+</div>

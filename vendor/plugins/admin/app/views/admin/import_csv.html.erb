@@ -1,0 +1,13 @@
+<%= start_form %>
+  <b>Using the spreadsheet below,</b> select which attribute corresponds to the column in your file. Once you've done that, click "finish import" to import the data.
+  <br /><br />
+  <div class="viewer">
+  <table class="display">
+    <tr><% for i in 0..@instances.first.size-1 %><th><%= select_tag("columns[#{i}]",options_for_select(@columns,params[:columns] ? params[:columns][i.to_sym] : nil)) %></th><% end %><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th></tr><% @instances.each_with_index do |instance,i| %>
+    <tr class="row<%= cycle 1,2 %>"><% instance.each_with_index do |column,i2| %><td nowrap="nowrap"><%= hidden_field_tag("instances[#{i}][#{i2}]",column) %><%= column %></td><% end %><td><%= link_to("",{},:class => "delete-link remove",:rel => "parentNode.parentNode") %></td></tr><% end %>
+  </table>
+  </div>
+  <div class="toolbar">
+    <%= admin_button("Import",:name => "import") %>
+  </div>
+<%= end_form %>

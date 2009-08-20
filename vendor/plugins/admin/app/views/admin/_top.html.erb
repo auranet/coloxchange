@@ -1,0 +1,4 @@
+<div id="admin-top">
+  <a id="admin-top-logo" href="<%= url_for(:controller => "admin",:action => "index") %>"><img alt="<%= Admin.app_name %> logo" src="/global/admin/images/logo-top.png" /></a>
+  <% if @page %><%= link_to("Edit this page",{:controller => "admin",:action => "edit",:model => "page",:id => @page.id},:class => "admin-edit-icon") %><% else %><%= link_to("Create this page",{:controller => "admin",:action => "edit",:model => "page",:id => nil,:slug => request.env["PATH_INFO"].split("/").last},:class => "admin-add-icon") %><% end %>
+</div>

@@ -1,0 +1,4 @@
+<%= start_form({},:multipart => "true") %>
+<div class="doc">Select a file below and then click "Upload."</div>
+<%= file_field_tag("file") %> <%= admin_button("Upload") %>
+<%= end_form %>

@@ -1,0 +1,67 @@
+<% content_for :top do -%>
+<% @css.push('home') %>
+<% @js.push('home') %>
+  <div id="carousel">
+    <ul>
+      <li id="carousel-colocation">
+        <a class="carousel-link" href="#">
+          <img alt="Colocation" src="/images/icons/colocation.png" />
+          <img alt="Colocation" class="label" src="/images/home/text-colocation.gif" />
+        </a>
+        <div class="carousel-content">
+          <p>
+            ColocationXchange provides current access to virtually every data center in the world and will help you find the best Colocation solution available.
+            Whether you require a Tier 1 single server rack or thousands of square feet within a Tier IV facility, finding your Colocation service provider through
+            ColocationXchange is an efficient &amp; effective way to realize your Corporate IT goals.
+          </p>
+          <div class="carousel-toolbar">
+            <%= button_link('Learn More', page_path(:path => 'technology-center/colocation'), :class => 'small') %> <%= button_link('Get a Quote', colocation_quote_path, :class => 'small') %>
+          </div>
+        </div>
+      </li>
+      <li class="carousel-link" id="carousel-bandwidth">
+        <a class="carousel-link" href="#">
+          <img alt="Bandwidth" src="/images/icons/bandwidth.png" />
+          <img alt="Bandwidth" class="label" src="/images/home/text-bandwidth.gif" />
+        </a>
+        <div class="carousel-content">
+          <p>
+            Whether you're looking for a T1/E1, DS3/E3, OC3/STM-1, OC12, OC48, 10Mg through 10 Gigabit Ethernet Services, ColocationXchange can help.
+            ColocationXchange IP Knowledge Network will help you find location-specific Tier One Internet Access anywhere in the World.
+          </p>
+          <div class="carousel-toolbar">
+            <%= button_link('Learn More', page_path(:path => 'technology-center/bandwidth'), :class => 'small') %> <%= button_link('Get a Quote', bandwidth_quote_path, :class => 'small') %>
+          </div>
+        </div>
+      </li>
+      <li class="carousel-link" id="carousel-managed-services">
+        <a class="carousel-link" href="#">
+          <img alt="Managed Services" src="/images/icons/managed-services.png" />
+          <img alt="Managed Services" class="label" src="/images/home/text-managed-services.gif" />
+        </a>
+        <div class="carousel-content">
+          <p>
+            ColocationXchange can help you meet your goals by sourcing the best Hosting service provider for any type of application. Our partners have established core
+            competencies in Server hardware, operating system, backup, database and network transit. Whether you are looking for a simple dedicated server or a complex
+            multi-node solution, your requests will be met through our proven sourcing methodology.
+          </p>
+          <div class="carousel-toolbar">
+            <%= button_link('Learn More', page_path(:path => 'technology-center/managed-services'), :class => 'small') %> <%= button_link('Get a Quote', managed_services_quote_path, :class => 'small') %>
+          </div>
+        </div>
+      </li>
+      <li class="carousel-link" id="carousel-equipment">
+        <a class="carousel-link" href="#">
+          <img alt="Equipment" src="/images/icons/equipment.png" />
+          <img alt="Equipment" class="label" src="/images/home/text-equipment.gif" />
+        </a>
+        <div class="carousel-content">
+          <div class="carousel-toolbar">
+            <%= button_link('Learn More', page_path(:path => 'technology-center/equipment'), :class => 'small') %> <%= button_link('Get a Quote', equipment_quote_path, :class => 'small') %>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- <div id="carousel-shadow"></div> -->
+  </div>
+<% end -%>

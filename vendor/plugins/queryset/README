@@ -1,0 +1,28 @@
+= QuerySet
+
+QuerySet provides three public class methods to ActiveRecord::Base to extend its searching functionality.
+
+ActiveRecord::Base#dates accepts a column name and grouping type, and returns a collection of unique Date objects for which the model matches.
+
+ActiveRecord::Base#filter, when provided with a keyword-argument list, returns a QuerySet class capable of extending ActiveRecord searches across model relationships in all directions, seamless OR and AND integration, LEFT JOINS for checking for non-empty relationships, and more.
+
+ActiveRecord::Base#match accepts a column name and a string (against) which allows developers to integrate FULLTEXT searches quickly and easily.
+
+For all examples below, we'll be working with the following models:
+
+  class BlogPost < ActiveRecord::Base
+    belongs_to :user
+  end
+
+  class User < ActiveRecord::Base
+    has_many :blog_posts
+  end
+
+== DateSet and fetching groups of dates
+
+DateSet is a simple extension which will perform a search on an ActiveRecord::Base subclass and return an array of dates for which such an object appears. To return a list of Date objects to, for example, list the months of your blog's archive, you could simply do this:
+
+  dates = BlogPost.dates(:created_at,:month) # => [#<Date 1/10/2007>,#<Date 1/11/2007>,#<Date 1/12/2007>,#<Date 1/2/2008>,#<Date 1/4/2008>] 
+  # (you were on vacation in January and March)
+
+To filter your results closer, supply 

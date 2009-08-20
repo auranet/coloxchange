@@ -1,0 +1,17 @@
+<tr><% if field.is_a?(Array) %>
+  <!-- <td></td> -->
+  <td colspan="2" style="padding:0;">
+    <table class="form"><% size = field.size %>
+      <tr><% for nfield in field %><% if nfield.is_a?(Hash) %><% options = nfield.values[0] %><% nfield = nfield.keys[0] %><% end %>
+        <th style="text-align:left;width:<%= 100/size %>%;"><label class="block-label" for="instance_<%= nfield %>"><%= options && options[:label] ? options[:label] : nfield.to_s.titleize %>:</label></th><% options = nil %><% end %>
+      </tr>
+      <tr><% for nfield in field %><% if nfield.is_a?(Hash) %><% options = nfield.values[0] %><% nfield = nfield.keys[0] %><% end %><% next if nfield.blank? %>
+        <td><%= admin_input("instance",nfield,options || {}) %><% if options && options[:label_comment] %> <span class="quiet"><%= options[:label_comment] %></span><% end %></td><% end %>
+      </tr>
+    </table>
+  </td>
+<% else %><% options = field.values[0]; field = field.keys[0]; in_cents = false; if field =~ /_in_cents$/; in_cents = true; end; %><% unless field.blank? %>
+  <th<%= ' class="top"' if options[:class] && options[:class].include?("editor") %>><label for="instance_<%= in_cents ? field.gsub(/_in_cents$/,"") : field %>"><%= in_cents ? options.delete(:label).gsub(/ in cents$/,"") : options.delete(:label) %>:<% if options[:label_comment] %><div class="quiet"><%= options.delete(:label_comment) %></div><% end %></label></th>
+  <td><%= admin_input("instance",field,options) %></td><% end %>
+<% end %>
+</tr>

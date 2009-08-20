@@ -1,0 +1,3 @@
+<% if @photos && !@photos.empty? %><table class="none" style="width:20px;"><tr style="vertical-align:middle;" valign="center"><% for photo in @photos %>
+  <td><%= radio_button("photo","photo_id",photo.id) %></td><td><label id="photo_photo_id_<%= photo.id %>_label" for="photo_photo_id_<%= photo.id %>"><%= photo.embed(:admin_thumb,:class => "photo") %></label></td><% end %>
+</tr></table><% else %>No photos found!<% end %>

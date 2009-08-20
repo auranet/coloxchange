@@ -1,0 +1,5 @@
+# You may change this to whatever you want exceot it MUST be named "queryset_test"
+queryset_test:
+  adapter: sqlite3
+  database: test/db/queryset_test.sqlite3
+  timeout: 5000

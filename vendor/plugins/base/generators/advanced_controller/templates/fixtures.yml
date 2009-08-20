@@ -1,0 +1,19 @@
+<% unless attributes.empty? -%>
+one:
+<% for attribute in attributes -%>
+  <%= attribute.name %>: <%= attribute.default %>
+<% end -%>
+
+two:
+<% for attribute in attributes -%>
+  <%= attribute.name %>: <%= attribute.default %>
+<% end -%>
+<% else -%>
+one:
+  id: 1
+  name: Name
+
+two:
+  id: 2
+  name: Test <%= class_name %>
+<% end -%>

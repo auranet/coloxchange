@@ -1,0 +1,12 @@
+<%= render :partial => "mail/header" %>
+<b>A quote request has been submitted from <%= site_name %></b>.
+<br /><br />
+<%= render :partial => "mail/contact" %>
+<% for data_center in @data_centers %>
+<br /><br />
+<b>Data Center</b>
+<table style="font:normal 12px 'Lucida Grande',Verdana,Arial,sans-serif;">
+  <tr><td style="font-weight:bold;width:120px;">Name:</td><td><%= data_center.name %></td></tr>
+  <tr><td style="font-weight:bold;">Link:</td><td><a href="<%= domain %>/admin/data_centers/<%= data_center.id %>"><%= domain %>/admin/data_centers/<%= data_center.id %></a></td></tr>
+</table><% end %>
+<%= render :partial => "mail/footer" %>

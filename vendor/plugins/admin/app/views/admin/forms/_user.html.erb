@@ -1,0 +1,20 @@
+<div class="toolbar-right">
+  <%= link_to "Change password",{:action => "change_password",:id => @instance == @user ? nil : @instance.id},:class => "edit-link" %>
+</div>
+<div class="box">
+  <table class="form">
+    <tr><th><label for="instance_photo_id">Photo:</label></th><td><%= admin_input("instance","photo_id") %></td></tr>
+    <tr><th><label for="instance_first_name">Name:</label></th><td><%= text_field("instance","first_name",:class => "half oversize text") %> <%= text_field("instance","last_name",:class => "half oversize text") %><div class="quiet">First<span style="padding-left:192px;">Last</span></div></td></tr>
+    <tr><th><label for="instance_email">E-mail:</label></th><td><%= text_field("instance","email",:class => "text") %></th></tr>
+    <tr><th><label for="instance_username">Username:</label></th><td><%= text_field("instance","username",:class => "text") %></th></tr><% if @user.admin_omnipotent? %>
+    <tr><th><label for="instance_verified_yes">E-mail verified:</label></th><td><%= yesno("instance","verified") %></td></tr>
+    <tr><th><label for="instance_active">Active:</label></th><td><%= yesno("instance","active") %></td></tr>
+    <tr><th><label for="instance_admin">Admin:</label></th><td><%= yesno("instance","admin",:class => "option") %></td></tr>
+    <tr id="instance_admin_true_options"<%= ' style="display:none;"' unless @instance.admin? %>><th><label for="instance_admin_skin">Dashboard:</label></th><td><%= select("instance","admin_skin",["inkDrop v1","inkDrop v2"])%></td></tr><% end %><% if @instance.new_record? %>
+    <tr><td></td><td><label for="instance_send_creation_email"><%= check_box("instance","send_creation_email") %> Send this user an e-mail with their new password and login instructions now</label></td></tr><% end %><% if @user.admin_omnipotent? %>
+    <tr><td></td><td><label for="instance_change_password"><%= check_box("instance","change_password",:checked => @instance.new_record? || @instance.change_password ? "checked" : nil) %> Require this user to change their password the next time they log in</label></td></tr><% if @instance.active && @instance.username && !@instance.username.blank? && email_support %>
+    <tr><td></td><td><label for="instance_enable_email"><%= check_box("instance","enable_email") %> Enable e-mail for <%= @instance.username %>@<%= domain_short %></label></td></tr><% end %><% end %>
+    <% for field in @fields %><%= render :partial => "admin/field",:locals => {:field => field} %>
+    <% end %>
+  </table>
+</div><% @many_to_many.delete_if{|reflection| reflection.name == :admin_roles} unless @user.admin_omnipotent? %>

@@ -1,0 +1,1 @@
+  <tr><td class="bold" style="width:80px;"><h3><%= news_item.date.strftime("%m/%d/%y").gsub(/0(\d+)\//,'\1/') %></h3></td><td class="bold"><%= link_to(news_item.name,news_item.url) %></td></tr>

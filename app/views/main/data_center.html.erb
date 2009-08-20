@@ -1,0 +1,4 @@
+<% if @data_center -%>
+<%= button_link('Get a Quote', data_center_path(:quote => 'yes'), :class => 'float-right') %>
+<%= @data_center['description'].gsub('src="/', 'src="http://www.findadatacenter.com/') %>
+<% end -%>

@@ -1,0 +1,3 @@
+<table>
+  <tr><td class="bold"><label for="video_source">Video:</label></td><td><%= select_tag("video_src",options_for_select(@videos)) %> <%= admin_button("Add video") %> <%= admin_button_link("Cancel",{},:class => "cancel") %></td></tr>
+</table>

@@ -1,0 +1,5 @@
+*.pid
+database.yml
+locomotive.yml
+site.yml
+environments/

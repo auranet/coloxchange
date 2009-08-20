@@ -1,0 +1,21 @@
+<div class="box">
+  <table class="form">
+    <thead>
+      <tr><th><label for="instance_name">Name:</label></th><td><%= admin_input("instance","name") %></td></tr>
+      <tr><th><label for="instance_width">Size:</label><div class="quiet">width x height</div></th><td><%= admin_input("instance","width") %> x <%= admin_input("instance","height") %></td></tr>
+      <tr><th><label for="instance_url">URL:</label></th><td><%= admin_input("instance","url") %><div class="quiet">ex. http://www.person-advertising-with-you.com/ad/<%= site_name.slugify %></div></td></tr>
+      <tr><th><label for="instance_active_true">Active?</label></th><td><%= admin_input("instance","active") %></td></tr>
+      <tr><th><label for="instance_ends_on_2i">Expiration:</label></th><td><%= admin_input("instance","ends_on") %></td></tr>
+      <tr><th><label for="instance_kind">Kind:</label></th><td><%= admin_input("instance","kind",:class => "options",:choices => [["Image","photo"],["Remote image","remote_photo"],["Direct input","text"]]) %><div class="quiet">Use "direct input" for Flash banner code or Google Ads.</div></td></tr>
+    </thead>
+    <tbody id="instance_kind_photo_options"<%= ' style="display:none;"' if @instance.kind && @instance.kind != "photo" %>>
+      <tr><th><label for="instance_photo_id">Image:</label></th><td><%= admin_input("instance","photo_id") %></td></tr>
+    </tbody>
+    <tbody id="instance_kind_remote_photo_options"<%= ' style="display:none;"' unless @instance.kind == "remote_photo" %>>
+      <tr><th><label for="instance_photo_url">URL:</label></th><td><%= admin_input("instance","photo_url") %><div class="quiet">ex. http://www.my.image.server.com/images/4950234-x.jpg</div></td></tr>
+    </tbody>
+    <tbody id="instance_kind_text_options"<%= ' style="display:none;"' unless @instance.kind == "text" %>>
+      <tr><th><label for="instance_body">HTML code:</label></th><td><%= admin_input("instance","body",:class => "half") %></td></tr>
+    </tbody>
+  </table>
+</div>

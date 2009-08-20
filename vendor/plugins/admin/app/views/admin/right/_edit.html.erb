@@ -1,0 +1,16 @@
+<!-- <div class="widget">
+  <h2><%= link_to @instance.new_record? ? "Add a #{@model_name.singularize.downcase}" : "Edit #{@instance.name.shorten(20)}",{},:class => "right-expand expanded",:rel => "edit_actions" %></h2>
+  <div class="widget-container" id="edit_actions">
+    
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div>
+<% begin %><% render :partial => "admin/right/edit_#{@model_class.singularize}" %>
+<div class="widget">
+  <h2><%= link_to "#{@model_name} Options",{:action => "set_instance_var",:id => "edit_options",:value => session[:edit_options] == "yes" ? "no" : "yes"},:class => "right-expand expanded",:rel => "edit_options" %></h2>
+  <div class="widget-container" id="edit_options">
+    <%= render :partial => "admin/right/edit_#{@model_class.singularize}" %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div><% rescue %><% end %> -->
+<%= RecentActivity.new(@controller,@user,{:model => @model.name,:id => params[:id]}).render_widget %>

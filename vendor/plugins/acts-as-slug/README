@@ -1,0 +1,46 @@
+acts_as_slug
+============
+
+acts_as_slug will automatically populate a slug column on a record with a URL-friendly version of that record's name on creation. If another record with that slug exists, acts_as_slug will automatically append an integer to the end of the slug.
+
+
+Example
+=======
+
+class BlogPost < ActiveRecord::Base
+	acts_as_slug
+end
+
+blog_post = BlogPost.create(:name => "Oh! MAN, am I drunk!")
+blog_post.new_record? #=> false
+blog_post.slug #=> "oh-man-am-i-drunk"
+
+blog_post_2 = BlogPost.create(:name => "Oh MAN am I drunk...")
+blog_post_2.slug #=> "oh-man-am-i-drunk-2"
+
+
+Configuration
+=============
+
+acts_as_slug accepts three configuration options
+
+:slug - the name of the slug column you want to populate (defaults to "slug")
+:name - the name of the method or column you want to use to populate the slug (default to "name")
+:scope - one or more columns to limit the slug's increment with. You may supply an array of columns ([:user_id,:blog_id]), a single column (:user or :user_id), or a SQL snippet ("blog_posts.type IS NULL"). Cool.
+
+
+Better Example
+==============
+
+class BlogPost < ActiveRecord::Base
+	acts_as_slug :slug => "slug_field",:name => "title",:scope => :user_id
+	belongs_to :user
+end
+
+blog_post = BlogPost.create(:name => "Welcome!",:user_id => 1)
+blog_post.slug_field #=> "welcome"
+
+blog_post2 = BlogPost.create(:name => "Welcome!",:user_id => 2)
+blog_post2.slug_field #=> "welcome"
+
+Copyright (c) 2008 Phillip Sasser, released under the MIT license

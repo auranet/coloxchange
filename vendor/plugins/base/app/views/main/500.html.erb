@@ -1,0 +1,2 @@
+There was an internal server error. Technical support has been notified and will fix the problem as soon as possible.<% if @user && @user.admin? && @ticket %>
+<br /><br />A ticket has been created in <%= Admin.app_name %>. You may view it <%= link_to("here",@ticket.url,:class => "new") %>.<% end %>

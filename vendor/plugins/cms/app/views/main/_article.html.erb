@@ -1,0 +1,6 @@
+<h2><%= link_to article.name,article.url %></h2>
+<div class="article-author">By <%= article.user.name %></div>
+<div class="article-body"><% if article.preview && !article.preview.strip.blank? %>
+  <%= h(article.preview).gsub("\n","<br />") %><% end %>
+  <%= link_to("Read more",article.url,:class => "float-right show-link") %>
+</div>

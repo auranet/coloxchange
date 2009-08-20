@@ -1,0 +1,7 @@
+Are you sure you want to delete the <%= params[:model].humanize.singularize.downcase %> "<%= @instance.name %>?"
+<div class="toolbar">
+  <table class="none">
+    <tr valign="top"><td style="width:50px;"><%= admin_button_link("Yes",:confirmed => "yes",:external => @external ? "yes" : nil) %></td><td><%= admin_button_link("No",{:confirmed => "no"},:onclick => @external ? "window.close();" : nil) %></td></tr>
+  </table>
+</div>
+<div class="quiet red">This cannot be undone!</div>

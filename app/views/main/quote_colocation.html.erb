@@ -1,0 +1,30 @@
+<% form_tag(quote_path) do %>
+  <%= hidden_field(:quote, :type) %>
+  <%= render :partial => 'main/contact' %>
+  <fieldset class="collapsible toggled">
+    <legend><b>2</b> Data center<%= !@data_centers || (@data_centers && @data_centers.length > 1) ? 's' : '' %></legend>
+    <div class="pad">
+      <input alt="Enter city/state or zip code..." class="replace search text" id="data-center-search" name="data_center_search" type="text" value="" /> <%= button_link('Search', data_center_search_path(:format => 'json'), :class => 'small', :id => 'data-center-search-button') %>
+      <div id="data-center-results"<%= hide_unless(@data_centers && !@data_centers.empty?) %>>
+        <h2>Search Results</h2>
+        <table class="grid">
+          <thead><tr><th colspan="3">Data Center</th></tr></thead>
+          <tbody>
+<% for data_center in @data_centers -%>
+            <tr class="row <%= cycle('one', 'two') %>" id="data-center-row-<%= slug = data_center['slug'] %>"><td style="width:10px;"><input checked="checked" id="data-center-<%= slug %>" name="quote[data_centers][]" type="checkbox" value="<%= slug %>" /></td><td><label for="data-center-<%= slug %>"><%= data_center['name'] %></label></td><td class="center medium">n/a<div class="quiet">miles</div></td></tr>
+<% end if @data_centers -%>
+          </tbody>
+        </table>
+      </div>
+      <%= errors_on(:quote, :data_centers) %>
+    </div>
+  </fieldset>
+  <fieldset class="collapsible toggled">
+    <legend><b>3</b> Notes and special instructions</legend>
+    <div class="pad">
+      <%= text_area(:quote, :note) %>
+    </div>
+  </fieldset>
+  <div class="center"><%= button('Submit this Quote') %></div>
+<% end %>
+<% @js.push('quote_colocation') %>

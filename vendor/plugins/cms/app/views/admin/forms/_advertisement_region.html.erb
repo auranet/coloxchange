@@ -1,0 +1,9 @@
+<table class="form">
+  <tr><th><label for="instance_name">Name:</label></th><td><%= admin_input("instance","name") %></td></tr>
+  <tr><td colspan="2">
+    <div class="quiet">Click in the map over an area to specify boundaries for this advertisement. You can resize the boundaries.</div>
+    <div class="box" id="map" style="background-image:none;height:200px;padding:0;display:none;"><%= @instance.sw_lat %>x<%= @instance.sw_lng %>::<%= @instance.ne_lat %>x<%= @instance.ne_lng %></div>
+  </td></tr>
+  <tr><th><label for="instance_sw_lat">SW Bound:</label><div class="quiet">lat x lng</div></th><td><%= admin_input("instance","sw_lat") %> x <%= admin_input("instance","sw_lng") %></td></tr>
+  <tr><th><label for="instance_ne_lat">NE Bound:</label><div class="quiet">lat x lng</div></th><td><%= admin_input("instance","ne_lat") %> x <%= admin_input("instance","ne_lng") %></td></tr>
+</table>

@@ -1,0 +1,7 @@
+<div class="doc">
+  Welcome to your global site settings! From here you can control your site's general configuration (including name, tagline, Google analytics data, meta tags, and
+  more), and user roles, which will allow you to grant very specific permissions to groups of users.
+</div>
+<%= render :partial => "admin/forms/configuration" %>
+<br /><h2>User Roles</h2>
+<%= render :partial => "browse_table",:locals => {:class_name => "admin_roles",:external => false,:options => AdminRole.admin_options,:instances => @instances,:order => nil,:order_sort => nil,:sortable => false,:tree => false} %>

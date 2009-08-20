@@ -1,0 +1,18 @@
+<% model_class = class_name.singularize.camelize.constantize %><% advanced = sortable || tree %><% deletable = model_class.admin_actions.empty? ? model_class.admin_deletable : true %><% width = options[:browse_columns].size > 1 ? "#{100/(options[:browse_columns].size + (sortable ? 2 : !options[:deletable] ? 0 : 1))}%" : "auto" %>  <table class="display">
+    <%= render :partial => "browse_table_header",:locals => {:advanced => advanced,:columns => options[:browse_columns],:deletable => deletable,:instances => instances,:order => order,:order_sort => order_sort,:sortable => sortable,:tree => tree,:width => width} %><% if instances.empty? %>
+    <tr class="row0"><td colspan="<%= options[:browse_columns].size + 2 %>">No <%= model_name.pluralize.downcase %> found.<!-- ! Maybe <%= link_to "add one now",{:action => "edit",:model => class_name.singularize,:external => external ? "yes" : nil},:class => external ? "external" : nil,:rel => external ? class_name.pluralize : nil %>? --></td></tr>
+  </table><% else %><% if advanced %>
+  </table><% if sortable %>
+  <div class="sortable" id="<%= class_name %>_<%= rand(1000) %>"><% end %><% end %>
+    <%= render :partial => "browse_table_row",:collection => instances,:locals => {:advanced => advanced,:class_name => class_name,:columns => options[:browse_columns],:deletable => deletable,:external => external,:sortable => sortable,:tree => tree,:width => width} %><% if !advanced %>
+  </table><% elsif sortable %></div><% end %><% end %><% if instances.size > 0 %>
+<div class="toolbar"><% if defined?(pages) && !pages.nil? %>
+  <div class="float-right right">
+    <%= link_to "&laquo;" unless pages.current.first? %>
+    <%= (pages.current_page.number * pages.items_per_page) - pages.items_per_page + 1 %> - <%= (pages.current_page.number * pages.items_per_page) - pages.items_per_page + instances.size %> of <%= pages.item_count %>
+    <%= link_to "&raquo;",{:overwrite_params => {:page => pages.current.next}} unless pages.current.last? %>
+    <br /><%= pagination_links_each(pages,{:window_size => 5}){|page| link_to(page, :page => page)} %>
+  </div><% end %>
+  <%= admin_button("Delete selected") if model_class.admin_deletable %><% for label,action in model_class.admin_actions %><%= admin_button(label,:name => action) %><% end %>
+</div>
+<% end %>

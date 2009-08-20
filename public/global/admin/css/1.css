@@ -1,0 +1,48 @@
+div#main { background:#fff url(../images/background.png) repeat-x left -27px; margin:0 auto; }
+div#header { color:#fff; height:30px; overflow:hidden; padding:6px 10px; }
+
+div#spinner { background:url(../images/spinner-breadcrumb.gif) right center no-repeat; height:32px; position:absolute; right:20px; top:4px; width:32px; }
+div#content { background:#fff url(../images/background-right.gif) right top repeat-y; min-height:310px; }
+div#right { color:#ddd; float:right; padding:15px 18px 20px 15px; width:265px; }
+div#left { margin-right:300px; }
+div#left-content { padding:10px 20px; }
+div#footer { color:#999; font-size:10px; margin:10px 0; padding:10px 0; text-align:center; }
+
+div#breadcrumb { background-color:#eee; border-bottom:1px dotted #bbb; padding:8px 0 5px 20px; position:relative; z-index:2; }
+div#breadcrumb ul { list-style-type:none; margin:0; padding:0; }
+div#breadcrumb ul li { background:#ddd url(../images/background-dashboard-link-left.gif) no-repeat; float:left; margin:0; padding:0; position:relative; z-index:3; }
+div#breadcrumb ul li table { border-collapse:collapse; margin:-1px 0;  }
+div#breadcrumb ul li table td { padding:0; }
+div#breadcrumb ul li a { background:url(../images/background-dashboard-link-right.gif) right top no-repeat; display:block; float:left; height:20px; padding:5px 5px 0 5px; z-index:4; }
+div#breadcrumb ul li a:hover { background-color:transparent; }
+div#breadcrumb ul li ul { display:none; }
+div#breadcrumb ul li:hover ul,#breadcrumb ul li a:hover ul { background:url(../images/background-trans-white.png); border-bottom:1px solid #ddd; border-top:1px solid #ddd; display:block; height:auto; left:0; position:absolute; top:25px; width:140px; z-index:3; }
+div#breadcrumb ul li ul li { background:none; border-left:1px solid #ddd; border-right:1px solid #ddd; display:block; float:none; margin:0; padding:0; position:relative; }
+/*div#breadcrumb ul li ul li.search .has-results.search-results { background:none; border-width:0; display:block; float:none; position:static; }*/
+div#breadcrumb ul li ul li input[type=search] { display:none; }
+div#breadcrumb ul li ul li:hover input[type=search] { display:inline; }
+div#breadcrumb ul li ul li a { background:none; float:none; height:auto; margin:0 !important; padding:5px; text-decoration:none; width:130px; }
+div#breadcrumb ul li ul li a:hover { background-color:#36c; color:#fff; }
+div#breadcrumb ul li ul li a span { display:block; float:right; }
+div#breadcrumb ul li ul li a.add-link,div#breadcrumb ul li ul li a.browse-link { background-position:10px center; background-repeat:no-repeat; }
+div#breadcrumb ul li ul li ul { border-top:1px solid #ddd !important; left:100% !important; top:-2px !important; visibility:hidden; }
+/*div#breadcrumb ul li ul li ul li { border-left:none; }*/
+div#breadcrumb ul li:hover ul li:hover ul,div#breadcrumb ul li a:hover ul li a:hover ul { visibility:visible; }
+div#breadcrumb ul li:hover ul li:hover ul a,div#breadcrumb ul li a:hover ul li a:hover ul a { background-position:5px center; padding-left:30px; width:103px; /*width:83px; */}
+div#breadcrumb ul li ul li.browse { display:none; }
+div#breadcrumb ul li ul li.search { background:#fff url(../images/background-search.gif) repeat-x; }
+div#breadcrumb ul li ul li.search input { margin:3px 5px 5px 5px; width:120px; }
+div#breadcrumb ul li ul li.search .search-results { display:none; }
+div#breadcrumb ul li ul li.search .loading.search-results { background:url(../images/spinner.gif) center center no-repeat; display:block; height:30px; }
+div#breadcrumb ul li ul li.search .has-results.search-results { display:block; }
+div#breadcrumb ul li ul li.search .search-results ul { background:none; border-width:0 !important; margin:0 !important; padding:0 !important; position:static !important; width:100% !important; }
+div#breadcrumb ul li ul li.search .search-results ul li { background:none; border-width:0 !important; margin:0 !important; padding:5px !important; position:static !important; }
+div#breadcrumb ul li ul li.search .search-results ul li:hover,div#breadcrumb ul li ul li.search .search-results ul li.selected { background-color:#36c; color:#fff; }
+div#breadcrumb-end { float:left; padding:5px 0; position:relative;}
+
+div#header a { color:#cf9; }
+div#header h1 { color:#fff; font-size:22px; }
+div#right a, div#right h2 { color:#FFE8D0; }
+div#right h3 { color:#fff; }
+div#right input.text { width:210px; }
+div#right.no-breadcrumb { padding-top:15px; }

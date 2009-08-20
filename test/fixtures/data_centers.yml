@@ -1,0 +1,6 @@
+one:
+  id: 1
+  name: Test Center Foo
+  city: Denver
+  state: CO
+  postal_code: 80209

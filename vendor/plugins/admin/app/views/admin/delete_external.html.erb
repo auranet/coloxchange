@@ -1,0 +1,6 @@
+<script type="text/javascript">
+  var loader = $(window.opener.document.getElementById(window.name));
+  var openerLocation = window.opener.location.toString();
+  openerLocation = openerLocation.substring(0,(openerLocation.lastIndexOf("?") == -1 ? openerLocation.length : openerLocation.lastIndexOf("?"))) + "/list/" + window.name;
+  window.opener.ajax(openerLocation,{onComplete:function(){window.close();},update:loader});
+</script>

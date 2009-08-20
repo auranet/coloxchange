@@ -1,0 +1,7 @@
+<div class="widget">
+  <h2><%= link_to("Saved Reports",{},:class => "right-expand #{' expanded' unless session[:expand_saved_reports]}",:rel => "saved-reports") %></h2>
+  <div class="widget-container" id="saved-reports" <%= ' style="display:none;"' unless session[:expand_saved_reports] %>><% for report in @reports %>
+    <% end if @reports %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div>

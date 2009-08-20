@@ -1,0 +1,12 @@
+Are you sure you want to delete <%= @model_count_name %>?
+<div class="toolbar">
+  <%= start_form :confirmed => "yes" %><% for model in params[:models] %>
+    <%= hidden_field_tag("models[]",model,:id => "model_#{model}") %><% end %>
+    <div class="toolbar">
+      <table class="none">
+        <tr valign="top"><td style="width:50px;"><%= admin_button("Yes",:name => "yes") %></td><td><%= admin_button_link("No",:confirmed => "no",:models => "none") %></td></tr>
+      </table>
+    </div>
+  <%= end_form %>
+</div>
+<div class="quiet red">This cannot be undone!</div>

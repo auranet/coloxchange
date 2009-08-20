@@ -1,0 +1,7 @@
+<%= start_form :controller => "main", :action => "login" %>
+  <label for="user_email">E-Mail:</label>
+  <br /><%= text_field("user","email",:class => "text") %>
+  <br /><label for="user_password">Password:</label>
+  <br /><%= password_field("user","password",:class => "text") %>
+  <br /><%= admin_button("Log In") %>
+<%= end_form %>

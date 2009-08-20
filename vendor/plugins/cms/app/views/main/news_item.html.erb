@@ -1,0 +1,4 @@
+<div class="body">
+  <%= @news_item.body.gsub("\n","<br />") %>
+</div>
+<br /><br /><%= link_to("Return to new",{:action => "news"}) %>

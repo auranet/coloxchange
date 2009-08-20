@@ -1,0 +1,39 @@
+= Version History
+
+== 1/7/09 (1.0.7)
+
+  Updated not_null modifiers to respect implicit instead of explicit boolean values
+
+== 11/10/08 (1.0.6)
+
+  Added true and false modifiers. Ex: User.filter(:active__true => true)
+
+== 10/29/08 (1.0.5)
+
+  Added not_contains to #filter modifiers
+  Fixed boolean FULLTEXT searching with conditions
+  Updated pagination to support all ActiveRecord::Base#find options
+
+== 10/23/08 (1.0.4)
+
+  Added public instance method 'condition' to allow individual chaining. Ex: User.filter.condition(:name => 'flip')
+
+== 8/7/08 (1.0.3)
+
+  Added cloning to joined QuerySets' conditions and includes array to avoid accidentally modifying them
+
+== 7/11/08 (1.0.2)
+
+	Added full Enumerable support (collect, select, etc)
+	Added record and count caching for SQL-gentler operations
+	Added paginate method (requires will_paginate gem)
+	Fixed table_name on reflections
+
+== 6/12/08 (1.0.1)
+
+	Fixed EXTRACT bug
+	Fixed model count error
+	Improved ActiveRecord search options
+	Improved joining of includes
+	Removed accidental Git includes
+	Renamed test methods to be actually incremental

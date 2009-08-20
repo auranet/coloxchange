@@ -1,0 +1,2 @@
+class ManagedServicesQuote < Quote
+end

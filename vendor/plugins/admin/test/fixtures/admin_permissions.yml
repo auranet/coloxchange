@@ -1,0 +1,25 @@
+one:
+  id: 1
+  admin_role_id: 2
+  model: "User"
+  add: true
+  edit: true
+  delete: true
+
+two:
+  id: 2
+  admin_role_id: 2
+  model: "Photo"
+  add: true
+  edit: true
+  delete: true
+  must_own: true
+
+three:
+  id: 3
+  admin_role_id: 3
+  model: "FileStore"
+  add: true
+  edit: true
+  delete: false
+  must_own: true

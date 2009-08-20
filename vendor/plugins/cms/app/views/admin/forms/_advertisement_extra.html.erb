@@ -1,0 +1,6 @@
+<br />
+<h2>Reporting</h2>
+<table class="display">
+  <tr><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Top 5 keywords</th></tr>
+  <tr><td><%= @instance.clicks.count %></td><td><%= @instance.impressions.count %></td><td><%= @instance.impressions.count > 0 ? (@instance.clicks.count.to_f / @instance.impressions.count.to_f).decimalize : "0.0" %>%</td><td><%= Keyword.filter(:clicks__item_id => @instance.id,:clicks__item_type => "Advertisement").find(:all,:limit => 5).collect{|keyword| keyword.name}.join(", ") %></td></tr>
+</table>

@@ -1,0 +1,5 @@
+<%= news_item_contact.name %>
+<%= "<br />#{news_item_contact.company}" if news_item_contact.company && !news_item_contact.company.blank? %>
+<%= "<br />#{mail_to(news_item_contact.email)}" if news_item_contact.email && !news_item_contact.email.blank? %>
+<%= "<br />#{news_item_contact.phone}" if news_item_contact.phone && !news_item_contact.phone.blank? %>
+<br /><br />

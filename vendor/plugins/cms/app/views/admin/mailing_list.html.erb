@@ -1,0 +1,7 @@
+<b>Please select a mailing list below.</b> Then click "add <%= @model_name.downcase.pluralize %>" to save the <%= @model_name.downcase.pluralize %> you selected on the previous screen to the selected list. You will be able to
+deliver mass e-mails and newsletters to specific mailing lists using this feature.
+<br /><br />
+<%= start_form(:models => params[:models]) %><% for mailing_list in @mailing_lists %>
+  <label for="mailing_list_<%= mailing_list.id %>"><%= radio_button_tag("mailing_list",mailing_list.id,false,:id => "mailing_list_#{mailing_list.id}") %> <%= mailing_list.name %></label><br /><% end %>
+  <br /><%= admin_button("Add #{@model_name.pluralize}") %>
+<%= end_form %>

@@ -1,0 +1,4 @@
+<%= start_form({:action => "filter"},:id => "filter-form") %>
+<%= Filters.new(@controller,@user,{:filters => @filters,:model => @model.name}).render_widget %>
+<%= end_form %>
+<%= RecentActivity.new(@controller,@user,{:model => @model ? @model.name : nil}).render_widget %>

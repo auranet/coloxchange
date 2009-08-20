@@ -1,0 +1,34 @@
+<div class="widget">
+  <h2><%= link_to "Setup Help",{},:class => "right-expand",:rel => "widget-roles" %></h2>
+  <div class="widget-container" id="widget-roles">
+    <h3>Overview</h3>
+    To set up your <%= Admin.app_name %> application, you must supply some minimal configuration options.
+    <br /><br />At the very least, you need to name your site and create your user account.
+    <br /><br />
+    <h3>General</h3>
+    <ul>
+      <li><b>Site name:</b> The name your site will have when it references itself in e-mails or the title bar.</li>
+      <li><b>Slogan:</b> The tag line to appear in the title bar after your site name.</li>
+      <li><b>Google analytics key:</b> The key used to track your site's statistics in Google Analytics.</li>
+      <li><b>Google maps key:</b> The key to enable Google mapping on your site.</li>
+    </ul>
+    <h3>Meta tags</h3>
+    Meta information is available on every page of the site through your meta tags, and will help drive traffic. They are all optional fields.
+    <ul>
+      <li><b>Author:</b> Who owns and operates this site? Usually your company name.</li>
+      <li><b>Copyright:</b> Who legally owns the content on this site? Leave %Y for an auto-updating year.</li>
+      <li><b>Description:</b> The site description search engines will save when they index your site</li>
+      <li><b>Keywords:</b> Comma-separated keywords relating to your business. Less important nowadays.</li>
+    </ul><% if Admin.exportable %>
+    <h3>Exporting</h3>
+    This configures FTP site exporting since you haven't opted for <%= Admin.app_name %> hosting.
+    <ul>
+      <li><b>Server address:</b> The current address for your FTP server.</li>
+      <li><b>Port:</b> The port your FTP server listens to. Usually 80.</li>
+      <li><b>FTP user:</b> The username you use to log on to your FTP server.</li>
+      <li><b>FTP password:</b> The password you use to log on to your FTP server.</li>
+      <li><b>Site path:</b> The relative path to your site's home on your server, e.g. /var/www/mysite/public</li>
+    </ul><% end %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div>

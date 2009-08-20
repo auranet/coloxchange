@@ -1,0 +1,35 @@
+odd:
+  user_id: 1
+  area_code: 303
+  number: "353-5242"
+  long_distance: 0
+
+bawlmer:
+  user_id: 2
+  area_code: 410
+  number: "555.1212"
+  long_distance: 1
+
+empire:
+  user_id: 2
+  area_code: 800
+  number: "MICROSOFT"
+  long_distance: 0
+
+infinite_loop:
+  user_id: 3
+  area_code: 800
+  number: "MY-APPLE"
+  long_distance: 0
+
+linus:
+  user_id: 4
+  area_code: 315
+  number: "393 1154"
+  long_distance: 1
+
+bawlmer_useless:
+  user_id: 5
+  area_code: 410
+  number: "253-5829"
+  long_distance: 1

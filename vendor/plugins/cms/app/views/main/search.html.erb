@@ -1,0 +1,10 @@
+<% if @results %><h2><% if @results.empty? %>No results returned! Please try your search again.<% else %><%= @results.size %> result<%= "s" unless @results.size == 1 %><% end %></h2><% for result in @results %>
+<%= link_to result.name,result.url %>
+<br /><%= result.body %>
+<br /><br /><% end %><% end %>
+<%= start_form({},:method => "get") %>
+  <table class="form">
+    <tr><th><label for="q">Search for:</label></th><td><%= text_field_tag("q",params[:q],:class => "text") %></td></tr>
+    <tr><th></th><td><%= button("Search") %></td></tr>
+  </table>
+<%= end_form %>

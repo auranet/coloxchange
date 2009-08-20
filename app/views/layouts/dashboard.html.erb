@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title><%= @title %> | Admin Dashboard</title><% for stylesheet in @css.uniq %>
+  <link href="/app/css/<%= stylesheet %>.css" rel="stylesheet" type="text/css" /><% end if @css %><% for script in @js.uniq %>
+  <script src="<%= "/app/js/" unless script =~ /http[s]*:\/\// %><%= script %><%= ".js" unless script =~ /http[s]*:\/\// %>" type="text/javascript"></script><% end if @js %>
+  <!--[if IE 6]><script src="/app/js/1ie.js" type="text/javascript"></script><![endif]-->
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <a<%= ' class="close"' if @external %> href="/admin" id="logo"></a>
+      <div id="utility"><% if @external %><a class="close close-small icon">Close</a><% else %>Welcome back, <%= link_to(@user.name,{:controller => "user",:action => "edit",:id => @user.id}) if @user %> | <%= link_to("Log out",{:controller => "main",:action => "logout"}) %> | <%= link_to("View site",{:controller => "main",:action => "index"},:class => "new") %><% end %></div>
+    </div>
+    <div id="menu"><% for item in @menu %>
+      <%= link_to(item[:label],item[:url],:class => params[:controller] == item[:url][:controller] || item == @menu.first ? "#{"active " if params[:controller] == item[:url][:controller]}#{"first" if item == @menu.first}" : nil) %><% end if @menu -%>
+    </div>
+    <div id="content">
+      <div id="left">
+        <div id="left-content"><% if @title && !@notitle %>
+          <h1><%= @title %></h1><% end %><% for key in flash.keys.sort{|a,b| a.to_s <=> b.to_s} %>
+          <div class="<%= key.to_s.gsub("_","-") %> message"><span class="message-icon"></span><p><%= flash.delete(key) %></p></div><% end %>
+          <noscript><div class="note"><b>You don't have Javascript enabled!</b> You'll find that this admin interface is much less useful without it.<br />To turn it on, visit Google's instructions <a href="https://www.google.com/adsense/support/bin/answer.py?hl=en&amp;answer=12654">here</a>.</div></noscript>
+          <div id="content-container">
+<%= @content_for_layout %>
+          </div>
+        </div>
+      </div>
+      <div id="right"><% if @model %>
+        <h2 class="action icon">Actions</h2>
+        <ul class="actions"><% if (@instance && params[:action] != "view" && params[:action] != "show") || (params[:action] == "edit" || params[:action] == "new") %>
+          <li><%= link_to("Cancel",return_url || {:action => "index"},:class => "cancel icon") %></li><% elsif (params[:action] == "view" || params[:action] == "show") && @instance %><% if (!@admin_edit || (@admin_edit && @user.admin?)) %>
+          <li><%= link_to("Edit this #{@model.downcase}",{:action => "edit",:id => params[:id]},:class => "edit icon") %></li><% end %><% if (!@admin_delete || (@admin_delete && @user.admin?)) %>
+          <li><%= link_to("Delete this #{@model.downcase}",{:action => "delete"},:class => "delete icon") %></li><% end %><% end %><% if params[:action] == "index" %>
+<% begin; url = url_for(:action => "edit",:id => nil); rescue; url = send("new_#{@model.tableize.singularize}_path"); end; %>          <li><%= link_to("Add a#{"n" if @model[0,1].downcase =~ /[aeio]/} #{@model.downcase}",url,:class => "add icon") %></li><% end %><% for item in @actions %>
+          <li><%= link_to(item.delete(:label),item.delete(:url),item.update({:class => "#{item[:class]} icon"})) %></li><% end if @actions %><% if params[:action] == "view" %>
+          <li><%= link_to("Return to #{@model.downcase.pluralize}",{:action => "index"},:class => "return icon") %></li><% end %>
+        </ul><% end %>
+        <%= render :partial => "right/#{@right}" if @right %>
+      </div>
+      <br class="clear" />
+    </div>
+  </div>
+  <div id="footer">
+    Copyright &copy; <%= Date.today.year %> FindADataCenter.com.
+    <br />Powered by Sasser Interactive
+  </div>
+</body>
+</html>

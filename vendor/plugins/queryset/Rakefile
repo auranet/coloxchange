@@ -1,0 +1,31 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+
+desc 'Unit tests'
+task :default => :test
+
+desc 'Test the QuerySet plugin'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  # We're not bothering w/DateSet at this time
+  # t.pattern = 'test/**/*_test.rb'
+  t.pattern = 'test/query_set_test.rb'
+  t.verbose = true
+end
+
+desc 'Test the DateSet plugin'
+Rake::TestTask.new(:test_date_set) do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/date_set_test.rb'
+  t.verbose = true
+end
+
+desc 'Generate documentation for the QuerySet plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'QuerySet'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/query_set.rb')
+end

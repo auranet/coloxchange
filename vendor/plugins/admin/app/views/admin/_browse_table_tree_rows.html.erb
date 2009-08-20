@@ -1,0 +1,1 @@
+<div class="sortable" id="<%= "#{class_name}_#{params[:parent] ? params[:parent] : rand(1000)}" %>"><%= render :partial => "browse_table_row",:collection => children,:locals => {:advanced => advanced,:class_name => class_name,:columns => columns,:deletable => deletable,:external => external,:sortable => sortable,:tree => tree,:width => width} %></div>

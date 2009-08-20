@@ -1,0 +1,15 @@
+<table class="form">
+  <tr><th><label for="instance_snippet_id">Snippet:</label></th><td><%= collection_select("instance","snippet_id",Snippet.find(:all,:order => "name"),"id","name") %></td></tr>
+  <tr><th><label for="instance_page_id">Attach to:</label></th><td>
+    <%= hidden_field("instance","attach_to",:value => "page") %>
+    <!-- <label for="instance_attach_to_page"><%= radio_button("instance","attach_to","page",:class => "option") %> Page</label> -->
+    <!-- <br /><label for="instance_attach_to_action"><%= radio_button("instance","attach_to","action",:class => "option") %> Action</label> -->
+    <!-- <div class="box" id="instance_attach_to_page_options" style="<%= ' display:none;' unless @instance.attach_to == "page" %>margin:5px;"> -->
+    <%= select("instance","page_id",Page.tree(false).collect{|item| [item[0].clean,item[1]]}.sort{|a,b| a[0] <=> b[0]}) %>
+    <!-- </div>
+    <div class="box" id="instance_attach_to_action_options" style="<%= ' display:none;' unless @instance.attach_to == "action" %>margin:5px;">
+      <%= select("instance","controller",Admin.actions) %>
+    </div> -->
+  </td></tr>
+  <tr><th><label for="instance_position">Position:</label></th><td><%= select("instance","position",Snippet.positions) %></td></tr>
+</table>

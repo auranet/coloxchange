@@ -1,0 +1,17 @@
+<% if @results %>
+<div class="float-right">
+<%= render :partial => "app/paginate",:locals => {:records => @results} %>
+</div>
+<b><% if @results.empty? %>No results returned! Please try your search again.<% else %><%= @results.total_entries %> result<%= "s" unless @results.size == 1 %><% end %></b>
+<br /><br /><% for result in @results %><% article = result.is_a?(Article) %>
+<h2><%= link_to(result.name,result.url) %></h2><% if article %>
+<div class="article-author">By <%= result.user.name %></div><% end %>
+<div class="article-body">
+  <%= link_to("Read more",result.url,:class => "float-right show-link") %>
+</div><% end %><% end %>
+<%= start_form({},:method => "get") %>
+  <table class="form">
+    <tr><th><label for="q">Search for:</label></th><td><%= text_field_tag("q",params[:q],:class => "text") %></td></tr>
+    <tr><th></th><td><%= button("Search") %></td></tr>
+  </table>
+<%= end_form %>

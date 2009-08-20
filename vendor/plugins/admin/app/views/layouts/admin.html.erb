@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title><%= "#{@title} - " if @title %><%= site_name %> Admin</title><% for stylesheet in @css.uniq %>
+  <link href="/global/admin/css/<%= stylesheet %>.css" rel="stylesheet" type="text/css" /><% end if @css %>
+  <!--[if IE 6]><link href="/global/admin/css/0-2.css" rel="stylesheet" type="text/css" /><![endif]-->
+  <!--[if IE]><link href="/global/admin/css/0-1.css" rel="stylesheet" type="text/css" /><![endif]-->
+  <script type="text/javascript">var AdminUrl = "/<%= @admin_url %>";var GoogleMapsKey = "<%= Configuration.google_maps_key %>";var Media = <%= Rails.plugins[:media].nil? ? "false" : "true" %>;</script><% for script in @js.uniq %>
+  <script src="<%= "#{"/global/admin/js/" unless script =~ /^http/}#{script}#{".js" unless script =~ /^http/}" %>" type="text/javascript"></script><% end if @js %>
+  <!--[if IE 6]><script src="/global/admin/js/0-2.js" type="text/javascript"></script><![endif]-->
+</head>
+<body>
+  <div id="main">
+    <div id="header">
+      <div class="float-right right"><% if @external %>
+        <%= link_to "Close",{},:onclick => "window.close();" %><% else %>
+        <% if @user %>You are currently logged in as <%= @user.name %> &middot; <%= link_to "Log out",:controller => "main",:action => "logout" %><br />
+        <%= link_to "My account",{:action => "edit",:model => "user",:id => @user.id} %> &middot; <% if @user.admin_omnipotent? %><%= link_to "Settings",:controller => "admin",:action => "settings" %> &middot; <% end %><%= link_to "View site",{:controller => "main",:action => "index"},:class => "new" %><% end %><% end %>
+      </div>
+      <h1><%= site_name %> Admin Area</h1>
+    </div>
+    <div class="shadow"></div>
+    <div id="content">
+      <% unless @external %>
+      <div <%= 'class="no-breadcrumb" ' if !@breadcrumb || @breadcrumb.empty? %>id="right">
+<%= render :partial => "admin/right/#{@right}" if @right %>
+      </div><% end %>
+      <div id="left"><% if !@external && @breadcrumb && !@breadcrumb.empty? %>
+        <div id="breadcrumb">
+          <div id="spinner" style="display:none;"></div>
+          <ul>
+            <li>
+              <a href="<%= url_for(:controller => "admin",:action => "index") %>" id="dashboard-link">My Dashboard<!--[if gt IE 6]><!--></a><!--<![endif]-->
+              <!--[if lt IE 7]><table border="0" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
+              <ul><% for model in @models %>
+                <li><a href="<%= url_for(:action => "browse",:model => model[:url]) %>"><span>&rsaquo;</span><%= model[:name] %><!--[if gt IE 6]><!--></a><!--<![endif]-->
+                  <!--[if lt IE 7]><table border="0" cellpadding="0" cellspacing="0"><tr><td><![endif]--><ul><% if model[:activerecord] %>
+                    <li class="browse"><%= link_to "Browse",{:controller => "admin",:action => "browse",:model => model[:url]},:class => "browse-link",:title => "Browse #{model[:name].downcase}" %></li><% end %><% if model[:permission] %>
+                    <li><%= link_to model[:title],{:action => "edit",:model => model[:url].singularize,:id => nil},:class => "add-link",:title => "Add a#{"n" if model[:name][0,1].downcase =~ /(a|e|i|o)/} #{model[:name].downcase.singularize}" %></li><% end %><% if model[:activerecord] %>
+                    <li class="search">
+                      <input alt="<%= url_for(:model => model[:url],:action => "search") %>" class="replace search text" type="text" value="Search" />
+                      <div class="search-results"></div>
+                    </li><% end %>
+                  </ul><!--[if lt IE 7]></td></tr></table><![endif]-->
+                <!--[if lt IE 7]></a><![endif]--></li><% end %>
+              </ul><!--[if lt IE 7]></td></tr></table></a><![endif]-->
+            </li>
+          </ul>
+          <div class="float-left" id="breadcrumb-end">
+            <%= "&nbsp;&raquo; " unless @breadcrumb.empty? %>
+            <%= @breadcrumb.uniq.compact.collect{|link| link_to(link[:label].clean,link[:url] || {})}.join(" &raquo; ") %>
+          </div>
+          <div style="clear:left;"></div>
+        </div><% end %>
+        <div id="left-content"><% if @title %>
+          <h1><%= @title %></h1><% end %><% for key in [:add,:delete,:error,:error_list,:update] %><% if flash[key] %>
+          <div class="<%= key %> notice"><p><%= flash.delete(key) %></p></div><% end %><% end %>
+          <noscript><div style="background:#FFF9B0;border:1px solid #FFE450;margin:10px;padding:10px;"><b>You don't have Javascript enabled!</b> You'll find that this admin interface is much less useful without it.<br />To turn it on, visit Google's instructions <%= link_to "here","https://www.google.com/adsense/support/bin/answer.py?hl=en&amp;answer=12654" %>.</div></noscript>
+
+<%= @content_for_layout %>
+        </div>
+      </div>
+      <br class="clear" />
+    </div>
+  </div>
+  <div class="shadow" style="z-index:1;"></div>
+  <div id="footer">
+    Code &amp; Graphics Copyright &copy; <%= Date.today.year %> Deimos CMS &middot; Content Copyright &copy; <%= Date.today.year %> <%= site_name_legal %>
+    <br />Powered by <%= link_to Admin.app_name,"http://www.deimoscms.com/",:class => "new" %>
+  </div>
+</body>
+</html>

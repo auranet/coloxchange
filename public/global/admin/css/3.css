@@ -1,0 +1,75 @@
+/* Widgets */
+a.unlock { background:url(../images/icons/locked.gif) no-repeat; padding:5px 0 0 17px; }
+a.unlock:hover { text-decoration:none; }
+a.unlock.unlocked { background-image:url(../images/icons/unlocked.gif); background-position:1px top; }
+input.text, textarea { background:#fff url(../images/background-input.gif) repeat-x; border-bottom:1px solid #ddd; border-left:1px solid #c3c3c3; border-right:1px solid #c3c3c3; border-top:1px solid #7d7d7d; padding:3px; font:12px "Lucida Grande",Verdana,Arial,sans-serif; }
+input.text { width:300px; }
+input.text.medium { width:150px; }
+input.text.oversize { font-size:18px; width:99%; }
+input.half.text.oversize { width:200px !important; }
+input.text.small { width:50px; }
+input.replace { color:#aaa; }
+input.focused.replace { color:#000; }
+select { max-width:450px; padding:2px; }
+textarea { display:block; height:150px; width:99%; }
+textarea.half { height:75px; }
+textarea.tiny { height:35px; width:150px; }
+
+/* Fieldsets */
+fieldset { background:url(../images/background-shade.png) left bottom repeat-x; border:1px solid #ddd; margin:0 0 30px 0; padding:10px; }
+fieldset legend { color:#36c; font:14px bold "Georgia","Times","Lucida Grande",Verdana,serif; }
+
+/* Error handling */
+span.invalid-field input, span.invalid-field textarea { border:1px solid #c00; }
+ul.error-list { list-style:circle; margin:5px 5px 5px 35px; padding:0; }
+ul.error-list li { padding:3px; }
+
+/* Form-field tables */
+table.form { border:none; border-collapse:collapse; width:99%; }
+table.form tr { vertical-align:top; }
+table.form td,table.form th { padding:5px; }
+table.form th { font-weight:bold; padding-right:10px; padding-top:10px; text-align:left; width:100px; }
+table.form th.even { padding-top:6px; }
+table.form tr.top th, table.form tr.top td, table.form th.top, table.form td.top { vertical-align:top; }
+label.block-label { display:block; font-weight:bold; }
+
+/* WYSIWYG editor stuff */
+.editor { border-bottom:1px solid #ddd; border-left:1px solid #C3C3C3; border-right:1px solid #C3C3C3; border-top:1px solid #7D7D7D; position:relative; }
+.editor .editor-toolbar { background:url(../images/background-shade.png) left bottom repeat-x; border-bottom:1px solid #7d7d7d; height:20px; padding:0; }
+.editor .editor-toolbar img { cursor:pointer; display:block; float:left; margin:0 2px 0 0; padding:2px; }
+.editor textarea { border-width:0 !important; height:300px; margin:0 !important; }
+.editor .editor-iframe { margin:0 0 -3px 0 !important; width:100%; }
+.editor .editor-resize { background:#fbfbfb url(../images/icons/handle.gif) center center no-repeat; border-top:1px solid #ddd; cursor:move; height:20px; }
+.editor-toolbox { background:url(../images/background-trans-white.png); border:1px solid #ddd; border-top:none; padding:10px; position:absolute; z-index:3; }
+.editor-toolbox form { float:left; margin:0 auto; width:auto; }
+.photo-browser { border:1px solid #ddd; max-height:100px !important; overflow:auto; white-space:nowrap; }
+
+/* Autocompleter */
+.autocomplete-list { background-image:url(../images/background-trans-white.png); border:1px solid #ddd; list-style:none; margin:0; max-height:300px; padding:0; overflow:auto; position:absolute; z-index:3; }
+.autocomplete-list li { border-bottom:1px solid #eee; cursor:pointer; padding:5px; }
+.autocomplete-list li:hover { background-color:#eee; font-weight:bold; }
+.autocomplete-list li.selected { background-color:#000; color:#fff; }
+/*.autocomplete-list li.row1 { background:transparent url(../images/background-trans-white.png); }*/
+
+/* Calendar*/
+.calendar-container { background:url(../images/background-trans-white.png); position:absolute; z-index:2; }
+.calendar-container table { border:1px solid #ddd; border-collapse:collapse; width:200px; }
+.calendar-container th.calendar-button-cell { padding:0; width:20px; }
+.calendar-container th.calendar-button-cell a { display:block; padding:3px; }
+.calendar-container th.calendar-button-cell a:hover { background-color:#000; color:#fff; text-decoration:none; }
+.calendar-container th.calendar-header { font:bold 14px "Helvetica Neue",Helvetica,Arial,sans-serif; text-align:center; }
+.calendar-container td.calendar-day { border:1px solid #ddd; cursor:pointer; padding:3px; text-align:center; }
+.calendar-container td.calendar-day.active-day { background-color:#000; color:#fff; }
+.calendar-container td.calendar-day:hover { background-color:#f0f0f0; }
+.calendar-container td.calendar-day.grey { color:#999; }
+
+/* Filters */
+.filter { margin-bottom:10px; }
+
+/* Tabsets */
+.tabset { margin:15px 0; }
+.tabset .tabs { border-left:1px solid #ddd; margin-bottom:-1px; overflow:hidden; }
+.tabset .tab { border:1px solid #ddd; border-left-width:0; border-bottom-width:0; color:#000; display:block; float:left; margin-top:1px; padding:5px; }
+.tabset .tab:hover { text-decoration:none; }
+.tabset .tab.active { background-color:#eee; font-weight:bold; margin-top:0; padding-top:7px; }
+.tabset .tab-body { background-color:#eee; border:1px solid #ddd; padding:10px; }

@@ -1,0 +1,16 @@
+<div class="widget">
+  <h2><%= link_to @model_name,{},:class => "right-expand expanded",:rel => "widget_help" %></h2>
+  <div class="widget-container" id="widget_help">
+<% begin %><%= render :partial => "help/#{@model_class.singularize}" %>
+<br /><br /><%= link_to "Get started with #{@model_name.downcase}",{:action => "browse",:model => @model_class} %><% rescue %>There is no documentation available for <%= @model_name.downcase %>. Sorry!<% end %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div><% begin %><% render :partial => "help/#{@model_class.singularize}_tutorials" %>
+<div class="widget">
+  <h2><%= link_to "Tutorials",{},:class => "expand-right expanded",:rel => "widget_tutorials" %></h2>
+  <div class="widget-container" id="widget_help">
+<%= render :partial => "help/#{@model_class.singularize}_tutorials" %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div>
+<% rescue %><% end %>

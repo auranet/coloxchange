@@ -1,0 +1,13 @@
+A<%= "n" if @exception.class.to_s[0,1] =~ /[aeiou]/ %> <%= @exception.class %> occurred on <%= domain.gsub("http://","") %> in <%= @params[:controller].humanize.titleize %>Controller#<%= @params[:action] %> <%= Time.now.pretty %>:
+
+  <%= @exception.message %>
+
+  <%= @exception.backtrace.first %>
+
+  * URL       :  <%= @request.protocol %><%= domain_short %><%= @request.request_uri %>
+  * IP address:  <%= @request.env["HTTP_X_FORWARDED_FOR"] || @request.env["REMOTE_ADDR"] %>
+  * Params    :  <%= @request.parameters.inspect %>
+  * Rails root:  <%= File.expand_path(RAILS_ROOT) %><% if @user %>
+  * User      :  <%= @user.name %> <<%= @user.email %>> (<%= @user.id %>)<% end %>
+  * Backtrace :
+    <%= @exception.backtrace.join("\n    ") %>

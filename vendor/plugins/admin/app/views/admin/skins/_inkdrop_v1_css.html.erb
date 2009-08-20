@@ -1,0 +1,4 @@
+.record { background-position:center top; background-repeat:no-repeat; border-bottom:1px solid #ddd; float:left; margin-top:25px; padding-bottom:25px; text-align:center; width:120px; }
+.record-link { display:block; font-size:18px; height:50px; margin-bottom:0; padding-top:60px; }
+.record .add-link, .record .browse-link, .record .help-link { padding:0 0 3px 16px; }<% for model in Admin.models.sort.uniq %>
+.record-<%= model.tableize.singularize %> { background-image:url(<%= File.exists?("#{RAILS_ROOT}/public/global/admin/images/icons/records/#{model.tableize.singularize}.gif") ? "../images/icons/records/#{model.tableize.singularize}.gif" : "/global/admin-extra/records/#{model.tableize.singularize}.gif" %>); }<% end %>

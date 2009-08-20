@@ -1,0 +1,1 @@
+Commands::Plugin.parse!(['install','svn+ssh://flip@rubyforge.org/var/svn/queryset','-x']) unless File.exist?(File.dirname(__FILE__) + "/../queryset")

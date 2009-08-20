@@ -1,0 +1,21 @@
+#left-content { /*position:relative;*/ }
+table.form { width:98% !important; }
+/*input.text.oversize,textarea,div.editor { width:98% !important; }*/
+h1 { /*position:relative;*/ }
+label { /*position:relative;*/ }
+#breadcrumb { border-top:1px solid #ddd; padding-top:7px !important; }
+#dashboard-link { width:90px; }
+#spinner { right:320px !important; }
+div#breadcrumb ul li ul li ul { left:120px !important; }
+div#breadcrumb-end { padding-top:4px; }
+table { width:99%; }
+#content { height:310px; }
+.shadow { background-image:none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/global/admin/images/shadow.png',sizingMethod='scale'); }
+.add-link,.browse-link,.bulk-add-link,.delete-link,.edit-link,.help-link { display:inline-block; height:16px; }
+table.display .add-link { height:auto; }
+.box { height:20px; overflow:visible; }
+.widget .widget-bottom { bottom:auto; position:static; right:auto; width:auto; }
+.autocomplete-list { height:300px; }
+.toolbar-right { right:323px; text-align:right; width:400px; }
+.add-link.float-right.external { margin-right:8px; }
+table .add-link.float-right.external { margin-right:0; }

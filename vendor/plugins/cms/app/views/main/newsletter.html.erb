@@ -1,0 +1,7 @@
+<% if @newsletter %><%= @newsletter.description.gsub("\n","<br />") %>
+<br /><br /><% for newsletter_article in @newsletter.newsletter_articles %>
+<% if newsletter_article.photo %><img alt="<%= newsletter_article.photo.name.clean %>" class="photo float-<%= newsletter_article.align %>" src="<%= domain %><%= newsletter_article.photo.size(:icon) %>" /><% end %>
+<h2><%= newsletter_article.article.name %></h2>
+<%= newsletter_article.article.preview.gsub("\n","<br />") %>
+<br /><a href="<%= domain %><%= url_for(newsletter_article.article.url) %>">Read more...</a>
+<br style="clear:left;"><% end %><% end %>

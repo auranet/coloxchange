@@ -1,0 +1,40 @@
+<div class="box">
+  <table class="form">
+    <tr><th><label class="bold" for="instance_name">Title:</label></th><td><%= text_field("instance","name",:class => "oversize text",:value => !@instance.name && params[:slug] ? params[:slug].titleize : nil) %><br /><label for="instance_suppress_title"><%= check_box("instance","suppress_title") %> Hide this title in the browser's page</label></td></tr>
+    <tr><th><label class="bold" for="instance_slug">URL:</label></th><td><%= domain %><%= @instance.parent.url if @instance.parent %>/<%= @instance.attached ? url_for(@instance.url)[1,100] : text_field("instance","slug",:class => "#{"slug " if @instance.new_record?} text",:rel => "instance_name") %></td></tr>
+  </table>
+  <div class="tabset">
+    <div class="tabs">
+      <a class="active tab" id="body-tab" rel="instance-body">Body</a><% for page_section in @instance.page_sections %>
+      <a class="close tab" rel="instance-<%= page_section.section %>"><%= page_section.name %>&nbsp;&nbsp;<span style="cursor:pointer;padding-left:10px;"> </span></a><% end %>
+      <div class="float-left" id="add-section" style="<%= "display:none;" if @instance.page_sections.size == CMS.content_areas.size %>margin:2px 0 0 20px;">
+        <span class="add-link">Add section:</span> <%= select_tag("add_section",options_for_select(CMS.content_areas.collect{|key,value| [value,key]}))%> <%= admin_button_link("Go!",{},:class => "add-section",:rel => "add_section") %>
+      </div>
+    </div>
+    <div class="tab-body" id="instance-body">
+      <!-- Filter: <%= select("instance","body_filter",[["Markdown","markdown"],["Textile","textile"],["None (html)","html"]],{},:class => "filter-select") %> <%= link_to("Help with this filter",{:action => "help_section",:id => @instance.body_filter},:class => "help-link page-filter-link") %> -->
+      <!-- <br /><br /> -->
+      <%= text_area("instance","body",:class => "editor",:rel => @instance.body_filter) %>
+    </div><% for page_section in @instance.page_sections %>
+    <div class="tab-body" id="instance-<%= page_section.section %>" style="display:none;">
+      <%= hidden_field_tag("instance[page_section_hashes][#{page_section.section}][id]",page_section.id) %>
+      <!-- Filter: <%= select_tag("instance[page_section_hashes][#{page_section.section}][body_filter]",options_for_select([["Markdown","markdown"],["Textile","textile"],["None (html)","html"]],page_section.body_filter),:class => "filter-select") %> <%= link_to("Help with this filter",{:action => "help_section",:id => page_section.body_filter},:class => "help-link page-filter-link") %> -->
+      <!-- <br /><br /> -->
+      <%= text_area_tag("instance[page_section_hashes][#{page_section.section}][body]",page_section.body,:class => "editor",:rel => page_section.body_filter) %>
+    </div><% end %>
+  </div><% unless @instance.attached %>
+  <table>
+    <tr><td style="width:50%;"><label class="bold" for="instance_parent_id">Subpage of:</label></td><td><label class="bold" for="instance_active_true">Published?</label></td></tr>
+    <tr><td><%= select_tag("instance[parent_id]",options_for_select(@instance.tree.unshift(["(none)",nil]),@instance.parent_id ? @instance.parent_id : params[:parent] ? Integer(params[:parent]) : nil),:id => "instance_parent_id") %></td><td><%= yesno("instance","active") %></td></tr>
+  </table><% end %>
+</div>
+<div class="box">
+  <%= link_to "Meta tags",{},:class => "bold collapse",:rel => "meta-tags" %>
+  <div id="meta-tags" style="display:none;">
+    <table class="form">
+      <tr><th><label for="instance_meta_title">Page title:</label></th><td><%= text_field("instance","meta_title",:class => "text") %></td></tr>
+      <tr><th><label for="instance_meta_description">Description:</label></th><td><%= text_area("instance","meta_description",:class => "half") %></td></tr>
+      <tr><th><label for="instance_meta_keywords">Keywords:</label></th><td><%= text_area("instance","meta_keywords",:class => "half") %></td></tr>
+    </table>
+  </div>
+</div>

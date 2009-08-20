@@ -1,0 +1,17 @@
+first:
+  id: 1
+  user_id: 1
+  title: "January's Post"
+  created_at: "Sun Jan 27 16:51:18 -0700 2008"
+
+second:
+  id: 2
+  user_id: 3
+  title: "January's Post"
+  created_at: "Sat Mar 01 16:52:09 -0700 2008"
+
+third:
+  id: 3
+  user_id: 1
+  title: "April's Post"
+  created_at: "Sun Apr 27 16:51:32 -0600 2008"

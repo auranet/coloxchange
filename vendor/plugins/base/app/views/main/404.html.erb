@@ -1,0 +1,2 @@
+File Not Found!<% if @user && Rails.plugins[:cms] && params[:controller] == "main" && params[:action] == "page" %>
+<br /><br /><%= link_to "Create this page",{:controller => "admin",:action => "edit",:model => "page",:slug => params[:path].last} %><% end %>

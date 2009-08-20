@@ -1,0 +1,17 @@
+  <%= start_form({},:multipart => true) %>
+  <table class="display">
+    <thead>
+      <tr><% for field in @bulk_fields %><th><%= field[:label] %></th><% end %><th style="font-weight:normal;text-align:right;"><%= link_to "Add more",{},:class => "add-link bulk-add" %></th></tr>
+    </thead>
+    <tbody><% 3.times do %>
+      <tr class="row<%= cycle 1,2 %> bulk-row"><% for field in @bulk_fields %><td><%= admin_bulk_tag(field) %></td><% end %><td class="actions"><%= link_to("Remove",{},:class => "delete-link bulk-remove") %></td></tr><% end %>
+      <tr class="row<%= cycle 1,2 %> bulk-row" id="bulk-row" style="display:none;"><% for field in @bulk_fields %><td><%= admin_bulk_tag(field) %></td><% end %><td class="actions"><%= link_to("Remove",{},:class => "delete-link bulk-remove") %></td></tr>
+    </tbody>
+  </table>
+  <div class="toolbar">
+    <div class="float-right">
+      <%= admin_button_link("Cancel",:action => "browse",:model => @model_class) %>
+    </div>
+    <%= admin_button("Add #{@model_name.downcase}") %>
+  </div>
+<%= end_form %>

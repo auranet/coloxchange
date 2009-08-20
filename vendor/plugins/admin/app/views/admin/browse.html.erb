@@ -1,0 +1,11 @@
+<div class="toolbar-right">
+  <%= link_to "Help with #{@model_name.downcase}",{:action => "help"},:class => "help-link" %>
+  <%= link_to "Add a#{(@model_name[0,1].downcase =~ /[a,e,i,o]/).nil? ? "" : "n"} #{@model_name.singularize.downcase}",{:action => "edit",:model => @model_class.singularize,:id => nil},:class => "add-link" %><% if @bulk %>
+  <%= link_to "Bulk add #{@model_name.downcase}",{:action => "bulk_add",:model => @model_class.singularize,:id => nil},:class => "bulk-add-link" %><% end %><% if @model.admin_importable %>
+  <%= link_to "Import #{@model_name.downcase.pluralize}",{:action => "import",:model => @model_class.singularize,:id => nil},:class => "import-link" %><% end %>
+</div>
+<%= start_form :action => "deleteall",:model => params[:model],:id => nil %>
+  <div id="browse-table">
+    <%= render :partial => "browse_table",:locals => {:class_name => @model_class,:external => false,:instances => @instances,:model_name => @model_name,:options => @options,:order => @order,:order_sort => @order_sort,:sortable => @instance.respond_to?(:move_to_top),:tree => @instance.respond_to?(:children)} %>
+  </div>
+<%= end_form %>

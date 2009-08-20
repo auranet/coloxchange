@@ -1,0 +1,10 @@
+div#main { background-image:url(../images/background-small.png); background-position:left top; }
+div#header { height:22px; padding:6px 5px; }
+div#header h1 { font-size:16px; }
+div#breadcrumb { display:none; }
+div#content { background-color:#fff; background-image:none; }
+div#right { display:none; }
+div#left { margin:0 auto; padding:10px 20px; width:auto; }
+div#left-content { margin:0; }
+div#left table.form { width:100%; }
+div.toolbar-right { right:20px; }

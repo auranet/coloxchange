@@ -1,0 +1,3 @@
+class Tag < NameBasedModel
+  
+end

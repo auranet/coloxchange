@@ -1,0 +1,46 @@
+<% step = 0 %><%= start_form %>
+  <fieldset>
+    <legend>Step <%= step = step.next %>: General</legend>
+    <table class="form">
+      <tr><th><label for="configuration_site_name">Site name:</label></th><td><%= text_field("configuration","site_name",:class => "oversize text",:value => Configuration.site_name) %></td></tr>
+      <tr><th><label for="configuration_site_name_legal">Legal name:</label></th><td><%= text_field("configuration","site_name_legal",:class => "text",:value => Configuration.site_name_legal) %></td></tr>
+      <tr><th><label for="configuration_site_tag_line">Tag line:</label><div class="quiet">Optional</div></th><td><%= text_field("configuration","site_tag_line",:class => "text",:value => Configuration.site_tag_line) %></td></tr>
+      <tr><th><label for="configuration_google_analytics_key">Google&nbsp;analytics&nbsp;key:</label><div class="quiet">e.g. UA-12345678-0</div></th><td><%= text_field("configuration","google_analytics_key",:class => "text",:value => Configuration.google_analytics_key) %></td></tr>
+      <tr><th><label for="configuration_google_maps_key">Google maps key:</label><div class="quiet"><%= link_to "Get one!","http://www.google.com/maps/api_signup?url=#{domain}",:class => "new" %></div></th><td><%= text_field("configuration","google_maps_key",:class => "text",:value => Configuration.google_maps_key) %></td></tr>
+      <tr><th><label for="configuration_self_advertise">Give us credit?</label></th><td><table><tr valign="center"><td style="padding:0;width:10px;"><%= check_box_tag("configuration[self_advertise]",1,Configuration.self_advertise,:id => "configuration_self_advertise") %><%= hidden_field_tag("configuration[self_advertise]",0) %></td><td style="padding:0;"><label for="configuration_self_advertise">Include a link to Deimos CMS on my homepage</label></td></tr></table></td></tr>
+    </table>
+  </fieldset><% if params[:action] == "setup" %>
+  <fieldset>
+    <legend>Step <%= step = step.next %>: Your user account</legend>
+    <table class="form">
+      <tr><th><label for="user_first_name">Name:</label></th><td><%= text_field("user","first_name",:class => "half oversize text") %> <%= text_field("user","last_name",:class => "half oversize text") %><div class="quiet">First<span style="padding-left:192px;">Last</span></div></td></tr>
+      <tr><th><label for="user_email">E-mail:</label></th><td><%= text_field("user","email",:class => "text") %></th></tr><% if @usernames %>
+      <tr><th><label for="user_username">Username:</label></th><td><%= text_field("user","username",:class => "text") %></th></tr><% end %>
+      <tr><th><label for="user_password">Password:</label></th><td><%= password_field("user","password",:class => "text") %></th></tr>
+      <tr><th><label for="user_password_confirmation">Password (again):</label></th><td><%= password_field("user","password_confirmation",:class => "text") %></th></tr>
+    </table>
+  </fieldset><% end %>
+  <fieldset>
+    <legend>Step <%= step = step.next %>: Meta tags</legend>
+    <table class="form">
+      <tr><th><label for="configuration_meta_author">Author:</label></th><td><%= text_field("configuration","meta_author",:class => "text",:value => Configuration.meta_author) %></td></tr>
+      <tr><th><label for="configuration_meta_copyright">Copyright:</label><div class="quiet">%Y will be replaced with the year</div></th><td><%= text_field("configuration","meta_copyright",:class => "text",:value => Configuration.meta_copyright) %></td></tr>
+      <tr><th><label for="configuration_meta_description">Description:</label></th><td><%= text_area("configuration","meta_description",:class => "half",:value => Configuration.meta_description) %></td></tr>
+      <tr><th><label for="configuration_meta_keywords">Keywords:</label></th><td><%= text_area("configuration","meta_keywords",:class => "half",:value => Configuration.meta_keywords) %></td></tr>
+    </table>
+    <div class="doc"><b>These tags are defaults only!</b> Any meta tags you define for pages or articles will automatically overwrite them.</div>
+  </fieldset><% if Admin.exportable %>
+  <fieldset>
+    <legend>Step <%= step = step.next %>: Exporting</legend>
+    <table class="form">
+      <tr><th><label for="configuration_export_server">Server address:</label></th><td>ftp://<%= text_field("configuration","export_server",:class => "text",:value => Configuration.export_server) %></td></tr>
+      <tr><th><label for="configuration_export_port">Port:</label></th><td><%= text_field("configuration","export_port",:class => "integer small text",:value => Configuration.export_port) %></td></tr>
+      <tr><th><label for="configuration_export_port">FTP user:</label></th><td><%= text_field("configuration","export_user",:class => "medium text",:value => Configuration.export_user) %></td></tr>
+      <tr><th><label for="configuration_export_password">FTP password:</label></th><td><%= text_field("configuration","export_password",:class => "medium text",:value => Configuration.export_password) %></td></tr>
+      <tr><th><label for="configuration_export_path">Site path:</label><div class="quiet">Path to your site's directory</div></th><td><%= text_field("configuration","export_path",:class => "text",:value => Configuration.export_path) %></td></tr>
+    </table>
+  </fieldset><% end %>
+  <div class="toolbar">
+    <%= admin_button("Save configuration") %>
+  </div>
+<%= end_form %>

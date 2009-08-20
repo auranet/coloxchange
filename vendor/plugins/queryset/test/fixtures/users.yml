@@ -1,0 +1,28 @@
+molly:
+  id: 1
+  company_id: 1
+  first_name: "Molly"
+  last_name: "Brown"
+
+hick:
+  id: 2
+  company_id: 2
+  first_name: "John"
+  last_name: "Hickenlooper"
+
+ritter:
+  id: 3
+  company_id: 3
+  first_name: "Bill"
+  last_name: "Ritter"
+
+chiefy:
+  id: 4
+  company_id: 5
+  first_name: "Chief"
+  last_name: "Ouray"
+
+mugs:
+  id: 5
+  first_name: "Elizabeth"
+  last_name: "Mulligan"

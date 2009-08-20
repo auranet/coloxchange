@@ -1,0 +1,14 @@
+<% unless @instance.omnipotent %><br /><h2>Permissions</h2>
+<%= start_form :action => "admin_role_permissions",:id => @instance.id %>
+  <div class="box"><% for model in Admin.models.sort.uniq %><% permission = @instance.admin_permissions.select{|permission| permission.model == model.tableize.singularize}[0] %>
+    <table>
+      <tr>
+        <td style="padding:10px 0;width:120px;"><label class="bold" for="permission_<%= model %>"><%= check_box_tag("permissions[][model]",model.tableize,permission,:class => "option",:id => "permission_#{model}") %> <%= model.constantize.admin_name.capitalize.pluralize %></label></td>
+        <td style="padding:10px 0;"><table id="permission_<%= model %>_options"<%= ' style="display:none;"' unless permission %>><tr><td><% for option in ["add","edit","delete"}] %><label for="permission_<%= model %>_<%= option %>"><%= check_box_tag("permissions[][#{option}]",true,permission ? permission.send(option) : true,:id => "permission_#{model}_#{option}")%> <span class="<%= option %>-link"><%= option.titleize %></span></label> <% end %></td><td class="right"><% if model.constantize.new.respond_to?(:user_id) %><label for="permission_<%= model %>_must_own"><%= check_box_tag("permissions[][must_own]",true,@instance.admin_permissions.any?{|permission| permission.model == model.tableize.singularize && permission.must_own},:id => "permission_#{model}_must_own") %> Users must own these records to edit them</label><% else %>&nbsp;<% end %></td></tr></table></td>
+      </tr>
+    </table><% end %>
+  </div>
+  <div class="toolbar">
+    <%= admin_button("Save these permissions") %>
+  </div>
+<%= end_form %><% end %>

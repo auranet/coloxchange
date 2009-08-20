@@ -1,0 +1,21 @@
+<div class="box"><% permission = @user.admin_permission(@model_class) %>
+  <table class="form">
+    <tr><th><label class="bold" for="instance_user_id">Author:</label></th><td><% if permission.nil? || !permission.must_own %><%= admin_input("instance","user_id") %><% else %><%= hidden_field("instance","user_id",:value => @instance.user_id || @user.id) %><%= (@instance.user || @user).name %><% end %></td></tr>
+    <tr><th><label class="bold" for="instance_photo_id">Photo:</label></th><td><%= admin_input("instance","photo_id") %></td></tr>
+    <tr><th><label for="instance_name">Title:</label></th><td><%= text_field("instance","name",:class => "oversize text") %></td></tr>
+    <tr><th><label class="bold" for="instance_slug">URL:</label></th><td><%= domain %><%= url_for :controller => "main",:action => "article",:id => nil %>/<%= admin_input("instance","slug") %></td></tr>
+    <tr><th><label class="bold" for="instance_body">Body:</label></th><td><%= text_area("instance","body",:class => "editor") %></td></tr>
+    <tr><th><label class="bold" for="instance_preview">Preview text:</label></th><td><%= text_area("instance","preview",:class => "half") %><div class="quiet">Preview text shows up in RSS feeds and newsletters. Use it as a quick overview of your article to get people reading.</div></td></tr>
+    <tr><th><label class="bold" for="instance_publish_date_2i">Publish date:</label></th><td><%= admin_input("instance","publish_date") %><div class="quiet">Set to a date in the future to post-date this article's publication</div></td></tr>
+  </table>
+</div>
+<div class="box">
+  <%= link_to "Meta tags",{},:class => "bold collapse",:rel => "meta-tags" %>
+  <div id="meta-tags" style="display:none;">
+    <table class="form">
+      <tr><th><label for="instance_meta_title">Page title:</label></th><td><%= text_field("instance","meta_title",:class => "text") %></td></tr>
+      <tr><th><label for="instance_meta_keywords">Keywords:</label></th><td><%= text_area("instance","meta_keywords",:class => "half") %></td></tr>
+      <tr><th><label for="instance_meta_description">Description:</label></th><td><%= text_area("instance","meta_description",:class => "half") %></td></tr>
+    </table>
+  </div>
+</div>

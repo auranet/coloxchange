@@ -1,0 +1,21 @@
+<% form_tag(quote_path) do %>
+  <%= hidden_field(:quote, :type) %>
+  <%= render :partial => 'main/contact' %>
+  <fieldset class="collapsible toggled">
+    <legend><b>2</b> Equipment requirements</legend>
+    <div class="pad">
+      <label class="block" for="quote_product">Brand and model number <span class="normal quiet">(optional)</span></label>
+      <%= text_field(:quote, :product, :class => 'large text') %>
+      <label class="block" for="quote_price_target">Price target for your equipment requirements <span class="normal quiet">(optional)</span></label>
+      <%= text_field(:quote, :price_target, :class => 'large text') %>
+      <label class="block normal" for="quote_new_equipment"><%= check_box(:quote, :new_equipment) %> Only accept new equipment (excludes refurbished equipment)</label>
+    </div>
+  </fieldset>
+  <fieldset class="collapsible toggled">
+    <legend><b>3</b> Notes and special instructions</legend>
+    <div class="pad">
+      <%= text_area(:quote, :note) %>
+    </div>
+  </fieldset>
+  <div class="center"><%= button('Submit this Quote') %></div>
+<% end %>

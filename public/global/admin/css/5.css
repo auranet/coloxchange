@@ -1,0 +1,8 @@
+a { color:#00f; cursor:pointer; text-decoration:none; }
+a:hover { border-bottom:1px dotted #00f; }
+a img { border:none !important; }
+body { background:#fff url(../images/background-input.gif) repeat-x; background-attachment:fixed; color:#000; font:12px "Lucida Grande",Verdana,"Bitstream Vera Sans",sans-serif; height:auto; margin:0 0 -1px 0; padding:5px; }
+h1,h2,h3,h4 { letter-spacing:-1px; margin:0; padding:0; }
+h1 { font-size:18px; }
+h2 { font-size:14px; margin:0 0 5px 0; }
+p,form,table { margin:0; padding:0; }

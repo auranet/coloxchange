@@ -1,0 +1,5 @@
+#admin-top { background:url(../images/background-admin-top.png) left center repeat-x; border-bottom:1px solid #000; color:#fff; font-size:10px; left:0; height:30px; position:fixed; top:0; width:100%; z-index:10000; }
+#admin-top a { color:#fff; display:block; float:left; margin-top:3px; padding:5px 10px; }
+#admin-top a.admin-add-icon { background:url(../images/icons/add.png) left center no-repeat; padding-left:15px; }
+#admin-top a.admin-edit-icon { background:url(../images/icons/edit.png) left center no-repeat; padding-left:15px; }
+#admin-top-logo { margin:0 10px; padding:2px 5px 0 5px !important; }

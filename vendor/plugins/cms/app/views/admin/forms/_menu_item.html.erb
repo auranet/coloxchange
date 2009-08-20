@@ -1,0 +1,22 @@
+<% disabled = CMS.hierarchical_menus && @instance.auto_update?(false) ? "disabled" : nil %><table class="form">
+  <% unless CMS.hierarchical_menus && @instance.parent %><tr><th><label for="instance_menu_id">Menu:</label></th><td><%= collection_select("instance","menu_id",Menu.find(:all,:order => "name"),"id","name") %></td></tr><% else %>
+  <%= hidden_field("instance","parent_id") %><% end %>
+  <tr><th><label for="instance_name">Label:</label></th><td><%= text_field("instance","name",:class => "oversize text") %></td></tr>
+  <tr><th style="padding-top:5px;"><label for="instance_point_to_page">Points to:</label></th><td>
+    <label for="instance_point_to_page"><%= radio_button("instance","point_to","page",:class => "option",:disabled => disabled) %> Page</label>
+    <!-- <br /><label for="instance_point_to_action"><%= radio_button("instance","point_to","action",:class => "option",:disabled => disabled) %> Action</label> -->
+    <br /><label for="instance_point_to_url"><%= radio_button("instance","point_to","url",:class => "option",:disabled => disabled) %> URL</label><% if disabled %>
+    <div class="doc">These options are disabled because this menu item inherits from one which auto-updates</div><% end %>
+    <div class="box" id="instance_point_to_page_options" style="<%= ' display:none;' unless @instance.point_to == "page" && !disabled %>margin:5px;">
+      <%= select("instance","page_id",Page.tree(false)) %><% if CMS.hierarchical_menus %>
+      <br /><% if @instance.new_record? %><br /><label for="instance_auto_build"><%= check_box("instance","auto_build") %> Auto-build this menu from this page's hierarchy</label><% end %>
+      <br /><label for="instance_auto_update"><%= check_box("instance","auto_update") %> Keep this menu synced to this page's hierarchy</label><% end %>
+    </div>
+    <!-- <div class="box" id="instance_point_to_action_options" style="<%= ' display:none;' unless @instance.point_to == "action" && !disabled %>margin:5px;">
+      <%= select("instance","controller",Admin.actions) %>
+    </div> -->
+    <div class="box" id="instance_point_to_url_options" style="<%= ' display:none;' unless @instance.point_to == "url" && !disabled %>margin:5px;">
+      http://<%= text_field("instance","url",:class => "text") %>
+    </div>
+  </td></tr>
+</table>

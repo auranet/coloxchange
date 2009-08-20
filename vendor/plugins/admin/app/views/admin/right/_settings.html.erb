@@ -1,0 +1,8 @@
+<div class="widget">
+  <h2><%= link_to "Roles",{},:class => "right-expand",:rel => "widget-roles" %></h2>
+  <div class="widget-container" id="widget-roles"><% for role in @admin_roles %>
+    <%= link_to role.name,:action => "edit",:model => "admin_role",:id => role.id %><br /><% end %>
+    <br /><%= link_to "Add a role",:action => "edit",:model => "admin_role",:id => nil %>
+  </div>
+  <div class="widget-bottom"><div class="widget-bottom-right"></div></div>
+</div>

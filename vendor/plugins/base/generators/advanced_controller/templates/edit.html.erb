@@ -1,0 +1,6 @@
+<%%= start_form({:id => @<%= file_name %>.id}) %>
+  <table class="form">
+    <tr><th><label for="<%= file_name %>_name">Name:</label></th><td><%%= text_field("<%= file_name %>","name",:class => "oversized text") %></td></tr>
+    <tr><th></th><td><%%= button(@<%= file_name %>.new_record? ? "Add <%= class_name.tableize.humanize.singularize.downcase %>" : "Save changes") %> or <%%= link_to("cancel",return_url) %></td></tr>
+  </table>
+<%%= end_form %>

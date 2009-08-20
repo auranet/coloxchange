@@ -1,0 +1,4 @@
+<%= hidden_field_tag("instance[#{reflection_name.singularize}_ids][]","",:id => "hidden_#{reflection_name}_ids") %>
+<table style="width:100%;">
+  <% instances.each_with_index do |instance,index| %><% if index % 3 == 0 %><tr class="top"><% end %><td style="width:10px;"><%= check_box_tag("instance[#{reflection_name.to_s.singularize}_ids][]",instance.id,selected.include?(instance.id),:id => "#{reflection_name}_#{instance.id}") %></td><td><label for="<%= reflection_name %>_<%= instance.id %>" style="display:inline;float:none;width:auto;"><%= instance.respond_to?(:admin_name) ? instance.admin_name : instance.name %> <span class="quiet">(<%= link_to("Edit",{:action => "edit",:external => "yes",:model => class_name,:id => instance.id,:many => "yes"},:class => "external",:rel => reflection_name) %>)</span></label></td><% if index % 3 == 2 %></tr><% end %><% end %>
+</table>

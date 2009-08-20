@@ -1,0 +1,3 @@
+.record td { padding-bottom:15px; }<% for model in Admin.models.sort.uniq %>
+.record-<%= model.tableize.singularize %> { background:url(<%= File.exists?("#{RAILS_ROOT}/public/global/admin/images/icons/records/#{model.tableize.singularize}.gif") ? "../images/icons/records/#{model.tableize.singularize}.gif" : "/global/admin-extra/records/#{model.tableize.singularize}.gif" %>) left 5px no-repeat; }
+.record-<%= model.tableize.singularize %> a { display:block; font-size:18px; padding:20px 0 15px 65px; }<% end %>

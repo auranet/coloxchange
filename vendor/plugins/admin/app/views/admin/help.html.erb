@@ -1,0 +1,3 @@
+<h2>Help</h2>
+<% begin %><%= render :partial => "help/#{@model_class.singularize}" %>
+<br /><br /><%= link_to "Get started with #{@model_name.downcase}",{:action => "browse",:model => @model_class} %><% rescue %>There is no documentation available for <%= @model_name.downcase %>. Sorry!<% end %>

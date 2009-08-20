@@ -1,0 +1,5 @@
+<table class="display"><% instances = "@#{file_name.pluralize}" %>
+  <tr><th class="first">Name</th><th class="pages"><%%= render :partial => "app/paginate",:locals => {:records => <%= instances %>} %></th></tr><%% if <%= instances %>.empty? %>
+  <tr class="utility"><td colspan="2">No <%= class_name.tableize.humanize.downcase %>.</td></tr><%% else %><%% for <%= file_name %> in <%= instances %> %>
+  <tr class="row<%%= cycle 1,2 %>"><td><%%= link_to(<%= file_name %>.name,{:action => "show",:id => <%= file_name %>.id}) %></td><td class="right"><%%= link_to("Edit",{:action => "edit",:id => <%= file_name %>.id},:class => "edit icon") %><%%= link_to("Delete",{:action => "destroy",:id => <%= file_name %>.id},:class => "delete icon") %></td></tr><%% end %><%% end %>
+</table>

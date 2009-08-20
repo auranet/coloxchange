@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <%= link_to "Homepage",:controller => "main",:action => "index" %>
+    <ul><% for page in @pages %>
+      <%= render :partial => "sitemap_item",:locals => {:page => page} %><% end %>
+    </ul>
+  </li>
+</ul>

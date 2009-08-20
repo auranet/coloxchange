@@ -1,0 +1,2 @@
+class EquipmentQuote < Quote
+end

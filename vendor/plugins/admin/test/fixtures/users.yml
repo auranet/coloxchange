@@ -1,0 +1,9 @@
+one:
+  id: 1
+  admin: true
+  admin_roles: admin,blogger
+
+two:
+  id: 2
+  admin: true
+  admin_roles: blogger

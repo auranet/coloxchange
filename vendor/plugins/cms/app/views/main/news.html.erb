@@ -1,0 +1,4 @@
+<table>
+<%= render :partial => "news_item",:collection => @news_items %>
+</table>
+<div class="pages"><%= link_to("&laquo;",{:overwrite_params => {:page => @news_items.current_page - 1}}) unless @news_items.current_page == 1 %>&nbsp;<%= (@news_items.current_page * @news_items.per_page) - @news_items.per_page + (@news_items.total_entries == 0 ? 0 : 1) %>&nbsp;-&nbsp;<%= (@news_items.current_page * @news_items.per_page) - @news_items.per_page + @news_items.size %>&nbsp;of&nbsp;<%= @news_items.total_entries %>&nbsp;<%= link_to "&raquo;",{:overwrite_params => {:page => @news_items.current_page.next}} unless @news_items.current_page == @news_items.total_pages || @news_items.total_entries == 0 %></div>

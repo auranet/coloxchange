@@ -1,0 +1,84 @@
+#carousel {
+  background:url(../images/home/background-carousel.jpg) no-repeat;
+  height:199px;
+  margin:0 auto 20px auto;
+  overflow:hidden;
+  position:relative;
+  width:866px;
+}
+
+#carousel ul {
+  height:199px;
+  list-style:none;
+  list-style-image:none;
+  margin:0;
+  padding:0;
+  width:866px;
+}
+
+#carousel ul li {
+  float:left;
+  height:199px;
+  overflow:hidden;
+  padding:0;
+  width:102px;
+}
+
+#carousel ul li#carousel-colocation {
+  width:560px;
+}
+
+#carousel ul li .carousel-link {
+  background:url(../images/home/background-carousel-link.png) repeat-y;
+  display:block;
+  float:left;
+  height:184px;
+  padding-top:15px;
+  text-align:center;
+  text-decoration:none;
+  width:102px;
+}
+
+#carousel ul li .carousel-link img {
+  display:block;
+  margin:0 auto;
+}
+
+#carousel ul li .carousel-link img.label {
+  margin-top:10px;
+}
+
+#carousel ul li .carousel-content {
+  color:#fff;
+  font-weight:bold;
+  height:179px;
+  overflow:hidden;
+  padding:10px;
+  position:relative;
+}
+
+#carousel ul li .carousel-content p {
+  text-shadow:#000 0 0 3px;
+  width:438px;
+}
+
+#carousel ul li .carousel-toolbar {
+  bottom:10px;
+  position:absolute;
+  white-space:nowrap;
+}
+
+#carousel-shadow {
+  display:none;
+}
+
+#carousel > #carousel-shadow {
+  background:url(../images/home/background-carousel-shadow.png) no-repeat;
+  display:block;
+  height:199px;
+  left:0;
+  position:absolute;
+  top:0;
+  width:100%;
+  z-index:2;
+}

@@ -1,0 +1,7 @@
+<%= start_form(:action => "newsletter_signup") %>
+  <table class="form">
+    <tr><th>Name:*</th><td><%= text_field_tag("name","",:class => "text") %></td></tr>
+    <tr><th>Email:*</th><td><%= text_field_tag("email","",:class => "medium text") %></td></tr>
+    <tr><th></th><td><%= button("Sign Up") %></td></tr>
+  </table>
+<%= end_form %>

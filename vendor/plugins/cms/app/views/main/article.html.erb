@@ -1,0 +1,4 @@
+<div class="article-author">By <%= link_to @article.user.name,{:controller => "main",:action => "articles",:user_id => @article.user_id} %></div>
+<div class="article-body">
+  <%= @article.body %>
+</div>

@@ -1,0 +1,7 @@
+<div class="body">
+  <%= @press_release.body.gsub("\n","<br />") %>
+</div><% unless @press_release.news_item_contacts.empty? %>
+<b>Press Contacts:</b>
+<br />
+<%= render :partial => "news_item_contact",:collection => @press_release.news_item_contacts %><% end %>
+<%= link_to("Return to press",{:action => "press"}) %>

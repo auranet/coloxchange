@@ -1,0 +1,15 @@
+<%= start_form({:model => "photo",:action => "edit",:id => nil},:multipart => true) %>
+  <table class="form" style="width:500px;">
+    <tr><th style="width:180px;">Size</th><th style="width:180px;">Alignment</th><th><label for="photo_border">Bordered</label></th></tr>
+    <tr><td nowrap="nowrap"><% for size in @image_sizes %><label for="photo_size_<%= size %>"><%= radio_button("photo","size",size,:checked => size == :medium ? "checked" : nil) %><%= size.to_s.humanize %></label> <% end %></td><td nowrap="nowrap"><label for="photo_align_left"><%= radio_button("photo","align","left",:checked => "checked") %>Left</label> <!-- <label for="photo_align_center"><%= radio_button("photo","align","center") %>&nbsp;Center</label><br /> --><label for="photo_align_right"><%= radio_button("photo","align","right") %>Right</label> <label for="photo_align_none"><%= radio_button("photo","align","none") %>None</label></td><td nowrap="nowrap"><label for="photo_border"><%= check_box("photo","border",:checked => "checked") %>&nbsp;Yes</label></td></tr><% if @photos == "input" || !@photos.empty? %>
+    <tr><th>Select a photo:</th><td colspan="2"><% if @photos == "input" %><%= text_field_tag("photo_name","",:alt => url_for(:action => "search",:model => "photo",:id => nil),:class => "complete text",:rel => "inline_photo_id;size",:style => "width:200px;") %><%= hidden_field_tag("photo_id","",:id => "inline_photo_id") %><% else %><div class="photo-browser"><%= render :partial => "admin/editor/images" %></div><% end %></td></tr>
+    <tr><th>or</th><td></td><% end %>
+    <tr><th>Upload a photo:</th><td><%= file_field("instance","path") %><%= hidden_field("instance","user_id",:value => @user.id,:id => "inline-photo-upload-field") %></td></tr>
+    <tr><td colspan="3">
+      <%= admin_button("Add photo") %> <%= admin_button_link("Cancel",{},:class => "cancel") %>
+    </td></tr>
+  </table>
+<%= end_form %>
+
+
+

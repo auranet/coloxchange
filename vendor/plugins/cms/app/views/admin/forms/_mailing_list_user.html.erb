@@ -1,0 +1,8 @@
+<%= hidden_field("instance","mailing_list_id") %>
+<table class="form"><% if @instance.new_record? %>
+  <tr><th><label for="instance_user_id">Name:</label></th><td><%= admin_input("instance","user_id") %></td></tr><% else %>
+  <tr><th class="even">Name:</th><td><%= @instance.user.name if @instance.user %></td></tr><% end %><% if @instance.subscribed %>
+  <tr><th class="even">Subscribed?</th><td><%= admin_input("instance","subscribed") %></td></tr><% else %>
+  <tr><th class="even">Unsubscribed&nbsp;at:</th><td><%= @instance.unsubscribed_at.pretty %></td></tr>
+  <tr><th class="even">Reason:</th><td><%= text_area("instance","unsubscribed_reason",:class => "half") %></td></tr><% end %>
+</table>

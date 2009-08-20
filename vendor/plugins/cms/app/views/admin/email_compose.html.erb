@@ -1,0 +1,12 @@
+<%= start_form %>
+  <table class="form">
+    <tr><th><label for="email_mailing_list_id">Mailing list:</label></th><td><%= collection_select("email","mailing_list_id",[MailingList.defaults,MailingList.find(:all,:order => "name")].flatten,"id_or_name","name") %></td></tr>
+    <tr><th><label for="email_from_name">From name:</label></th><td><%= text_field("email","from_name",:class => "text") %></td></tr>
+    <tr><th><label for="email_from_email">From e-mail:</label></th><td><%= text_field("email","from_email",:class => "medium text") %></td></tr>
+    <tr><th><label for="email_body">Message:</label></th><td><%= text_area("email","body",:class => "editor") %></td></tr>
+  </table>
+  <div class="toolbar">
+    <%= admin_button("Send Preview",:name => "preview") %>
+    <%= admin_button("Send",:name => "send",:confirm => "Are you sure you're ready to send this e-mail?") %>
+  </div>
+<%= end_form %>

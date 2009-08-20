@@ -1,0 +1,1 @@
+Base.after_login_url = {:controller => "admin",:action => "index"}

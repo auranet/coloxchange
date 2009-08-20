@@ -1,0 +1,14 @@
+<form>
+<table style="width:auto;">
+  <tr><td class="bold" style="width:70px;"><label for="link_label">Link text:</label></td><td><%= text_field("link","label",:class => "text") %></td></tr>
+  <tr><td class="bold" valign="top">Points to:</th><td><% if @pages %><label for="point_to_page"><%= radio_button_tag("point_to","page",true,:class => "option") %> Page</label> <% end %> <label for="point_to_url"><%= radio_button_tag("point_to","url",false,:class => "option") %> URL</label><% if @pages %>
+    <div class="box" id="point_to_page_options" style="margin:5px;">
+      <%= select_tag("page_url",options_for_select(@pages)) %>
+    </div><% end %>
+    <div class="box" id="point_to_url_options" style="display:none;margin:5px;">
+      <%= text_field_tag("text_url","http://",:class => "text") %>
+    </div>
+  </td></tr>
+  <tr><th></th><td><%= admin_button("Add link") %> <%= admin_button_link("Cancel",{},:class => "cancel") %></td></tr>
+</table>
+</form>

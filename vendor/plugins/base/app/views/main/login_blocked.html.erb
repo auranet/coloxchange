@@ -1,0 +1,1 @@
+You are already logged in as <%= @user.name %>!<% if Rails.plugins[:admin] && @user.admin %> <%= link_to "Administrative area",:controller => "admin",:action => "index" %><% end %>

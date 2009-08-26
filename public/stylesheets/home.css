@@ -82,3 +82,8 @@
   width:100%;
   z-index:2;
 }
+
+#video embed, #video object {
+  border:2px solid #888;
+  -webkit-border-radius:2px;
+}

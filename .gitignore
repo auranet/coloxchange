@@ -1,4 +1,4 @@
-_Store
+.DS_Store
 config/database.yml
 db/*.sql
 db/*.sqlite3

@@ -1,13 +1,13 @@
 --- 
-:site_name_legal: test
-:newsletter: false
 :meta_keywords: ""
 :meta_robots: FOLLOW,INDEX
-:meta_copyright: "Copyright \xC2\xA9 %Y Your Company's Legal Name"
+:meta_copyright: "Copyright \xC2\xA9 %Y ColocationXchange"
 :site_tag_line: ""
 :meta_description: ""
 :google_analytics_key: ""
 :google_maps_key: ""
-:site_name: FTest
+:site_name: ColocationXchange
 :first_load: false
 :meta_author: ""
+:site_name_legal: ColocationXchange
+:newsletter: false

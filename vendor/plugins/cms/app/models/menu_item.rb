@@ -38,7 +38,7 @@ class MenuItem < ActiveRecord::Base
   end
 
   protected
-  def after_update
+  def after_save
     self.build_hierarchy if self.auto_update
   end
 

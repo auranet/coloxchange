@@ -2,8 +2,8 @@ class AdminSweeper < ActionController::Caching::Sweeper
   observe Article,Menu,MenuItem,Newsletter,Page,Snippet
 
   def after_save(record)
-    if record.is_a?(MenuItem) || record.is_a?(Menu)
-      expire_fragment(:controller => "main",:action => "#{(record.is_a?(MenuItem) ? record.menu : record).slug}_menu")
+    if (record.is_a?(MenuItem) && record.menu) || record.is_a?(Menu)
+      expire_fragment(:controller => "main", :action => "#{(record.is_a?(MenuItem) ? record.menu : record).slug}_menu")
       articles = Article.find(:all)
       pages = Page.find(:all)
     elsif record.is_a?(Page)

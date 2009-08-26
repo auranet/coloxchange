@@ -1,1 +1,1 @@
-JSRoutes.copy_routes({:append => 'javascripts/application.js', :minify => true})
+JSRoutes.copy_routes

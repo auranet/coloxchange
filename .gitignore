@@ -6,3 +6,4 @@ db/schema.rb
 log/*
 tmp/*
 public/global/admin/*
+public/javascripts/router.js

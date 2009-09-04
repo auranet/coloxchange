@@ -7,3 +7,5 @@ log/*
 tmp/*
 public/global/admin/*
 public/javascripts/router.js
+public/*.html
+public/**/*.html

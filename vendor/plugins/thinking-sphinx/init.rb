@@ -1,7 +1,7 @@
 require 'thinking_sphinx'
 
 if Rails::VERSION::STRING.to_f < 2.1
-  ThinkingSphinx::Configuration.instance.load_models
+  # ThinkingSphinx::Configuration.instance.load_models
 end
 
 if Rails::VERSION::STRING.to_f > 1.2

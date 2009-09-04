@@ -2,7 +2,7 @@
 <b><% if @results.empty? %>No results returned! Please try your search again.<% else %><%= @results.total_entries %> result<%= "s" unless @results.size == 1 %><% end %></b>
 <% for result in @results %>
 <p>
-  <h2><%= link_to(highlight(result.name, params[:q].split(' ')), result.url) %></h2>
+  <h2><%= link_to(highlight(result.name, params[:q].split(' ')), result.slug) %></h2>
   <%= excerpt(highlight(result.html, params[:q].split(' ')), params[:q]) %>
 </p>
 <% end %>

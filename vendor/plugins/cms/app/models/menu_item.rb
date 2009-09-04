@@ -29,7 +29,7 @@ class MenuItem < ActiveRecord::Base
   def full_url
     case self.point_to
     when "page"
-      self.page.url
+      self.page.slug
     when "action"
       {:controller => self.attributes["controller"],:action => self.action,:id => self.id_}
     when "url"

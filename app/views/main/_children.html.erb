@@ -1,3 +1,3 @@
 <ul class="list"><% for child in page.active_children %>
-  <li><%= link_to(child.name,child.url,:class => @page.id == child.id ? "bold" : nil) %><%= render :partial => "main/children",:locals => {:page => child} unless child.children.empty? %></li><% end %>
+  <li><%= link_to(child.name,child.slug,:class => @page.id == child.id ? "bold" : nil) %><%= render :partial => "main/children",:locals => {:page => child} unless child.children.empty? %></li><% end %>
 </ul>

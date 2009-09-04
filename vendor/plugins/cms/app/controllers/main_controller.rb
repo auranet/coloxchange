@@ -121,7 +121,7 @@ class MainController < ApplicationController
 
   def sitemap
     @title ||= "Site map"
-    @pages = [Page.find(:all,:conditions => ["pages.active = ? AND pages.parent_id IS NULL",true],:include => [:children],:order => "pages.position ASC"),MainController.action_method_names.without("clickthrough","context_data","login","logout","index","newsletter","page","sitemap","wsdl").collect{|action|Page.new(:name => action.titleize,:slug => action)}].flatten#.sort{|page| page.name}
+    @pages = Page.find(:all,:conditions => ["pages.active = ? AND pages.parent_id IS NULL",true],:include => [:children],:order => "pages.position ASC")
   end
 
   def unsubscribe

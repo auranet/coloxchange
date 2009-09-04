@@ -3,6 +3,7 @@ require 'json'
 
 Admin.models.push('Contact', 'Quote')
 Admin.models -= ['Advertisement', 'Article', 'Category', 'Email', 'Newsletter']
+Admin.skip_actions.push('articles', 'contact_send', 'data_center', 'data_center_search', 'login', 'logout', 'news', 'newsletter_signup', 'lost_password', 'press', 'quote_send', 'unsubscribe')
 Base.domain = 'http://www.coloexchange.com'
 Base.domain_short = 'coloexchange.com'
 CMS.hierarchical_menus = true

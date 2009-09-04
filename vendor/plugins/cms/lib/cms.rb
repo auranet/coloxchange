@@ -22,7 +22,8 @@ module CMS
       Page.table_exists?
       for action in MainController.action_method_names.without(["newsletter","page_preview",Admin.skip_actions].flatten).sort
         page = Page.find_or_initialize_by_attached_and_controller_and_action(true,"main",action)
-        page.update_attributes({:slug => url.rewrite(:only_path => true,:controller => "main",:action => action)}.update(page.new_record? ? {:name => action == "index" ? "Homepage" : action.titleize} : {}))# if page.new_record?
+        slug = url.rewrite(:only_path => true,:controller => "main",:action => action)
+        page.update_attributes({:slug => slug}.update(page.new_record? ? {:name => action == "index" ? "Homepage" : action.titleize, :parent => Page.find_by_attached_and_controller_and_action(true, 'main', action.split('_').shift)} : {}))# if page.new_record?
         CMS.page_urls[:main][action.to_sym] = true
       end if Page.columns.select{|c| c.name == "attached"}[0]
     rescue

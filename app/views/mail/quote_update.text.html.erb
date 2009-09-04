@@ -1,6 +1,0 @@
-<%= render :partial => "mail/header" %>
-<b><%= @quote.tracking_number %>'s (<%= @quote.name %>) pricing information has been updated on <%= site_name %>.</b>
-<br /><br />
-To view this quote, visit:
-<br /><br /><a href="<%= quote_url = "#{domain}/admin/quotes/#{@quote.id}" %>"><%= quote_url %></a>
-<%= render :partial => "mail/footer" %>

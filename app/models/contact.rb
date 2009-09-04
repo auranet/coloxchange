@@ -24,6 +24,11 @@ class Contact < User
     (self.notes.select{|note| note.user_id.blank?}.first || Note.new).body
   end
 
+  def note=(body)
+    note = Note.new(:body => body)
+    self.notes.push(note) if note.valid?
+  end
+
   def phone
     (self.phones.first || Phone.new).number
   end

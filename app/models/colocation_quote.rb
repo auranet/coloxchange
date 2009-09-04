@@ -3,8 +3,9 @@ class ColocationQuote < Quote
 
   def data_centers=(data_centers)
     self.quote_data_centers.clear
-    for data_center in data_centers
-      quote_data_center = QuoteDataCenter.new(:data_center_slug => data_center, :quote => self)
+    for slug, data_center in data_centers
+      next unless data_center['include'] == 'true'
+      quote_data_center = QuoteDataCenter.new(:data_center_slug => data_center['slug'], :name => data_center['name'], :quote => self)
       self.quote_data_centers.push(quote_data_center) if quote_data_center.valid?
     end
   end

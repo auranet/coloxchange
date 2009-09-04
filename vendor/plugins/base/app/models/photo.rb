@@ -1,4 +1,4 @@
-require "RMagick"
+# require "RMagick"
 class Photo < FileStore
   admin :conditions => nil,:browse_columns => [{:name_with_thumb => "Name"}],:fields => [:user,:caption,{:path => {:label => "Photo"}}],:filters => [:caption],:name => "Image",:include => nil,:search_fields => [:caption]
   attr_accessor :sizes

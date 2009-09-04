@@ -12,7 +12,7 @@ class FindADataCenter
       post_params = {'api_key' => api_key}
       params.delete_if{|key, value| value.blank? || key =~ /^(controller|action|id)$/ || key.downcase == value.downcase }
       post_params.merge!(params)
-      # begin
+      begin
         response = Net::HTTP.post_form(URI.parse("#{remote_url}#{url}.json"), post_params)
         if response.is_a?(Net::HTTPOK)
           begin
@@ -20,8 +20,9 @@ class FindADataCenter
           rescue JSON::ParserError
           end
         end
-      # rescue Errno::ECONNREFUSED
-      # end
+      rescue Errno::ECONNREFUSED
+        {}
+      end
     end
 
     private
@@ -29,14 +30,14 @@ class FindADataCenter
       # Production
       'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
       # Development
-      '407a9b9270a1c241eb219c00dd495ce857512dbe'
+      # 'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
     end
 
     def remote_url
       # Production
       'http://www.findadatacenter.com/'
       # Development
-      'http://127.0.0.1:3001/'
+      # 'http://127.0.0.1:3001/'
     end
   end
 end

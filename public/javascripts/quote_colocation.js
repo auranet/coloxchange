@@ -9,7 +9,8 @@ $(function(){
   });
   searchButton.click(function(event) {
     event.preventDefault();
-    if (!searchField.hasClass('replaced')) return
+    if (!searchField.hasClass('replaced')) return;
+		console.log('searching');
     var results = $('#data-center-results');
     var table = results.find('table');
     var tbody = table.find('tbody');
@@ -28,7 +29,7 @@ $(function(){
         $(data.data_centers.reverse()).each(function() {
           var id = 'data-center-row-' + this.slug;
           if ($('#' + id).length == 0) {
-            var row = $('<tr class="row" id="' + id + '"><td style="width:10px;"><input id="data-center-' + this.slug + '" name="quote[data_centers][]" type="checkbox" value="' + this.slug + '" /></td><td><label for="data-center-' + this.slug + '">' + this.name + '</label></td><td class="center medium">' + (Math.round(this.distance * 100) / 100.0)  + '<div class="quiet">miles</div></td></tr>');
+            var row = $('<tr class="row" id="' + id + '"><td style="width:10px;"><input id="data-center-' + this.slug + '" name="quote[data_centers][' + this.slug + '][include]" type="checkbox" value="true" /><input name="quote[data_centers][' + this.slug + '][include]" type="hidden" value="false" /></td><td><label for="data-center-' + this.slug + '">' + this.name + '<input name="quote[data_centers][' + this.slug + '][name]" type="hidden" value="' + this.name + '" /><input name="quote[data_centers][' + this.slug + '][slug]" type="hidden" value="' + this.slug + '" /></label></td><td class="center medium">' + (Math.round(this.distance * 100) / 100.0)  + '<div class="quiet">miles</div></td></tr>');
             tbody.prepend(row);
           }
         });

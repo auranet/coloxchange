@@ -1,7 +1,7 @@
 class BandwidthQuote < Quote
   attr_accessor :bandwidth_requirements_internet_service, :bandwidth_requirements_mpls_or_private_line
   has_many :addresses, :through => :quote_addresses
-  has_many :quote_addresses, :dependent => :destroy, :order => 'quote_addresses.position'
+  has_many :quote_addresses, :dependent => :destroy, :order => 'quote_addresses.position', :foreign_key => :quote_id
   state :product, {'Internet Service' => 'internet_service', 'Private Line Service' => 'line_service', 'MPLS' => 'mpls', 'Other' => 'other'}
   validates_presence_of :product
 
@@ -19,7 +19,7 @@ class BandwidthQuote < Quote
     self.quote_addresses.clear
     for address in addresses_attributes
       quote_address = QuoteAddress.new(:address => Address.new(address), :quote => self)
-      self.quote_addresses.push(quote_address) if quote_address.valid?
+      self.quote_addresses.push(quote_address) if quote_address.valid? && quote_address.address.valid?
     end
   end
 
@@ -30,9 +30,9 @@ class BandwidthQuote < Quote
   protected
   def before_save
     if self.bandwidth_requirements_internet_service && self.product_internet_service?
-      self.product = self.bandwidth_requirements_internet_service
+      self.bandwidth_requirements = self.bandwidth_requirements_internet_service
     elsif self.bandwidth_requirements_mpls_or_private_line && (self.product_mpls? || self.product_private_line_service?)
-      self.product = self.bandwidth_requirements_mpls_or_private_line
+      self.bandwidth_requirements = self.bandwidth_requirements_mpls_or_private_line
     end
   end
 

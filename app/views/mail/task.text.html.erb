@@ -1,7 +1,0 @@
-<%= render :partial => "mail/header" %>
-<b><%= @task.user.name %> assigned you a task on <%= site_name %>:</b>
-<br /><br />
-<blockquote><%= h(@task.name) %></blockquote>
-<br /><br />To view this task, log in below.
-<br /><br /><a href="<%= task_url = "#{domain}/admin" %>"><%= task_url %></a>
-<%= render :partial => "mail/footer" %>x

@@ -28,6 +28,22 @@ h1 {
   margin:0 0 30px 0;
 }
 
+h2 {
+	color:#036;
+  font:14pt 'Helvetica Neue', Helvetica;
+  font-weight:200;
+  margin:0 0 10px 0;
+}
+
+h2 a {
+	color:#5a83a6;
+/*	text-decoration:none;*/
+}
+
+h2 strong.highlight {
+	font-weight:bold;
+}
+
 fieldset {
   border:0;
   border-top:2px solid #5a83a6;
@@ -420,6 +436,16 @@ ul ul {
   float:right;
 }
 
+.field-error {
+	background:url(../images/icons/error.gif) left center no-repeat;
+	color:#c33;
+	display:block;
+	font-size:10pt;
+	line-height:16px;
+	margin-top:10px;
+	padding:0 0 0 20px;
+}
+
 .go {
   background:url(../images/icons/go.png) right center no-repeat;
 }
@@ -430,6 +456,11 @@ ul ul {
 
 .hidden {
   display:none;
+}
+
+/* Not REALLY important... */
+.important {
+	display:none;
 }
 
 .large, .medium {
@@ -667,3 +698,16 @@ textarea.small {
   height:32px;
   width:180px;
 }
+
+/* Notices */
+.message { background:#eee url(/images/messages/background-left.gif) left top no-repeat; color:#000; height:25px; font-weight:bold; margin-bottom:10px; overflow:hidden; position:relative; }
+.message p { background:url(/images/messages/background-right.gif) right top no-repeat; height:25px; margin:0; padding:5px 10px; }
+.message.add .message-icon,.message.cancel .message-icon,.message.delete .message-icon,.message.error .message-icon,.message.notice .message-icon { background-position:5px center; background-repeat:no-repeat; display:block; float:left; height:25px; width:25px; }
+.message.add .message-icon { background-image:url(/images/messages/background-add.gif); }
+.message.cancel .message-icon { background-image:url(/images/messages/background-cancel.gif); }
+.message.delete .message-icon { background-image:url(/images/messages/background-delete.gif); }
+.message.error .message-icon { background-image:url(/images/messages/background-error.gif); }
+.message.notice .message-icon { background-image:url(/images/messages/background-notice.gif); }
+.message.error-list { background:transparent; height:auto; margin-top:0; padding:0; }
+.message.error-list p { background:transparent; height:auto; margin:0; padding:0; }
+ul.error-list { list-style:circle; margin:0 0 0 45px; padding:0; }

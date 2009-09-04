@@ -1,10 +1,13 @@
-<% form_tag(contact_path) do %>
+<% form_tag(contact_send_path) do %>
+  <div class="important">
+    <input class="text" name="website" value="http://">
+  </div>
   <table class="form">
     <tr class="top">
       <td class="column">
         <label class="block" for="contact_first_name">Your name</label>
         <div class="float-left half"><%= text_field(:contact, :first_name, :class => 'oversized text') %></div>
-        <div class="float-left half"><%= text_field(:contact, :first_name, :class => 'oversized text') %></div>
+        <div class="float-left half"><%= text_field(:contact, :last_name, :class => 'oversized text') %></div>
         <br />
         <div class="float-left half quiet">First</div>
         <div class="float-left half quiet">Last</div>
@@ -19,7 +22,7 @@
       </td>
       <td class="column">
         <label class="block" for="contact_note"><%= notes ||= 'How can we help you?' %></label>
-        <%# text_area(:contact, :note) %>
+        <%= text_area(:contact, :note, :style => 'height:257px;') %>
       </td>
     </tr>
     <tr>

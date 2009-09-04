@@ -115,18 +115,12 @@ module Base
       end
 
       def rescue_action_in_public(exception)
-        begin
-          full_backtrace = exception.backtrace
-          app_regex = Regexp.new(RAILS_ROOT)
-          exception.backtrace.delete_if{|line| line.to_s !~ app_regex}
-          app_backtrace = exception.backtrace
-          description = "**Message**\n\n#{exception.message}\n\n**Params**\n\n<pre><code>#{params.merge(:method => request.method).inspect}</code></pre>\n\n"
-          description << (app_backtrace == full_backtrace ? "**Backtrace**\n\n<pre><code>#{full_backtrace.join("\n")}</code></pre>\n\n" : "**App Backtrace**\n\n<pre><code>#{app_backtrace.join("\n")}</code></pre>\n\n**Full Backtrace**\n\n<pre><code>#{full_backtrace.join("\n")}</code></pre>\n\n")
-          @ticket = PhobosTicket.create(:account_domain => domain_short,:description => description,:name => "#{exception.type} in #{self.class}##{params[:action]}",:opener_email => @user ? @user.email : nil,:priority => 4,:project_url => domain,:severity => 4,:url => "#{request.env["SERVER_PROTOCOL"].split("/").first.downcase}://#{request.env["HTTP_HOST"]}/#{request.env["PATH_INFO"]}")
-        rescue Exception => e
-          logger.warn("Could not create support ticket for:\n#{exception.message}\n#{exception.backtrace.join("\n")}\n\nbecause an exception was encountered:\n#{e.message}\n#{e.backtrace.join("\n")}")
+        case exception
+        when ActiveRecord::RecordNotFound
+          deny(:status => 404, :template => "main/404", :title => "404 Not Found")
+        else
+          deny(:status => 500, :template => "main/500", :title => "500 Internal Server Error")
         end
-        deny(:status => 500,:template => "main/500",:title => "500 Internal Server Error")
       end
 
       def return_url

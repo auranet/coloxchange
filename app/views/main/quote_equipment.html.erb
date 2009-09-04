@@ -9,6 +9,7 @@
       <label class="block" for="quote_price_target">Price target for your equipment requirements <span class="normal quiet">(optional)</span></label>
       <%= text_field(:quote, :price_target, :class => 'large text') %>
       <label class="block normal" for="quote_new_equipment"><%= check_box(:quote, :new_equipment) %> Only accept new equipment (excludes refurbished equipment)</label>
+      <%= errors_on(:quote, :new_equipment) %>
     </div>
   </fieldset>
   <fieldset class="collapsible toggled">

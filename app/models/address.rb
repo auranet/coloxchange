@@ -22,7 +22,7 @@ class Address < ActiveRecord::Base
 
   protected
   def before_save
-    self.errors.add(:street, 'cannot be blank') and return false if self.street == 'Street' && self.city == 'City' && self.state == 'AK' && self.postal_code =~ /^(Zip|Postal Code)$/
+    self.errors.add(:street, 'cannot be blank') and return false if self.street == 'Street' && self.city == 'City' && self.state == '--' && self.postal_code =~ /^(Zip|Postal Code)$/
     self.street = nil if self.street == 'Street'
     self.city = nil if self.city == 'City'
     self.postal_code = nil if self.postal_code =~ /^(Zip|Postal Code)$/

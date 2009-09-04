@@ -5,6 +5,7 @@
     <legend><b>2</b> Describe your requirements</legend>
     <div class="pad">
       <%= text_area(:quote, :note) %>
+      <%= errors_on(:quote, :note) %>
     </div>
   </fieldset>
   <div class="center"><%= button('Submit this Quote') %></div>

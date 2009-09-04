@@ -1,14 +1,15 @@
 class MainController < ApplicationController
   layout :check_layout
   skip_before_filter :context_data ,:only => [:advertisement, :clickthrough]
-  before_filter :find_contact, :only => [:contact, :quote, :quote_bandwidth, :quote_colocation, :quote_equipment, :quote_managed_services, :quote_send]
+  before_filter :find_contact, :only => [:contact, :contact_send, :quote, :quote_bandwidth, :quote_colocation, :quote_equipment, :quote_managed_services, :quote_send]
 
   def contact
     @title ||= 'Contact Us'
   end
 
   def contact_send
-    if @contact.update_attributes(params[:contact].update({:details => params[:details], :referer => session[:referer]}))
+    return deny if params[:website] != 'http://'
+    if @contact.update_attributes(params[:contact].merge(:contact_request => true, :referer => session[:referer]))
       flash[:notice] = 'Your request has been sent'
       return redirect_to(contact_sent_path)
     end
@@ -80,7 +81,6 @@ class MainController < ApplicationController
   end
 
   def quote_colocation
-    @data_centers = session[:data_centers]
     @quote = ColocationQuote.new
     @title ||= 'Get a Quote &raquo; Colocation'
   end
@@ -104,13 +104,15 @@ class MainController < ApplicationController
     return deny unless @quote.is_a?(Quote)
     @quote.type = params[:quote][:type]
     @contact.update_attributes(params[:contact])
+    @quote.contact = @contact
     if @quote.valid? && @contact.valid? && @quote.save && @contact.save
       session[:data_centers] = nil
       session[:location] = nil
       session[:contact_id] = @contact.id
-      flash[:notice] = 'Thank you for submitting your quote! Someone will reply to you shortly.'
+      flash[:notice] = 'Thank you for submitting your quote request!'
       return redirect_to(quote_sent_path)
     end
+    session[:data_centers] = params[:quote][:data_centers].select{|slug, data_center| data_center['include'] == 'true' } if params[:quote][:data_centers]
     flash[:error] = 'This quote could not be saved'
     render :action => "quote_#{@quote.type.tableize.gsub('_quotes', '')}"
   end
@@ -120,21 +122,11 @@ class MainController < ApplicationController
   end
 
   def search
-    Article.send(:acts_as_sphinx)
-    Page.send(:acts_as_sphinx)
     @bodytitle ||= "Search"
     @title ||= "Search"
     unless params[:q].blank?
       @title << " Results: #{params[:q].shorten(20)}"
-      if page = Page.find(:first,:conditions => ["pages.attached = ? AND pages.controller = ? AND pages.action = ?",true,"main","data_center"])
-        parent_id = page.id
-      else
-        parent_id = -1
-      end
-      articles = Article.find_with_sphinx(params[:q],:conditions => ["articles.publish_date <= ?",Date.today],:sort_mode => :relevance)
-      pages = Page.find_with_sphinx(params[:q],:conditions => ["pages.active = ? AND (pages.parent_id IS NULL OR pages.parent_id != ?)",true,parent_id],:sort_mode => :sort_mode)
-      raise articles.first.inspect
-      @results = [articles,pages].flatten.sort{|a,b| a.relevance <=> b.relevance}.paginate(:page => params[:page],:per_page => 10)
+      @results = Page.search(params[:q], :page => params[:page], :per_page => 10)
     end
   end
 
@@ -148,7 +140,7 @@ class MainController < ApplicationController
   end
 
   def find_contact
-    @contact = Contact.find(session[:contact_id]) if session[:contact_id]
+    @contact = Contact.find_by_id(session[:contact_id]) if session[:contact_id]
     @contact ||= Contact.new(:subscriber => true)
   end
 end

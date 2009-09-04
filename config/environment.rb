@@ -12,6 +12,3 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
   # config.log_level = :debug
 end
-
-require 'will_paginate'
-require 'json'

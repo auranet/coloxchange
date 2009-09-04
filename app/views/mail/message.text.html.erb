@@ -1,7 +1,0 @@
-<%= render :partial => "mail/header" %>
-<b><%= @message.from.name %> sent you a message on <%= site_name %>:</b>
-<br /><br />
-<blockquote><%= h(@message.body).gsub("\n",'<br />') %></blockquote>
-<br /><br />To view or reply to this message, visit the URL below.
-<br /><br /><a href="<%= message_url = "#{domain}/admin/messages/#{@message.id}" %>"><%= message_url %></a>
-<%= render :partial => "mail/footer" %>x

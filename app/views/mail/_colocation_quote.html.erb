@@ -1,0 +1,10 @@
+<p>
+  <b>Colocation Request</b>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Data centers</div>
+  <div style="float:left;">
+<% for data_center in @quote.quote_data_centers -%>
+    <%= link_to(data_center.name, 'http://www.findadatcenter.com/data-centers/' + data_center.data_center_slug) %><br />
+<% end -%>
+  </div>
+  <div style="clear:both;"></div>
+</p>

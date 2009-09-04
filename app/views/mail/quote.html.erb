@@ -1,0 +1,13 @@
+<%= render :partial => "mail/header" %>
+<p>
+  <b>A new quote request</b> has been submitted on <%= site_name %>. Please review the details below:
+</p>
+<%= render :partial => "mail/contact" %>
+<%= render :partial => "mail/#{@quote.type.to_s.tableize.singularize}" %>
+<% unless @quote.note.blank? -%>
+<p>
+  <b>Notes</b>
+  <br /><%= h(@quote.note).gsub("\n", '<br />') %>
+</p>
+<% end -%>
+<%= render :partial => "mail/footer" %>

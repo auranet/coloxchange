@@ -1,7 +1,0 @@
-one:
-  id: 1
-  name: Name
-  contact_id: 3
-  address_id: 1
-  manager_id: 2
-  products: one

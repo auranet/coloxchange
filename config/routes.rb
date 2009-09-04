@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   # Base routes
   map.root :controller => 'main', :action => 'index'
   map.contact 'contact', :controller => 'main', :action => 'contact', :method => :get
-  map.contact 'contact_sent', :controller => 'main', :action => 'contact', :method => :post
+  map.contact_send 'contact/send', :controller => 'main', :action => 'contact_send', :method => :post
   map.contact_sent 'contact/sent', :controller => 'main', :action => 'contact_sent'
   map.login 'login', :controller => 'main', :action => 'login'
   map.logout 'logout', :controller => 'main', :action => 'logout'

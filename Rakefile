@@ -8,3 +8,5 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+require File.join(File.dirname(__FILE__), 'vendor', 'plugins', 'thinking_sphinx', 'lib', 'thinking_sphinx', 'tasks')

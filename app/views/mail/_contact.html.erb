@@ -1,11 +1,17 @@
-<b>Contact</b>
-<br /><div style="float:left;font-weight:bold;width:200px;">Name</div><div style="float:left;"><%= @contact.name %></div><% unless @contact.email.blank? %>
-<br /><div style="float:left;font-weight:bold;width:200px;">E-mail</div><div style="float:left;"><%= mail_to(@contact.email) %></div><% end %><% unless @contact.phone.blank? %>
-<br /><div style="float:left;font-weight:bold;width:200px;">Phone</div><div style="float:left;"><%= @contact.phone %></div><% end %><% unless @contact.referer.blank? %>
-<br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><a href="<%= @contact.referer %>"><%= @contact.referer %></a></div><% end %>
-<% if @contact.details %>
-<% for detail,label in [[:application_management,"Application management?"],[:geographic_location,"Geographic location"],[:managed_services,"Managed services"],[:application_type,"Application type"],[:number_of_servers,"Number of servers"],[:bandwidth_requirements,"Bandwidth requirements"],[:business_requirements,"Business requirements"]] -%>
-<br /><div style="float:left;font-weight:bold;width:200px;"><%= label %></div><div style="float:left;"><%= @contact.details[detail].is_a?(Array) ? @contact.details[detail].join(", ") : label[-1,1] == "?" ? @contact.details[detail].blank? ? "No" : "Yes" : @contact.details[detail] %></div>
-<% end %><% end %><% unless @contact.note.blank? %>
-<br /><div style="float:left;font-weight:bold;width:200px;">Note</div><div style="float:left;"><%= @contact.note %></div><% end %>
-<br /><a href="<%= domain %>/admin/contacts/<%= @contact.id %>">View this contact</a>
+<p>
+  <b>Contact Details</b>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Name</div><div style="float:left;"><%= @contact.name %></div>
+<% unless @contact.email.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">E-mail</div><div style="float:left;"><%= mail_to(@contact.email) %></div>
+<% end %>
+<% unless @contact.phone.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Phone</div><div style="float:left;"><%= @contact.phone %></div>
+<% end %>
+<% unless @contact.referer.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><a href="<%= @contact.referer %>"><%= @contact.referer %></a></div>
+<% end %>
+<% unless @contact.note.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Note</div><div style="float:left;"><%= h(@contact.note).gsub("\n", '<br />') %></div>
+<% end %>
+  <br /><a href="<%= domain %>/admin/contacts/<%= @contact.id %>">View this contact</a>
+</p>

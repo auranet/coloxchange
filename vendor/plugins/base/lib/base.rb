@@ -114,6 +114,8 @@ module Base
       self.emails[type] = "#{email}@#{self.domain_short}" unless email.include?("@")
     end
     Object.send :include,Base::ObjectExtensions
+    Mail.send :include, MailExtension
+    User.send :include, UserExtension
   end
 end
 

@@ -1,0 +1,10 @@
+<p>
+  <b>Equipment Request</b>
+<% unless @quote.product.blank? -%>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Brand / model number</div><div style="float:left;"><%= @quote.product %></div>
+<% end -%>
+<% unless @quote.price_target.blank? -%>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Price target</div><div style="float:left;"><%= @quote.price_target %></div>
+<% end -%>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Refurbished okay?</div><div style="float:left;"><%= @quote.new_equipment ? 'Yes' : 'No' %></div>
+</p>

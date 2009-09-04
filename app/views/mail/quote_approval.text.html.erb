@@ -1,6 +1,0 @@
-<%= render :partial => "mail/header" %>
-<b><%= @quote.manager.name %> has approved <%= @quote.tracking_number.downcase %> on <%= site_name %>.</b>
-<br /><br />
-To view and update this quote, visit:
-<br /><br /><a href="<%= quote_url = "#{domain}/admin/quotes/#{@quote.id}" %>"><%= quote_url %></a>
-<%= render :partial => "mail/footer" %>

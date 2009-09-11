@@ -12,14 +12,16 @@
         <label class="block" for="contact_email">Your e-mail</label>
         <%= text_field(:contact, :email, :class => 'email text') %>
         <%= errors_on(:contact, :email) %>
+        <label class="block" for="contact_phone">Your phone</label>
+        <%= text_field(:contact, :phone, :class => 'phone text') %>
       </td>
       <td class="column">
         <label class="block" for="contact_company_name">Company</label>
         <%= text_field(:contact, :company_name, :class => 'text') %>
         <label class="block" for="contact_title">Your title</label>
         <%= text_field(:contact, :title, :class => 'text') %>
-        <label class="block" for="contact_phone">Your phone</label>
-        <%= text_field(:contact, :phone, :class => 'phone text') %>
+        <label class="block" for="contact_contact_method">How would you like to be contacted?</label>
+        <%= select(:contact, :contact_method, Contact::ContactMethod.options, {}, :class => 'large') %>
         <label class="block" for="contact_phone">How did you hear about <%= site_name %>?</label>
         <%= select(:contact, :referer, ['', 'Conference', 'Web search', 'Publication', 'Referral', 'Other'], {}, :class => 'large other') %>
       </td>

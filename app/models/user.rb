@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many_and_edits_inline :emails,{:dependent => :destroy}
   has_many_and_edits_inline :phones,{:dependent => :destroy}
   has_many_and_edits_inline :websites,{:dependent => :destroy}
+  state :contact_method, {'Phone' => 0, 'E-mail' => 1}
   validates_confirmation_of :password,:message => "The passwords did not match!"
   validates_format_of :email,:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,:if => :email_present?
   validates_presence_of :email,:if => :user?

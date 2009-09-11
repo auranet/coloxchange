@@ -11,7 +11,7 @@ class BandwidthQuote < Quote
     end
 
     def mpls_or_private_line_options
-      ['T1 1.5 mbps', 'DS3 45 mbps', 'OC3 155 mbps', 'OC3c 155 mbps', 'OC12 622 mbps', 'OC12c 622 mbps', 'Ethernet 100 mbps', 'Gigabit Ethernet 1,000 mbps', 'Other']
+      ['T1 1.5 mbps', 'DS3 45 mbps', 'OC3 155 mbps', 'OC3c 155 mbps', 'OC12 622 mbps', 'OC12c 622 mbps', '100 Fast Ethernet', '100 mbps Ethernet', '600 mbps Ethernet', 'Gigabit Ethernet (1,000 mbps)', 'Other']
     end
   end
 

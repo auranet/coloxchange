@@ -1,6 +1,9 @@
 <p>
   <b>Contact Details</b>
   <br /><div style="float:left;font-weight:bold;width:200px;">Name</div><div style="float:left;"><%= @contact.name %></div>
+<% unless @contact.contact_method.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Preferred contact method</div><div style="float:left;"><%= @contact.contact_method_name %></div>
+<% end %>
 <% unless @contact.email.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">E-mail</div><div style="float:left;"><%= mail_to(@contact.email) %></div>
 <% end %>

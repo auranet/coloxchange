@@ -1,0 +1,17 @@
+<tr class="top">
+  <td class="column">
+    <%= text_area_tag('quote[addresses_attributes][][street]', addresses[0] ? addresses[0].street : 'Street', :alt => 'Street', :class => 'block replace small') %>
+    <%= text_field_tag('quote[addresses_attributes][][city]', addresses[0] ? addresses[0].city : 'City', :alt => 'City', :class => 'block medium replace text') %>
+    <%= select_tag('quote[addresses_attributes][][state]', options_for_select([['--', ''], *state_options], addresses[0] ? addresses[0].state : nil)) %>
+    <%= text_field_tag('quote[addresses_attributes][][postal_code]', addresses[0] ? addresses[0].postal_code : 'Zip', :alt => 'Zip', :class => 'replace small text') %>
+  </td>
+  <td class="column" colspan="2">
+    <%= text_area_tag('quote[addresses_attributes][][street]', addresses[1] ? addresses[1].street : 'Street', :alt => 'Street', :class => 'block replace small') %>
+    <%= text_field_tag('quote[addresses_attributes][][city]', addresses[1] ? addresses[1].city : 'City', :alt => 'City', :class => 'block medium replace text') %>
+    <%= select_tag('quote[addresses_attributes][][state]', options_for_select([['--', ''], *state_options], addresses[1] ? addresses[1].state : nil)) %>
+    <%= text_field_tag('quote[addresses_attributes][][postal_code]', addresses[1] ? addresses[1].postal_code : 'Zip', :alt => 'Zip', :class => 'replace small text') %>
+  </td>
+  <td style="padding:0;width:16px;">
+    <a class="remove" href="#" rel="tr"></a>
+  </td>
+</tr>

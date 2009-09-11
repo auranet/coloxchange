@@ -84,7 +84,12 @@ class Page < ActiveRecord::Base
   end
 
   def url
-    "/#{self.self_and_ancestors.reverse.flatten.collect{|page| page.slug.split("/").without("").join("/")}.join("/")}"
+    case self.attached?
+    when true
+      self.slug
+    else
+      "/#{self.self_and_ancestors.reverse.flatten.collect{|page| page.slug.split("/").without("").join("/")}.join("/")}"
+    end
   end
 
   def self.tree(urls = false,conditions = [])

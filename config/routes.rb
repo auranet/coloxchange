@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.quote 'quote', :controller => 'main', :action => 'quote', :conditions => {:method => :get}
   map.quote_submit 'quote', :controller => 'main', :action => 'quote_send', :conditions => {:method => :post}
   map.quote_sent 'quote/sent', :controller => 'main', :action => 'quote_sent'
-  map.market_quote 'quote/:state/:city', :controller => 'main', :action => 'quote', :requirements => {:city => /[A-Za-z0-9\+\.-]+/, :state => /[A-Z]{2,4}/}
+  map.market_quote 'quote/:state/:city', :controller => 'main', :action => 'quote_colocation', :requirements => {:city => /[A-Za-z0-9\+\.-]+/, :state => /[A-Z]{2,4}/}
   map.bandwidth_quote 'quote/bandwidth', :controller => 'main', :action => 'quote_bandwidth'
   map.colocation_quote 'quote/colocation', :controller => 'main', :action => 'quote_colocation'
   map.equipment_quote 'quote/equipment', :controller => 'main', :action => 'quote_equipment'

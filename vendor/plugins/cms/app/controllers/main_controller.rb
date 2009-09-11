@@ -88,7 +88,7 @@ class MainController < ApplicationController
   end
 
   def page
-    render :layout => true,:text => ""
+    render :layout => true, :text => ""
   end
 
   def page_preview
@@ -144,7 +144,7 @@ class MainController < ApplicationController
     if params[:action] == "page"
       slug = params[:path].empty? ? "homepage" : params[:path].pop
       if params[:path].empty?
-        @page = Page.find(:first,:conditions => ["pages.active = ? AND pages.slug = ?",true,slug],:include => [{:snippet_attachments => [:snippet]}])
+        @page = Page.find(:first,:conditions => ["pages.active = ? AND pages.slug = ? AND pages.parent_id IS NULL", true, slug], :include => [:parent, {:snippet_attachments => [:snippet]}])
       else
         @page = Page.find(:first, :conditions => ['pages.slug = ? AND parents_pages.slug = ?', slug, params[:path].pop], :include => [:parent])
       end

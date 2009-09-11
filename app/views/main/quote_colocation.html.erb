@@ -5,7 +5,7 @@
 <% @data_centers ||= session[:data_centers] -%>
     <legend><b>2</b> Data center<%= !@data_centers || (@data_centers && @data_centers.length > 1) ? 's' : '' %></legend>
     <div class="pad">
-      <input alt="Enter city/state or zip code..." autocomplete="off" class="replace search text" id="data-center-search" name="data_center_search" type="text" value="" /> <%= button_link('Search', data_center_search_path(:format => 'json'), :class => 'small', :id => 'data-center-search-button') %>
+      <input alt="Enter city/state or zip code..." autocomplete="off" class="replace search text" id="data-center-search" name="data_center_search" type="text" value="<%= @location %>" /> <%= button_link('Search', data_center_search_path(:format => 'json'), :class => 'small', :id => 'data-center-search-button') %>
       <div id="data-center-results"<%= hide_unless(@data_centers && !@data_centers.empty?) %>>
         <h2>Search Results</h2>
         <table class="grid">
@@ -21,11 +21,33 @@
     </div>
   </fieldset>
   <fieldset class="collapsible toggled">
-    <legend><b>3</b> Notes and special instructions</legend>
+    <legend><b>3</b> Products and services</legend>
     <div class="pad">
+      <label class="block" for="quote_space">Space requirements</label>
+      <%= select(:quote, :space, ["1U", "2U", "4U", "1/4 Cabinet", "1/2 Cabinet", "1 Cabinet", "2 Cabinets", "3 Cabinets", "4 Cabinets", "5 Cabinets", "6-9 Cabinets", "10+ Cabinets", "Private Cage"], {}, :class => 'large') %>
+      <label class="block" for="quote_bandwidth">Bandwidth requirements</label>
+      <%= select(:quote, :bandwidth, ["1 mbps", "2 - 5 mbps", "6 - 9 mbps", "10+ mbps", "50+ mbps", "100+ mbps", "250+ mbps", "500+ mbps"], {}, :class => 'large') %>
+      <label class="block" for="quote_power">Power requirements</label>
+<% if @quote.power.blank? || ColocationQuote.power_options.include?(@quote.power) -%>
+      <%= select(:quote, :power, ColocationQuote.power_options, {}, :class => 'large other') %>
+<% else -%>
+      <%= select_tag('na', options_for_select(ColocationQuote.power_options, 'Other'), :class => 'large other', :id => 'quote_power') %>
+      <%= text_field_tag('quote[power]', @quote.power, :alt => 'Other...', :class => 'large replace text', :id => 'quote_power_other') %>
+<% end -%>
+    </div>
+  </fieldset>
+  <fieldset class="collapsible toggled">
+    <legend><b>4</b> Notes and special instructions</legend>
+    <div class="pad">
+      <label class="block" for="quote_target_date_2i">Target date</label>
+      <%= date_select(:quote, :target_date, :order => [:month, :day, :year]) %> <a class="calendar" href="#"></a>
+      <label class="block" for="quote_note">Notes</label>
       <%= text_area(:quote, :note) %>
     </div>
   </fieldset>
   <div class="center"><%= button('Submit this Quote') %></div>
 <% end %>
-<% @js.push('quote_colocation') %>
+<%
+  @js.push('quote_colocation')
+  @css.push('quote_colocation')
+%>

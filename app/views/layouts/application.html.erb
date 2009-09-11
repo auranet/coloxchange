@@ -3,22 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
   <title><%= (@browsertitle || @title || site_tag_line) %> - <%= site_name %></title>
-  <% for stylesheet in @css -%>
+<% for stylesheet in @css -%>
   <%= stylesheet_link_tag(stylesheet) %>
-  <% end if @css -%>
+<% end if @css -%>
   <!--[if IE]><%= stylesheet_link_tag('ie') %><![endif]-->
-  <% for script in @js -%>
+<% for script in @js -%>
   <%= javascript_include_tag(script) %>
-  <% end if @js -%>
+<% end if @js -%>
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
   <meta http-equiv="Content-Language" content="EN" />
   <meta name="author" content="<%= @meta_author %>" /><% if @meta_copyright && @meta_copyright.is_a?(String) %>
   <meta name="copyright" content="<%= @meta_copyright.gsub("%Y",Date.today.year.to_s) %>" /><% end %>
   <meta name="robots" content="<%= @meta_robots %>" />
-  <% if Rails.plugins[:blog] -%>
+<% if Rails.plugins[:blog] -%>
   <link href="/<%= Blog.rss_url %>" rel="alternate" type="application/rss+xml" title="<%= @site_name %> RSS feed" />
-  <% end -%>
+<% end -%>
 </head>
 <body>
   <div id="main-top">
@@ -29,54 +29,54 @@
             <a href="/" id="logo"></a>
             <form action="<%= search_path %>" method="get" id="search"><div><input alt="Search..." class="close replace search" name="q" type="text" value="<%= params[:q] || 'Search...' %>" /></div></form>
           </div>
-          <% cache(:controller => "main",:action => "main_menu") do -%>
+<% cache(:controller => "main",:action => "main_menu") do -%>
           <div id="menu">
             <div id="menu-left"></div>
             <div id="menu-right"></div>
-            <% if @menu = Menu.find(:first, :conditions => ['name_based_models.name = ?', 'Main'], :include => [:menu_items]) -%>
-            <% item_width = 848 / (@menu.menu_items.size == 0 ? 1 : @menu.menu_items.size) -%>
-            <% for menu_item in @menu.menu_items.sort{|a,b| a.position <=> b.position} -%>
+<% if @menu = Menu.find(:first, :conditions => ['name_based_models.name = ?', 'Main'], :include => [:menu_items]) -%>
+<%# item_width = 848 / (@menu.menu_items.size == 0 ? 1 : @menu.menu_items.size) -%>
+<% for menu_item in @menu.menu_items.sort{|a,b| a.position <=> b.position} -%>
             <ul><%= render :partial => 'main/menu_item', :locals => {:menu_item => menu_item} %></ul>
-            <% end -%>
-            <% end -%>
+<% end -%>
+<% end -%>
           </div>
-          <% end -%>
+<% end -%>
           <div<%= ' class="has-right"' if @right %> id="content">
           <%= yield :top %>
             <div id="left">
-              <% if @advertisement_top -%>
+<% if @advertisement_top -%>
               <%= @advertisement_top %>
               <div class="advertisement quiet">Advertisement</div>
-              <% end -%>
-              <% if @title && !@notitle -%>
+<% end -%>
+<% if @title && !@notitle -%>
               <h1 id="title"><%= @title %></h1>
-              <% end -%>
-              <% for key in flash.keys.sort{|a,b| a.to_s <=> b.to_s} -%>
+<% end -%>
+<% for key in flash.keys.sort{|a,b| a.to_s <=> b.to_s} -%>
               <div class="<%= key.to_s.gsub("_","-") %> message"><span class="message-icon"></span><p><%= flash.delete(key) %></p></div>
-              <% end -%>
+<% end -%>
               <%= @page.html if @page %>
               <%= yield %>
             </div>
             <div id="right">
-              <% if @page && !@page.self_and_ancestors.any?{|page| @ignore_pages.include?(page.slug)} && !@page.root.children.empty? -%>
+<% if @page && !@page.self_and_ancestors.any?{|page| @ignore_pages.include?(page.slug)} && !@page.root.children.empty? -%>
               <div class="container">
-                <h3><span><%= link_to(@page.root.name, @page.root.slug) %></span></h3>
+                <h3><span><%= link_to(@page.root.name, @page.root.url) %></span></h3>
                 <div class="inner-container">
                   <%= render :partial => 'main/children', :locals => {:page => @page.root} %>
                 </div>
               </div>
-              <% end -%>
-              <% right = yield :right -%>
-              <% if right.blank? -%>
-              <% if defined?(MARKETS) -%>
+<% end -%>
+<% right = yield :right -%>
+<% if right.blank? -%>
+<% if defined?(MARKETS) -%>
               <div class="container">
                 <h3><span>Our Markets</span></h3>
                 <div class="inner-container">
                   <div id="market-container">
                     <ul class="list">
-                      <% for market in MARKETS -%>
+<% for market in MARKETS -%>
                       <li><%= link_to("#{market[:city]}, #{market[:state]}", market_quote_path(:city => market[:city].gsub(' ', '+'), :state => market[:state]), :class => 'go') %></li>
-                      <% end -%>
+<% end -%>
                     </ul>
                   </div>
                   <div class="center pad">
@@ -90,33 +90,33 @@
                   </ul>
                 </div>
               </div>
-              <% end -%>
-              <% else -%>
+<% end -%>
+<% else -%>
               <%= right %>
-              <% end -%>
+<% end -%>
             </div>
             <div style="clear:both; font-size:0; height:0;"></div>
           </div>
           <div id="footer">
-            <% cache(:controller => "main", :action => "footer_menu") do -%>
-            <% if footer_menu = Menu.find(:first, :conditions => ['name_based_models.name = ?', 'Footer'], :include => [:menu_items]) -%>
+<% cache(:controller => "main", :action => "footer_menu") do -%>
+<% if footer_menu = Menu.find(:first, :conditions => ['name_based_models.name = ?', 'Footer'], :include => [:menu_items]) -%>
             <div class="float-right">
               <%= footer_menu.menu_items.sort{|a,b| a.position <=> b.position}.collect{|menu_item| link_to(menu_item.name,menu_item.full_url)}.join(' | ') %>
             </div>
-            <% end -%>
-            <% end -%>
+<% end -%>
+<% end -%>
             &copy; <%= (2008..Date.today.year).to_a.join(", ") %> <%= site_name_legal %>
-            <% if Configuration.self_advertise -%>
+<% if Configuration.self_advertise -%>
             <br />Site by <%= link_to '240blue', 'http://www.240blue.com' %>: Design &amp; Interactive
-            <% end -%>
+<% end -%>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <% if Configuration.google_analytics_key && !Configuration.google_analytics_key.blank? -%>
+<% if Configuration.google_analytics_key && !Configuration.google_analytics_key.blank? -%>
   <script type="text/javascript">document.write(unescape("%3Cscript src='" + (("https:" == document.location.protocol) ? "https://ssl." : "http://www.") + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
   <script type="text/javascript">var pageTracker = _gat._getTracker("<%= Configuration.google_analytics_key %>"); pageTracker._initData(); pageTracker._trackPageview();</script>
-  <% end -%>
+<% end -%>
 </body>
 </html>

@@ -63,15 +63,6 @@ class MainController < ApplicationController
 
   def quote
     @title ||= 'Get a Quote'
-    if params[:state] && params[:city]
-      params[:city].gsub!('+', ' ')
-      if market = MARKETS.select{|market| market[:city] == params[:city] && market[:state] == params[:state]}.first
-        session[:location] = market
-        @title << " &raquo; #{market[:city]}, #{market[:state]}"
-      else
-        return deny
-      end
-    end
   end
 
   def quote_bandwidth
@@ -81,8 +72,18 @@ class MainController < ApplicationController
   end
 
   def quote_colocation
-    @quote = ColocationQuote.new
+    @quote = ColocationQuote.new(:target_date => 1.month.from_now)
     @title ||= 'Get a Quote &raquo; Colocation'
+    if params[:state] && params[:city]
+      params[:city].gsub!('+', ' ')
+      if market = MARKETS.select{|market| market[:city] == params[:city] && market[:state] == params[:state]}.first
+        # session[:location] = market
+        @location = "#{market[:city]}, #{market[:state]}"
+        @title << " &raquo; #{market[:city]}, #{market[:state]}"
+      else
+        return deny
+      end
+    end
   end
 
   def quote_equipment

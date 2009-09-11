@@ -20,6 +20,8 @@
         <%= text_field(:contact, :title, :class => 'text') %>
         <label class="block" for="contact_phone">Your phone</label>
         <%= text_field(:contact, :phone, :class => 'phone text') %>
+        <label class="block" for="contact_phone">How did you hear about <%= site_name %>?</label>
+        <%= select(:contact, :referer, ['', 'Conference', 'Web search', 'Publication', 'Referral', 'Other'], {}, :class => 'large other') %>
       </td>
     </tr>
   </table>

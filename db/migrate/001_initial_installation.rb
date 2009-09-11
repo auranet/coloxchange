@@ -68,12 +68,12 @@ class InitialInstallation < ActiveRecord::Migration
       t.integer :status_id
       t.string :product, :limit => 128
       t.string :type, :limit => 20
+      t.datetime :created_at
       # For bandwidth quotes...
       t.string :bandwidth_requirements, :limit => 128
       # For equipment quotes...
       t.string :price_target
       t.boolean :new_equipment
-      t.datetime :created_at
     end
     add_index :quotes, :contact_id
     add_index :quotes, :type

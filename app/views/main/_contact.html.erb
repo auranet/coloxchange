@@ -1,23 +1,27 @@
+<b>*</b> indicates a required field
+<br /><br />
 <fieldset class="collapsible<%= ' toggled' unless @contact && !@contact.new_record? %>">
   <legend<%= ' class="checked"' if @contact && !@contact.new_record? %>><b>1</b> Contact information</legend>
   <table class="form">
     <tr class="top">
       <td class="column">
-        <label class="block" for="contact_first_name">Your name</label>
-        <div class="float-left half"><%= text_field(:contact, :first_name, :class => 'oversized text') %></div>
-        <div class="float-left half"><%= text_field(:contact, :last_name, :class => 'oversized text') %></div>
-        <div class="float-left half quiet">First</div>
-        <div class="float-left half quiet">Last</div>
+        <label class="block" for="contact_first_name">Your name*</label>
+        <div class="float-left half"><%= text_field(:contact, :first_name, :alt => 'First', :class => 'oversized replace text') %></div>
+        <div class="float-left half"><%= text_field(:contact, :last_name, :alt => 'Last', :class => 'oversized replace text') %></div>
+        <!-- <div class="float-left half quiet">First</div> -->
+        <!-- <div class="float-left half quiet">Last</div> -->
         <%= errors_on(:contact, :first_name) %>
-        <label class="block" for="contact_email">Your e-mail</label>
+        <label class="block" for="contact_email">Your e-mail*</label>
         <%= text_field(:contact, :email, :class => 'email text') %>
         <%= errors_on(:contact, :email) %>
-        <label class="block" for="contact_phone">Your phone</label>
+        <label class="block" for="contact_phone">Your phone*</label>
         <%= text_field(:contact, :phone, :class => 'phone text') %>
+        <%= errors_on(:contact, :phone) %>
       </td>
       <td class="column">
-        <label class="block" for="contact_company_name">Company</label>
+        <label class="block" for="contact_company_name">Company*</label>
         <%= text_field(:contact, :company_name, :class => 'text') %>
+        <%= errors_on(:contact, :company_name) %>
         <label class="block" for="contact_title">Your title</label>
         <%= text_field(:contact, :title, :class => 'text') %>
         <label class="block" for="contact_contact_method">How would you like to be contacted?</label>

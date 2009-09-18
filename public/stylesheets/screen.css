@@ -144,7 +144,7 @@ ul ul {
 
 #menu {
   background:url(../images/background-menu.png) repeat-x;
-  height:46px;
+  height:40px;
   margin:9px 16px 20px 17px;
 /*  overflow:hidden;*/
 }
@@ -152,7 +152,7 @@ ul ul {
 #menu-left, #menu-right {
   background:url(../images/background-menu-left.png) no-repeat;
   float:left;
-  height:46px;
+  height:40px;
   width:9px;
 }
 
@@ -180,19 +180,19 @@ ul ul {
   color:#fff;
   display:block;
   float:left;
-  font:bold 11pt 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height:46px;
-  padding:0 27px;
+  font:bold 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height:40px;
+  padding:0 61px;
   text-align:center;
   text-decoration:none;
   text-transform:uppercase;
   text-shadow:#222 0 -1px 1px;
   z-index:4;
-
 }
 
 #menu ul li:hover a, #menu ul li a:hover {
-  background:url(../images/background-menu-item.png) right center no-repeat;
+  background:url(../images/background-menu-item.png) repeat-x;
+  color:#fff;
 }
 
 #menu ul li table {
@@ -220,7 +220,7 @@ ul ul {
   left:0px;
   padding-bottom:5px;
   position:absolute;
-  top:46px;
+  top:40px;
   width:100%;
   z-index:5;
   -moz-border-radius-bottomleft:5px;
@@ -637,7 +637,7 @@ input.text.medium {
 }
 
 input.text.oversized {
-  font-size:18px;
+/*  font-size:18px;*/
   width:90%;
 }
 

@@ -70,13 +70,14 @@
 <% if right.blank? -%>
 <% if defined?(MARKETS) -%>
               <div class="container">
-                <h3><span>Our Markets</span></h3>
+                <h3><span>Data Center Markets</span></h3>
                 <div class="inner-container">
                   <div id="market-container">
                     <ul class="list">
 <% for market in MARKETS -%>
                       <li><%= link_to("#{market[:city]}, #{market[:state]}", market_quote_path(:city => market[:city].gsub(' ', '+'), :state => market[:state]), :class => 'go') %></li>
 <% end -%>
+                      <li><%= link_to('International Site', colocation_quote_path, :class => 'go') %></li>
                     </ul>
                   </div>
                   <div class="center pad">

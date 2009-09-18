@@ -4,7 +4,8 @@ class Contact < User
   state :status, {'New' => 0, 'Active' => 1, 'Closed' => 2, 'Inactive' => 3}, :aggregates => {'Open' => ['New', 'Active', 'Closed']}
   belongs_to_and_edits_inline :company
   has_many :notes
-  validates_presence_of :email
+  validates_presence_of :company_name, :message => "Company can't be blank"
+  validates_presence_of :email, :phone
 
   def email
     (self.emails.first || Email.new(:address => self.attributes["email"])).address

@@ -28,7 +28,7 @@ module ApplicationHelper
   def errors_on(record, method, prefix = nil)
     record = instance_variable_get("@#{record}") if record.is_a?(String) || record.is_a?(Symbol)
     if errors = record.errors.on(method)
-      errors.collect.collect{|error| "<div class=\"field-error\">#{"#{prefix} " if prefix}#{"#{prefix ? method.to_s.humanize.downcase : method.to_s.titleize} " unless error[0, 1].upcase == error[0, 1]}#{prefix ? "#{error[0, 1].downcase}#{error[1, error.length]}" : error}</div>"}.join("\n")
+      errors.collect.collect{|error| "<div class=\"field-error\">#{"#{prefix} " if prefix}#{"#{prefix ? method.to_s.humanize.downcase : method.to_s.humanize} " unless error[0, 1].upcase == error[0, 1]}#{prefix ? "#{error[0, 1].downcase}#{error[1, error.length]}" : error}</div>"}.join("\n")
     end if record
   end
 

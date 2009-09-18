@@ -51,6 +51,9 @@ $(function(){
       }
     }, 'json');
   });
+  if (searchField.val() != '' && searchField.val() != searchField.attr('alt')) {
+    searchButton.click();
+  }
 });
 
 jQuery.fn.extend({

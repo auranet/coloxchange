@@ -51,7 +51,7 @@
 <% if @title && !@notitle -%>
               <h1 id="title"><%= @title %></h1>
 <% end -%>
-<% for key in flash.keys.sort{|a,b| a.to_s <=> b.to_s} -%>
+<% for key in flash.keys.without(:quote_type).sort{|a,b| a.to_s <=> b.to_s} -%>
               <div class="<%= key.to_s.gsub("_","-") %> message"><span class="message-icon"></span><p><%= flash.delete(key) %></p></div>
 <% end -%>
               <%= @page.html if @page %>

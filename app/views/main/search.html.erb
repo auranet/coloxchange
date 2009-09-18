@@ -3,7 +3,7 @@
 <% for result in @results %>
 <p>
   <h2><%= link_to(highlight(result.name, params[:q].split(' ')), result.url) %></h2>
-  <%= excerpt(highlight(result.html.gsub(/<a[^>]*>[^(<\/a)]+<\/q>/, ''), params[:q].split(' ')), params[:q]) %>
+  <%= excerpt(highlight(result.html.gsub(/<a[^>]*>.+<\/a>/, ''), params[:q].split(' ')), params[:q]) %>
 </p>
 <% end %>
 <% end %>

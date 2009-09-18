@@ -47,7 +47,7 @@
           </tr>
         </tbody>
         <tbody class="quote_product_mpls-options" id="addresses"<%= hide_unless(@quote.product_mpls?) %>>
-<% all_addresses[2, all_addresses.length - 2].each_slice(2) do |addresses| %>
+<% (all_addresses[2, all_addresses.length - 2] || []).each_slice(2) do |addresses| %>
 <%= render :partial => 'quote_bandwidth_addresses', :locals => {:addresses => addresses} %>
 <% end -%>
         </tbody>

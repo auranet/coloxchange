@@ -4,7 +4,7 @@
 <p>
 <% excerpt = excerpt(highlight(result.html.gsub(/<a[^>]*>.+<\/a>/, ''), params[:q].split(' ')), params[:q]) %>
   <h2><%= link_to(highlight(result.name, params[:q].split(' ')), result.url) %></h2>
-  <%= excerpt.trim.blank? ? result.html.paragraphize(1, /<\/p>\w+<p>/) : excerpt %>
+  <%= excerpt.strip.blank? ? result.html.paragraphize(1, /<\/p>\w+<p>/) : excerpt %>
 </p>
 <% end %>
 <% end %>

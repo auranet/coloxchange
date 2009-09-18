@@ -2,8 +2,9 @@
 <b><% if @results.empty? %>No results returned! Please try your search again.<% else %><%= @results.total_entries %> result<%= "s" unless @results.size == 1 %><% end %></b>
 <% for result in @results %>
 <p>
+<% excerpt = excerpt(highlight(result.html.gsub(/<a[^>]*>.+<\/a>/, ''), params[:q].split(' ')), params[:q]) %>
   <h2><%= link_to(highlight(result.name, params[:q].split(' ')), result.url) %></h2>
-  <%= excerpt(highlight(result.html.gsub(/<a[^>]*>[^(<\/a)]+<\/q>/, ''), params[:q].split(' ')), params[:q]) %>
+  <%= excerpt.trim.blank? ? result.html.paragraphize(1, /<\/p>\w+<p>/) : excerpt %>
 </p>
 <% end %>
 <% end %>

@@ -66,7 +66,7 @@ class Page < ActiveRecord::Base
   end
 
   def self_and_ancestors
-    [self,self.ancestors].flatten
+    [self, self.ancestors].flatten
   end
 
   def suppress_title?

@@ -50,7 +50,7 @@
 
 #carousel ul li .carousel-content {
   color:#fff;
-  font-weight:bold;
+/*  font-weight:bold;*/
   height:179px;
   overflow:hidden;
   padding:10px;
@@ -58,6 +58,7 @@
 }
 
 #carousel ul li .carousel-content p {
+  font-size:14pt;
   text-shadow:#000 0 0 3px;
   width:438px;
 }

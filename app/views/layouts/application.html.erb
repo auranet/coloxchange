@@ -6,6 +6,7 @@
 <% for stylesheet in @css -%>
   <%= stylesheet_link_tag(stylesheet) %>
 <% end if @css -%>
+  <!--[if lte IE 6]><%= stylesheet_link_tag('ie6') %><![endif]-->
   <!--[if IE]><%= stylesheet_link_tag('ie') %><![endif]-->
 <% for script in @js -%>
   <%= javascript_include_tag(script) %>
@@ -26,7 +27,7 @@
       <div id="main-middle">
         <div id="main">
           <div id="header">
-            <a href="/" id="logo"></a>
+            <a href="/" id="logo"><span></span></a>
             <form action="<%= search_path %>" method="get" id="search"><div><input alt="Search..." class="close replace search" name="q" type="text" value="<%= params[:q] || 'Search...' %>" /></div></form>
           </div>
 <% cache(:controller => "main",:action => "main_menu") do -%>
@@ -41,7 +42,7 @@
 <% end -%>
           </div>
 <% end -%>
-          <div<%= ' class="has-right"' if @right %> id="content">
+          <div id="content">
           <%= yield :top %>
             <div id="left">
 <% if @advertisement_top -%>

@@ -44,7 +44,7 @@ class MainController < ApplicationController
     if request.post?
       if response = FindADataCenter.post(:search, params)
         if response['error']
-          flash[:error] = response['error']
+          flash[:error] = response['error'] unless request.xhr?
         elsif response['data_centers'] && response['data_centers'].length > 0
           @data_centers = response['data_centers']
         end

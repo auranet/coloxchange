@@ -6,10 +6,8 @@
     <tr class="top">
       <td class="column">
         <label class="block" for="contact_first_name">Your name*</label>
-        <div class="float-left half"><%= text_field(:contact, :first_name, :alt => 'First', :class => 'oversized replace text') %></div>
-        <div class="float-left half"><%= text_field(:contact, :last_name, :alt => 'Last', :class => 'oversized replace text') %></div>
-        <!-- <div class="float-left half quiet">First</div> -->
-        <!-- <div class="float-left half quiet">Last</div> -->
+        <div class="float-left half"><%= text_field(:contact, :first_name, :alt => 'First', :class => 'replace text oversized') %></div>
+        <div class="float-left half"><%= text_field(:contact, :last_name, :alt => 'Last', :class => 'replace text oversized') %></div>
         <%= errors_on(:contact, :first_name) %>
         <label class="block" for="contact_email">Your e-mail*</label>
         <%= text_field(:contact, :email, :class => 'email text') %>

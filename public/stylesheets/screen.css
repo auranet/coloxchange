@@ -182,7 +182,7 @@ ul ul {
   display:block;
   float:left;
   font:bold 13px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height:40px;
+  line-height:46px;
   padding:0 61px;
   text-align:center;
   text-decoration:none;
@@ -241,18 +241,24 @@ ul ul {
   float:none !important;
   font:normal 10pt Helvetica, Arial, sans-serif;
   line-height:110%;
-  padding:5px 48px 7px 5px;
+  padding:5px 0 7px 5px;
   text-align:right;
   text-shadow:none;
   text-transform:none;
 }
 
-#menu ul li ul li:hover {
+#menu ul li ul li a, #menu ul li ul li a:hover {
+  background-image:none !important;
+}
+
+#menu ul li ul li a:hover {
   background-color:#5a83a6;
 }
 
-#menu ul li ul li a, #menu ul li ul li a:hover {
-  background:url(../images/background-dropdown-menu-item.png) right center no-repeat !important;
+#menu ul li ul li a span, #menu ul li ul li a:hover span {
+  background:url(../images/background-dropdown-menu-item.png) right center no-repeat;
+  display:block;
+  padding-right:48px;
 }
 
 #menu ul li ul li ul {
@@ -308,7 +314,7 @@ ul ul {
 
 /* Unique elements */
 #market-container {
-  max-height:400px;
+  height:400px;
   overflow:auto;
 }
 

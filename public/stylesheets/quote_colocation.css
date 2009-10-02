@@ -1,3 +1,11 @@
+td.price {
+  white-space:nowrap;
+}
+
+td.products {
+  font-size:10px;
+}
+
 a.calendar {
   background:url(../images/icons/calendar.gif) center bottom no-repeat;
   display:inline-block;

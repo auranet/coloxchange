@@ -1,6 +1,1 @@
-<% form_tag do %>
-  <%= text_field_tag('city', params[:city], :alt => 'City', :class => 'replace text') %>
-  <%= text_field_tag('state', params[:state], :alt => 'State', :class => 'replace text') %>
-  <%= text_field_tag('zip', params[:zip], :alt => 'Zip', :class => 'replace text') %>
-  
-<% end %>
+<%= render :partial => 'data_center_search' %>

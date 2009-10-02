@@ -68,6 +68,12 @@
               </div>
 <% end -%>
 <% right = yield :right -%>
+            <div class="container">
+              <h3><span>Quick Search</span></h3>
+              <div class="inner-container pad">
+                <%= render :partial => 'data_center_search' %>
+              </div>
+            </div>
 <% if right.blank? -%>
 <% if defined?(MARKETS) -%>
               <div class="container">

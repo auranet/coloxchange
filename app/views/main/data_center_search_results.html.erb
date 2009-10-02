@@ -1,10 +1,10 @@
+<%= render :partial => 'data_center_search' %>
 <table class="grid">
   <thead>
     <tr><th colspan="3">Data Center</th></tr>
   </thead>
   <tbody>
 <% for data_center in @data_centers -%>
-    <tr class="row <%= cycle 'one', 'two' %>"><td><%= link_to_if(data_center['featured'], data_center['name'], data_center_path(data_center['slug'])) %></td><td class="center large"><%= data_center['distance'].to_f.decimalize %><div class="quiet">mile<%= 's' if data_center['distance'] != 1 %></div></td><td class="right"><%= button_link('Get a Quote', data_center_path(data_center['slug'], :quote => 'yes'), :class => 'small')%></td></tr>
-<% end -%>
+    <tr class="row <%= cycle 'one', 'two' %>"><td><%= link_to_if(false && data_center['featured'], data_center['name'], data_center_path(data_center['slug'])) %></td><td class="price" nowrap="nowrap"><% data_center['price'].times do %><%= image_tag('icons/dollar.png') %><% end %></td><td class="products"><%= data_center['products'].join(', ') %></td><td class="center large"><%= data_center['distance'].to_f.decimalize %><div class="quiet">mile<%= 's' if data_center['distance'] != 1 %></div></td><td class="right"><% form_tag(data_center_path(:id => data_center['slug'])) do %><%= ['slug', 'name', 'price', 'products', 'distance'].map{|attribute| hidden_field_tag("data_center[#{attribute}]", data_center[attribute]) }.join("\n") %><%= button('Get a Quote', :class => 'small') %><% end %></td></tr><% end -%>
   </tbody>
 </table>

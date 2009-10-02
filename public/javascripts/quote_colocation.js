@@ -23,8 +23,14 @@ $(function(){
     event.preventDefault();
     if (!searchField.hasClass('replaced')) return;
     var results = $('#data-center-results');
+    var empty = results.find('.empty');
+    if (empty.length === 0) {
+      empty = $('<div class="empty">No data centers could be found!</div>').appendTo(results).hide();
+    }
     var table = results.find('table');
     var tbody = table.find('tbody');
+    table.show();
+    empty.hide();
     tbody.find('tr').each(function() {
       var boxes = $(this).find('input');
       if (!(boxes[0] && boxes[0].checked)) {
@@ -40,14 +46,19 @@ $(function(){
         $(data.data_centers.reverse()).each(function() {
           var id = 'data-center-row-' + this.slug;
           if ($('#' + id).length == 0) {
-            var row = $('<tr class="row" id="' + id + '"><td style="width:10px;"><input id="data-center-' + this.slug + '" name="quote[data_centers][' + this.slug + '][include]" type="checkbox" value="true" /><input name="quote[data_centers][' + this.slug + '][include]" type="hidden" value="false" /></td><td><label for="data-center-' + this.slug + '">' + this.name + '<input name="quote[data_centers][' + this.slug + '][name]" type="hidden" value="' + this.name + '" /><input name="quote[data_centers][' + this.slug + '][slug]" type="hidden" value="' + this.slug + '" /></label></td><td class="center medium">' + (Math.round(this.distance * 100) / 100.0)  + '<div class="quiet">miles</div></td></tr>');
+            var price = '', image = '<img alt="Price" src="/images/icons/dollar.png" />';
+            for (var i = 0; i <= this.price; i++) {
+              price += image;
+            }
+            var row = $('<tr class="row" id="' + id + '"><td style="width:10px;"><input id="data-center-' + this.slug + '" name="quote[data_centers][' + this.slug + '][include]" type="checkbox" value="true" /><input name="quote[data_centers][' + this.slug + '][include]" type="hidden" value="false" /></td><td><label for="data-center-' + this.slug + '">' + this.name + '<input name="quote[data_centers][' + this.slug + '][name]" type="hidden" value="' + this.name + '" /><input name="quote[data_centers][' + this.slug + '][slug]" type="hidden" value="' + this.slug + '" /></label></td><td class="price">' + price + '</td><td class="products">' + this.products.join(', ') + '</td><td class="center medium">' + (Math.round(this.distance * 100) / 100.0)  + '<div class="quiet">miles</div></td></tr>');
             tbody.prepend(row);
           }
         });
         loadingRow.remove();
         tbody.stripe();
       } else {
-        results.html('No data centers could be found!');
+        table.hide();
+        empty.show();
       }
     }, 'json');
   });

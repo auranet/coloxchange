@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Data center routing
   map.data_center_search 'data-centers/search', :controller => 'main', :action => 'data_center_search'
-  map.data_center_search 'data-centers/search.:format', :controller => 'main', :action => 'data_center_search'
+  map.data_center_search_json 'data-centers/search.json', :controller => 'main', :action => 'data_center_search', :format => 'json'
   map.data_center 'data-centers/:id', :controller => 'main', :action => 'data_center', :id => nil, :requirements => {:id => /[a-z0-9-]+/}
 
   # Quotes

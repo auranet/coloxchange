@@ -24,6 +24,9 @@ class MainController < ApplicationController
   end
 
   def data_center
+    session[:data_centers] = {params[:data_center][:slug] => params[:data_center]}
+    redirect_to colocation_quote_path
+    return
     return deny unless params[:id] && response = FindADataCenter.get("data-centers/#{params[:id]}")
     if response['error']
       @title = 'Error!'
@@ -49,7 +52,7 @@ class MainController < ApplicationController
           @data_centers = response['data_centers']
         end
       end
-      flash[:error] = 'No data centers were returned' unless @data_centers
+      flash[:error] = 'No data centers were returned' if !request.xhr? && (!@data_centers || @data_centers.empty?)
     end
     @title ||= 'Search Data Centers'
     respond_to do |format|
@@ -83,6 +86,7 @@ class MainController < ApplicationController
       else
         return deny
       end
+    elsif params[:data_center]
     end
   end
 

@@ -28,16 +28,16 @@ class FindADataCenter
     private
     def api_key
       # Production
-      # 'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
-      # Development
       'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
+      # Development
+      # 'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
     end
 
     def remote_url
       # Production
-      # 'http://www.findadatacenter.com/'
+      'http://www.findadatacenter.com/'
       # Development
-      'http://127.0.0.1:3001/'
+      # 'http://127.0.0.1:3001/'
     end
   end
 end

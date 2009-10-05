@@ -56,8 +56,8 @@ class MainController < ApplicationController
     end
     @title ||= 'Search Data Centers'
     respond_to do |format|
-      format.json { render :json => {:data_centers => @data_centers || []} }
       format.html { render :action => @data_centers ? :data_center_search_results : :data_center_search }
+      format.json { render :json => {:data_centers => @data_centers || []} }
     end
   end
 

@@ -5,7 +5,7 @@ module ApplicationHelper
     class_name = html_options.delete(:class)
     class_name = "button input#{" #{class_name}" if class_name}"
     html_options[:rel] ||= html_options.delete(:name)
-    content_tag(:button, "<span class=\"button-inner\"><span>#{label}</span></span><span class=\"button-right\"></span>", html_options.merge(:class => class_name, :name => 'submit', :value => label))
+    content_tag(:button, "<span class=\"button-inner\"><span>#{label}</span></span><span class=\"button-right\"></span>", html_options.reverse_merge(:class => class_name, :name => 'send', :value => label))
   end
 
   def button_link(*options)

@@ -6,11 +6,13 @@
 <% for stylesheet in @css -%>
   <%= stylesheet_link_tag(stylesheet) %>
 <% end if @css -%>
-  <!--[if lte IE 6]><%= stylesheet_link_tag('ie6') %><![endif]-->
   <!--[if IE]><%= stylesheet_link_tag('ie') %><![endif]-->
+  <!--[if lte IE 6]><%= stylesheet_link_tag('ie6') %><![endif]-->
+  <!--[if lte IE 7]><%= stylesheet_link_tag('ie67') %><![endif]-->
 <% for script in @js -%>
   <%= javascript_include_tag(script) %>
 <% end if @js -%>
+  <!--[if lte IE 7]><%= javascript_include_tag('ie67') %><![endif]-->
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
   <meta http-equiv="Content-Language" content="EN" />

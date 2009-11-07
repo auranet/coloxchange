@@ -5,7 +5,7 @@ module ApplicationHelper
     class_name = html_options.delete(:class)
     class_name = "button input#{" #{class_name}" if class_name}"
     html_options[:rel] ||= html_options.delete(:name)
-    content_tag(:button, "<span class=\"button-inner\"><span>#{label}</span></span><span class=\"button-right\"></span>", html_options.reverse_merge(:class => class_name, :name => 'send', :value => label))
+    content_tag(:button, label, html_options.reverse_merge(:class => class_name, :name => 'confirm', :value => label))
   end
 
   def button_link(*options)
@@ -18,7 +18,7 @@ module ApplicationHelper
     end
     class_name = html_options.delete(:class)
     class_name = "button#{" #{class_name}" if class_name}"
-    link_to("<span class=\"button-inner\"><span>#{label}</span></span><span class=\"button-right\"></span>", url, html_options.merge(:class => class_name))
+    link_to(label, url, html_options.merge(:class => class_name))
   end
 
   def check_box_collection(record,methods)

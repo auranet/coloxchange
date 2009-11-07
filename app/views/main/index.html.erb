@@ -2,67 +2,58 @@
 <% @js.push('home') -%>
 <% content_for :top do -%>
   <div id="carousel">
-    <ul>
-      <li id="carousel-colocation">
-        <a class="carousel-link" href="#">
-          <img alt="Colocation" src="/images/icons/colocation.png" />
-          <img alt="Colocation" class="label" src="/images/home/text-colocation.gif" />
-        </a>
-        <div class="carousel-content">
-          <p>
-            ColocationXchange provides access to virtually every data center in the world and will source the best colocation solution available.
-          </p>
-          <div class="carousel-toolbar">
-            <%= button_link('Learn More', page_path(:path => 'technology-center/colocation'), :class => 'small') %> <%= button_link('Get a Quote', colocation_quote_path, :class => 'small') %>
-          </div>
-        </div>
-      </li>
-      <li class="carousel-link" id="carousel-bandwidth">
-        <a class="carousel-link" href="#">
-          <img alt="Bandwidth" src="/images/icons/bandwidth.png" />
-          <img alt="Bandwidth" class="label" src="/images/home/text-bandwidth.gif" />
-        </a>
-        <div class="carousel-content">
-          <p>
-            Whether you are looking for Private Line, Internet Access, MPLS or Dark Fiber ColocationXchange can help you reduce your network expenditure.
-          </p>
-          <div class="carousel-toolbar">
-            <%= button_link('Learn More', page_path(:path => 'technology-center/bandwidth'), :class => 'small') %> <%= button_link('Get a Quote', bandwidth_quote_path, :class => 'small') %>
-          </div>
-        </div>
-      </li>
-      <li class="carousel-link" id="carousel-managed-services">
-        <a class="carousel-link" href="#">
-          <img alt="Managed Services" src="/images/icons/managed-services.png" />
-          <img alt="Managed Services" class="label" src="/images/home/text-managed-services.gif" />
-        </a>
-        <div class="carousel-content">
-          <p>
-            One stop hosting for simple or complex data base applications.
-          </p>
-          <div class="carousel-toolbar">
-            <%= button_link('Learn More', page_path(:path => 'technology-center/managed-services'), :class => 'small') %> <%= button_link('Get a Quote', managed_services_quote_path, :class => 'small') %>
-          </div>
-        </div>
-      </li>
-      <li class="carousel-link" id="carousel-equipment">
-        <a class="carousel-link" href="#">
-          <img alt="Equipment" src="/images/icons/equipment.png" />
-          <img alt="Equipment" class="label" src="/images/home/text-equipment.gif" />
-        </a>
-        <div class="carousel-content">
-          <p>
-            Hardware solutions with flexible leasing and purchase options that reduce capital cost as you deploy infrastructure.
-          </p>
-          <div class="carousel-toolbar">
-            <%= button_link('Learn More', page_path(:path => 'technology-center/equipment'), :class => 'small') %> <%= button_link('Get a Quote', equipment_quote_path, :class => 'small') %>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <!-- <div id="carousel-shadow"></div> -->
+    <div class="item colocation active">
+      <h2>Colocation</h2>
+      <p>
+        ColocationXchange provides access to virtually every data center in the world and will source the best colocation solution available.
+      </p>
+      <p><%= link_to('Learn More &raquo;') %></p>
+    </div>
+    <div class="item bandwidth">
+      <h2>Bandwidth</h2>
+      <p>
+        Whether you are looking for Private Line, Internet Access, MPLS or Dark Fiber ColocationXchange can help you reduce your network expenditure.
+      </p>
+      <p><%= link_to('Learn More &raquo;') %></p>
+    </div>
+    <div class="item equipment">
+      <h2>Equipment</h2>
+      <p>
+        Hardware solutions with flexible leasing and purchase options that reduce capital cost as you deploy infrastructure.
+      </p>
+      <p><%= link_to('Learn More &raquo;') %></p>
+    </div>
+    <div class="item managed-services">
+      <h2>Managed Services</h2>
+      <p>
+        One stop hosting for simple or complex data base applications.
+      </p>
+      <p><%= link_to('Learn More &raquo;') %></p>
+    </div>
+  </div>
+  <div id="submenu">
+    <%= link_to('Colocation', '', :class => 'first', :rel => 'colocation') %><%= link_to('Bandwidth', '', :rel => 'bandwidth') %><%= link_to('Managed Services', '', :rel => 'managed-services') %><%= link_to('Equipment', '', :rel => 'equipment') %>
   </div>
 <% end -%>
-
-<b><%= link_to('Featured site:', page_path(:path => 'featured-site')) %></b> The highest density, safest, most inter-connected data facility in the world.
-<div id="video"></div>
+<a class="square-button colocation" href="<%= colocation_quote_path %>">Colocation<span class="learn-more">Get a Quote &raquo;</span></a>
+<a class="square-button bandwidth" href="<%= bandwidth_quote_path %>">Bandwidth<span class="learn-more">Get a Quote &raquo;</span></a>
+<a class="square-button managed-services" href="<%= managed_services_quote_path %>">Managed Services<span class="learn-more">Get a Quote &raquo;</span></a>
+<a class="square-button equipment" href="<%= equipment_quote_path %>">Equipment<span class="learn-more">Get a Quote &raquo;</span></a>
+<div id="news">
+  <h3>News and Updates</h3>
+  <% @news_items.each do |news_item| -%>
+  <%= link_to("<b>#{news_item.date.strftime('%B')} #{news_item.date.strftime("%d").gsub(/^0/, '')}, #{news_item.date.strftime('%Y')}</b> - #{news_item.name.shorten(110)}", {:controller => 'main', :action => 'news_item', :id => news_item.slug}) %>
+  <% end -%>
+</div>
+<div id="featured-site">
+  <h3>The World's Highest Density Data Center</h3>
+  <%= image_tag('home/featured-site.jpg') %>
+  <p>
+    407,000 SF of Space
+    <br />250 MVA Operator-Owned Substation
+    <br />146 MVA of Generator Capacity 
+    <br />84 MVA of UPS Supply
+    <br />44,000 Tons of System plus System Cooling
+    <br /><%= link_to('Learn More &raquo;', page_path(:path => 'featured-site'), :class => 'learn-more float-right') %>5,400,000 CFM
+  </p>
+</div>

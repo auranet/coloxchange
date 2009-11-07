@@ -1,7 +1,7 @@
-<% form_tag(data_center_search_path) do %>
-  <h2>Enter Search Criteria</h2>
+<% form_tag(data_center_search_path, :id => 'data-center-search') do %>
   <%= text_field_tag('city', params[:city], :alt => 'City', :class => 'replace text') %>
   <%= text_field_tag('state', params[:state], :alt => 'State', :class => 'replace tiny text') %>
   <%= text_field_tag('zip', params[:zip], :alt => 'Zip', :class => 'replace small text') %>
+  <br />
   <%= button('Search', :class => 'small') %>
 <% end %>

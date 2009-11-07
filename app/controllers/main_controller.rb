@@ -62,6 +62,7 @@ class MainController < ApplicationController
   end
 
   def index
+    @news_items = NewsItem.find(:all, :limit => 5, :order => 'news_items.date DESC, news_items.id DESC')
   end
 
   def quote

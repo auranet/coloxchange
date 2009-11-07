@@ -1,3 +1,13 @@
-button .button-right {
-  top:1px !important;
+#menu ul, #menu ul li {
+  display:inline;
+  zoom:1;
+}
+
+.button.small {
+  border-left-width:0;
+  border-right-width:0;
+}
+
+.container h3 {
+  line-height:30px;
 }

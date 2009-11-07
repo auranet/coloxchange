@@ -1,12 +1,3 @@
-#main-top, #main-bottom, #main-middle {
-  background-image:none;
-  padding:0;
-}
-
-#main {
-  border:2px solid #ccc;
-}
-
 #logo {
   background-image:none;
 }
@@ -14,12 +5,9 @@
 #logo span {
   display:block;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/logo.png', sizingMethod='image');
-  height:46px;
+  height:37px;
+  margin-top:31px;
   width:366px;
-}
-
-#menu ul li a {
-  padding-bottom:1px;
 }
 
 #menu ul li a:hover ul {
@@ -39,48 +27,8 @@
   display:inline;
 }
 
-#carousel ul li .carousel-content {
-  width:428px;
-}
-
 .half input.text {
   width:90% !important;
-}
-
-button .button-right {
-  top:1px;
-}
-
-.button .button-inner {
-  background-image:url(../images/ie/background-button-left.gif);
-}
-
-.button.small .button-inner {
-  background-image:url(../images/ie/background-button-small-left.gif);
-}
-
-.button .button-right {
-  background-image:url(../images/ie/background-button-right.gif);
-}
-
-.button.small .button-right {
-  background-image:url(../images/ie/background-button-small-right.gif);
-}
-
-#carousel .button .button-inner {
-  background-image:url(../images/ie/home/background-button-left.gif);
-}
-
-#carousel .button.small .button-inner {
-  background-image:url(../images/ie/home/background-button-small-left.gif);
-}
-
-#carousel .button .button-right {
-  background-image:url(../images/ie/home/background-button-right.gif);
-}
-
-#carousel .button.small .button-right {
-  background-image:url(../images/ie/home/background-button-small-right.gif);
 }
 
 fieldset.collapsible div, fieldset.collapsible table {
@@ -92,5 +40,5 @@ fieldset.collapsible.toggled div, fieldset.collapsible.toggled table {
 }
 
 ul.list a:hover {
-  background:url(../images/background-list-item.png) repeat-x;
+  background:#414141;
 }

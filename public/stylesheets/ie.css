@@ -7,16 +7,7 @@
   filter:none;
 }
 
-.button .button-inner span {
-  display:block;
-  filter:dropshadow(color=#000000, offX=0, offY=-1);
-}
-
 .container h3 span {
   display:block;
   filter:glow(color=#444444, strength=1.5);
-}
-
-#carousel ul li .carousel-content p {
-  filter:glow(color=#000000, strength=1.5);
 }

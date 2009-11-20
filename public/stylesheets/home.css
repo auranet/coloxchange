@@ -6,7 +6,7 @@
   border-left-color:#2b547b;
 }
 
-#submenu a:hover {
+#submenu a.active, #submenu a:hover {
   background-image:url(../images/background-submenu.gif);
 }
 
@@ -40,6 +40,10 @@
 #carousel .item h2, #carousel .item p {
   margin-left:100px;
   width:240px;
+}
+
+#carousel .item.animating h2, #carousel .item.animating a {
+  position:relative;
 }
 
 #carousel .item h2 {

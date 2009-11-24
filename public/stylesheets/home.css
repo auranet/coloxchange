@@ -42,7 +42,7 @@
   width:240px;
 }
 
-#carousel .item.animating h2, #carousel .item.animating a {
+#carousel .item.animating h2, #carousel .item.animating p {
   position:relative;
 }
 
@@ -117,8 +117,16 @@
   background-image:url(../images/home/button-bandwidth.jpg);
 }
 
+.square-button.bandwidth:hover {
+  background-image:url(../images/home/button-bandwidth-hover.jpg);
+}
+
 .square-button.colocation {
   background-image:url(../images/home/button-colocation.jpg);
+}
+
+.square-button.colocation:hover {
+  background-image:url(../images/home/button-colocation-hover.jpg);
 }
 
 .square-button.equipment {
@@ -126,8 +134,16 @@
   margin-right:0;
 }
 
+.square-button.equipment:hover {
+  background-image:url(../images/home/button-equipment-hover.jpg);
+}
+
 .square-button.managed-services {
   background-image:url(../images/home/button-managed-services.jpg);
+}
+
+.square-button.managed-services:hover {
+  background-image:url(../images/home/button-managed-services-hover.jpg);
 }
 
 #news, #featured-site {

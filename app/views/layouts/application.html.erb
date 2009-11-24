@@ -41,7 +41,7 @@
     </div>
 <% end -%>
     <%= yield :top %>
-<% if !(children = @page.root.active_children.reject{|page| @ignore_pages.include?(page.url)}).empty? -%>
+<% if @page && !(children = @page.root.active_children.reject{|page| @ignore_pages.include?(page.url)}).empty? -%>
     <div id="submenu">
       <% children.sort{|a, b| a.position <=> b.position}.each_with_index do |child, index| %><%= link_to(child.name, child.url, :class => index == 0 ? 'first' : nil) %><% end %>
     </div>
@@ -107,7 +107,8 @@
     </div>
   </div>
   <div id="copyright">
-    &copy; <%= Date.today.year %>, <%= site_name_legal %>, All Rights Reserved
+    &copy; 
+    <%= Date.today.year %>, <%= site_name_legal %>, All Rights Reserved
 <% if Configuration.self_advertise -%>
     <br />Site by <%= link_to '240blue', 'http://www.240blue.com' %>: Design &amp; Interactive
 <% end -%>

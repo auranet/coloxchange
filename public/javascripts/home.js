@@ -1,6 +1,6 @@
 $(function() {
   var items = $('#carousel .item');
-  var links = $('#submenu a'), timeout, timeoutIndex = 0, timeoutLength = 2000;
+  var links = $('#submenu a'), timeout, timeoutIndex = 0, timeoutLength = 5000;
   links.click(function(event) {
     if (timeout) {
       clearTimeout(timeout);

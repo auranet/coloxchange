@@ -11,3 +11,7 @@
 .container h3 {
   line-height:30px;
 }
+
+#carousel .item p {
+  line-height:1.6em;
+}

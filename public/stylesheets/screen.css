@@ -163,32 +163,21 @@ ul ul {
   text-align:center;
 }
 
-#menu-left, #menu-right {
-  background:url(../images/background-menu-left.png) no-repeat;
-  float:left;
-  height:40px;
-  width:9px;
-}
-
-#menu-right {
-  background-image:url(../images/background-menu-right.png);
-  float:right;
-}
-
 #menu ul {
   display:inline-block;
   list-style:none;
   list-style-image:none;
   margin:0;
-  padding:0;
+  padding:0 30px;
 }
 
 #menu ul li {
 /*  border-left:1px solid #292929;*/
   display:inline-block;
-  margin:0 100px 0 0;
+  margin:0;
   padding:0;
   position:relative;
+  text-align:center;
   z-index:3;
 }
 
@@ -199,15 +188,21 @@ ul ul {
 #menu ul li a {
   background:url(../images/background-menu-item-right.gif) right 3px no-repeat;
   color:#fff;
-  display:block;
+  display:inline-block;
   float:left;
   font:normal 14px Arial, sans-serif;
-  line-height:31px;
+  line-height:28px;
   padding:0 9px 0 0;
   text-decoration:none;
   -moz-text-shadow:#222 0 1px 1px;
   text-shadow:#222 0 1px 1px;
   z-index:4;
+}
+
+#menu ul li a img {
+  margin:0 -4px 0 -2px;
+  position:relative;
+  top:3px;
 }
 
 #menu ul li:hover a, #menu ul li a:hover {
@@ -244,6 +239,7 @@ ul ul {
   display:block;
   height:auto;
   left:0px;
+  padding:0;
   position:absolute;
   top:31px;
   width:180px;

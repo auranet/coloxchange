@@ -1,4 +1,5 @@
 $(function() {
+  var duration = 500;
   var items = $('#carousel .item');
   var links = $('#submenu a'), timeout, timeoutIndex = 0, timeoutLength = 5000;
   links.click(function(event) {
@@ -18,11 +19,11 @@ $(function() {
 	    });
       next.addClass('animating active').css('display', '');
       var h2 = next.find('h2');
-      h2.css('top', -100).animate({top: 0}, 1000);
+      h2.css('top', -100).animate({top: 0}, duration);
       var p = next.find('p:first');
-      p.css('left', -300).animate({left: 0}, 1000);
+      p.css('left', -300).animate({left: 0}, duration);
       var learnMore = next.find('p:last');
-      learnMore.css('top', 100).animate({top: 0}, 1000, function() {
+      learnMore.css('top', 100).animate({top: 0}, duration, function() {
         next.removeClass('animating');
       });
 	    link.addClass('active');

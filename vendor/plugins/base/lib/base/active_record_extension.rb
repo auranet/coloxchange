@@ -121,7 +121,6 @@ module Base
         options = {:aggregates => {}, :reverse => false}.merge(options)
         class_name = name.to_s.split(/(_| )/).collect{|part| part.titleize}.join.gsub(' ', '').gsub(/_{2,}/, '_')
         constants = constants.collect{|key, value| [value.is_a?(Array) ? value.first : value, key, (value.is_a?(Array) ? value.last : key).to_s.downcase.gsub(/[^a-z_ ]/, '').strip.gsub(' ', '_').gsub(/_{2,}/, '_').upcase]}.sort{|a, b| a[0] <=> b[0]}
-        raise constants.inspect
         aggregates = options[:aggregates].collect{|key, value| [value.collect{|a| constants.select{|constant| constant[1].slugify == a.slugify}[0][2]}, key.to_s.downcase.gsub(/[^a-z ]/, '').strip.gsub(' ', '_').upcase]}
         if options[:reverse]
           constants.reverse!

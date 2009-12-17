@@ -2,6 +2,11 @@ class ColocationQuote < Quote
   has_many :quote_data_centers, :dependent => :destroy
 
   class << self
+    def bandwidth_options
+      # ["1 mbps", "2 - 5 mbps", "6 - 9 mbps", "10+ mbps", "50+ mbps", "100+ mbps", "250+ mbps", "500+ mbps"]
+      BandwidthQuote.internet_options
+    end
+
     def power_options
       ["Less than 15 amps", "15 amps", "20 amps", "30 amps", "40 amps total (2 x 20 amp circuits)", "60 amps total (2 x 30 amp circuits)", "Other"]
     end

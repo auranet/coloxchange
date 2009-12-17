@@ -9,9 +9,7 @@
   <!--[if IE]><%= stylesheet_link_tag('ie') %><![endif]-->
   <!--[if lte IE 6]><%= stylesheet_link_tag('ie6') %><![endif]-->
   <!--[if lte IE 7]><%= stylesheet_link_tag('ie67') %><![endif]-->
-<% for script in @js -%>
-  <%= javascript_include_tag(script) %>
-<% end if @js -%>
+  <%= javascript_include_tag(*@js) if @js %>
   <!--[if lte IE 7]><%= javascript_include_tag('ie67') %><![endif]-->
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
@@ -35,7 +33,7 @@
 <% cache(:controller => "main",:action => "main_menu") do -%>
     <div id="menu">
 <% if @menu = Menu.find(:first, :conditions => ['name_based_models.name = ?', 'Main'], :include => [:menu_items]) -%>
-<%# item_width = 848 / (@menu.menu_items.size == 0 ? 1 : @menu.menu_items.size) -%>
+<% item_width = 900 / (@menu.menu_items.size == 0 ? 1 : @menu.menu_items.size) -%>
 <% @menu.menu_items.sort{|a,b| a.position <=> b.position}.each_with_index do |menu_item, index| -%><ul><%= render :partial => 'main/menu_item', :locals => {:first => index == 0, :menu_item => menu_item} %></ul><% end -%>
 <% end -%>
     </div>

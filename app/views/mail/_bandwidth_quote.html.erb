@@ -4,5 +4,5 @@
 <% unless @quote.product == 'other' %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Bandwidth requirements</div><div style="float:left;"><%= @quote.bandwidth_requirements %></div>
 <% end %>
-  <br /><div style="float:left;font-weight:bold;width:200px;">Address<%= 'es' if !@quote.product_internet_service? && @quote.addresses.length > 1 %></div><div style="float:left;"><%= @quote.addresses[0, @quote.product_internet_service? ? 1 : 2].map(&:address).join('<br /><br />') %></div>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Address<%= 'es' if !@quote.product_internet? && @quote.addresses.length > 1 %></div><div style="float:left;"><%= @quote.addresses[0, @quote.product_internet? ? 1 : 2].map(&:address).join('<br /><br />') %></div>
 </p>

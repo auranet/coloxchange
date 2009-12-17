@@ -5,7 +5,7 @@ class Contact < User
   belongs_to_and_edits_inline :company
   has_many :notes
   validates_presence_of :company_name, :message => "Company can't be blank"
-  validates_presence_of :email, :phone
+  validates_presence_of :email
 
   def email
     (self.emails.first || Email.new(:address => self.attributes["email"])).address

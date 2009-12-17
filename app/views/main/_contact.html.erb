@@ -1,7 +1,7 @@
 <b>*</b> indicates a required field
 <br /><br />
 <fieldset class="collapsible<%= ' toggled' unless @contact && !@contact.new_record? %>">
-  <legend<%= ' class="checked"' if @contact && !@contact.new_record? %>><b>1</b> Contact information</legend>
+  <legend<%= ' class="checked"' if @contact && !@contact.new_record? %>><b><%= number %></b> Contact information</legend>
   <table class="form">
     <tr class="top">
       <td class="column">
@@ -12,7 +12,7 @@
         <label class="block" for="contact_email">Your e-mail*</label>
         <%= text_field(:contact, :email, :class => 'email text') %>
         <%= errors_on(:contact, :email) %>
-        <label class="block" for="contact_phone">Your phone*</label>
+        <label class="block" for="contact_phone">Your phone</label>
         <%= text_field(:contact, :phone, :class => 'phone text') %>
         <%= errors_on(:contact, :phone) %>
       </td>

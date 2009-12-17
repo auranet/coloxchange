@@ -1,12 +1,12 @@
 class BandwidthQuote < Quote
-  attr_accessor :bandwidth_requirements_internet_service, :bandwidth_requirements_mpls_or_private_line
+  attr_accessor :bandwidth_requirements_internet, :bandwidth_requirements_mpls_or_private_line
   has_many :addresses, :through => :quote_addresses
   has_many :quote_addresses, :dependent => :destroy, :order => 'quote_addresses.position', :foreign_key => :quote_id
-  state :product, {'Internet Service' => 'internet_service', 'Private Line Service' => 'line_service', 'MPLS' => 'mpls', 'Other' => 'other'}
+  state :product, {'Internet' => 'internet', 'Private Line' => 'line_service', 'MPLS' => 'mpls', 'Voice' => 'mvoice', 'Other' => 'other'}
   validates_presence_of :product
 
   class << self
-    def internet_service_options
+    def internet_options
       ['T1 1.5 mbps', 'DS3 20 mbps commit', 'DS3 30 mbps commit', 'DS3 full port', 'OC3 50 mbps commit', 'OC3 100 mbps commit', 'OC3 full port', 'OC12 100 mbps commit', 'OC12 200 mbps commit', 'OC12 300 mbps commit', 'OC12 full port', 'Fast E 20 mbps commit', 'Fast E 50 mbps commit', 'Fast E full port', 'Gig E 100 mbps commit', 'Gig E 200 mbps commit', 'Gig E 300 mbps commit', 'Gig E full port', 'Other']
     end
 
@@ -29,9 +29,9 @@ class BandwidthQuote < Quote
 
   protected
   def before_save
-    if self.bandwidth_requirements_internet_service && self.product_internet_service?
-      self.bandwidth_requirements = self.bandwidth_requirements_internet_service
-    elsif self.bandwidth_requirements_mpls_or_private_line && (self.product_mpls? || self.product_private_line_service?)
+    if self.bandwidth_requirements_internet && self.product_internet?
+      self.bandwidth_requirements = self.bandwidth_requirements_internet
+    elsif self.bandwidth_requirements_mpls_or_private_line && (self.product_mpls? || self.product_private_line?)
       self.bandwidth_requirements = self.bandwidth_requirements_mpls_or_private_line
     end
   end

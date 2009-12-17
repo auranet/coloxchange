@@ -78,6 +78,11 @@
   background-image:url(../images/home/background-managed-services.jpg);
 }
 
+#carousel .item.networx {
+  background-image:url(../images/home/background-networx.jpg);
+}
+
+
 #left {
   margin-left:10px;
   padding-top:0;

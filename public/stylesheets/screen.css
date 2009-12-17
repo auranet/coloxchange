@@ -184,9 +184,9 @@ ul ul {
 }
 
 #menu ul li {
-  border-left:1px solid #292929;
+/*  border-left:1px solid #292929;*/
   display:inline-block;
-  margin:0;
+  margin:0 100px 0 0;
   padding:0;
   position:relative;
   z-index:3;
@@ -197,13 +197,13 @@ ul ul {
 }
 
 #menu ul li a {
+  background:url(../images/background-menu-item-right.gif) right 3px no-repeat;
   color:#fff;
   display:block;
   float:left;
   font:normal 14px Arial, sans-serif;
   line-height:31px;
-  padding:0 61px;
-  text-align:center;
+  padding:0 9px 0 0;
   text-decoration:none;
   -moz-text-shadow:#222 0 1px 1px;
   text-shadow:#222 0 1px 1px;
@@ -211,8 +211,14 @@ ul ul {
 }
 
 #menu ul li:hover a, #menu ul li a:hover {
-  background:url(../images/background-menu-item.png) repeat-x;
-  color:#fff;
+/*  background:url(../images/background-menu-item.png) repeat-x;*/
+/*  color:#fff;*/
+}
+
+#menu ul li a span {
+  display:block;
+  background:url(../images/background-menu-item-left.gif) left 3px no-repeat;
+  padding:0 10px 0 19px;
 }
 
 #menu ul li table {
@@ -240,7 +246,7 @@ ul ul {
   left:0px;
   position:absolute;
   top:31px;
-  width:100%;
+  width:180px;
   z-index:5;
 }
 
@@ -253,6 +259,7 @@ ul ul {
 
 #menu ul li ul li a {
   color:#fff;
+  display:block;
   float:none !important;
   font:normal 10pt Arial, sans-serif;
   line-height:110%;
@@ -262,6 +269,11 @@ ul ul {
 
 #menu ul li ul li a, #menu ul li ul li a:hover {
   background-image:none !important;
+}
+
+#menu ul li ul li a span {
+  display:inline;
+  text-align:left;
 }
 
 #menu ul li ul li a:hover {
@@ -431,7 +443,7 @@ ul ul {
 }
 
 .container h3 {
-  background:url(../images/background-menu.png) repeat-x;
+  background:url(../images/background-h3.png) repeat-x;
   border:1px solid #3c3c3c;
   border-bottom-width:0;
   color:#fff;

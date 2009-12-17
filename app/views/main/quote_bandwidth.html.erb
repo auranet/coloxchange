@@ -1,8 +1,7 @@
 <% form_tag(quote_path) do %>
   <%= hidden_field(:quote, :type) %>
-  <%= render :partial => 'main/contact' %>
   <fieldset class="collapsible toggled">
-    <legend><b>2</b> Bandwidth requirements</legend>
+    <legend><b>1</b> Bandwidth requirements</legend>
     <div class="pad">
       <label class="block" for="quote_product">Select a product</label>
 <% if @quote.product == 'other' -%>
@@ -11,19 +10,19 @@
 <% else -%>
       <%= select(:quote, :product, BandwidthQuote::Product.options, {}, :class => 'large options other') %>
 <% end -%>
-      <div class="quote_product_internet_service-options"<%= hide_unless(@quote.product_internet_service?) %>>
-        <label class="block" for="quote_bandwidth_requirements_internet_service">Bandwidth requirements</label>
-        <%= select(:quote, :bandwidth_requirements_internet_service, BandwidthQuote.internet_service_options, {}, :class => 'large other') %>
+      <div class="quote_product_internet-options"<%= hide_unless(@quote.product_internet?) %>>
+        <label class="block" for="quote_bandwidth_requirements_internet">Bandwidth requirements</label>
+        <%= select(:quote, :bandwidth_requirements_internet, BandwidthQuote.internet_options, {}, :class => 'large other') %>
         <%= errors_on(:quote, :product) %>
       </div>
-      <div class="quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line_service?) %>>
+      <div class="quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line?) %>>
         <label class="block" for="quote_bandwidth_requirements_mpls_or_private_line">Bandwidth requirements</label>
         <%= select(:quote, :bandwidth_requirements_mpls_or_private_line, BandwidthQuote.mpls_or_private_line_options, {}, :class => 'large other') %>
       </div>
     </div>
   </fieldset>
   <fieldset class="collapsible toggled">
-    <legend><b>3</b> Location<span class="quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line_service?) %>>s</span></legend>
+    <legend><b>2</b> Location<span class="quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line?) %>>s</span></legend>
     <div class="pad">
 <% all_addresses = @quote.quote_addresses.map(&:address).compact %>
 <% addresses = all_addresses[0, 2] %>
@@ -31,14 +30,14 @@
         <tbody>
           <tr class="top">
             <td class="column">
-              <b class="quote_product_line_service-options"<%= hide_unless(@quote.product_private_line_service?) %>><label for="quote_addresses_1_street">Location A</label></b>
+              <b class="quote_product_line_service-options"<%= hide_unless(@quote.product_private_line?) %>><label for="quote_addresses_1_street">Location A</label></b>
               <%= text_area_tag('quote[addresses_attributes][][street]', addresses[0] ? addresses[0].street : 'Street', :alt => 'Street', :class => 'block replace small', :id => 'quote_addresses_1_street') %>
               <%= text_field_tag('quote[addresses_attributes][][city]', addresses[0] ? addresses[0].city : 'City', :alt => 'City', :class => 'block medium replace text', :id => 'quote_addresses_1_city') %>
               <%= select_tag('quote[addresses_attributes][][state]', options_for_select([['--', ''], *state_options], addresses[0] ? addresses[0].state : nil), :id => 'quote_addresses_1_state') %>
               <%= text_field_tag('quote[addresses_attributes][][postal_code]', addresses[0] ? addresses[0].postal_code : 'Zip', :alt => 'Zip', :class => 'replace small text', :id => 'quote_addresses_1_postal_code') %>
             </td>
-            <td class="column quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line_service?) %> colspan="2">
-              <b class="quote_product_line_service-options"<%= hide_unless(@quote.product_private_line_service?) %>><label for="quote_addresses_2_street">Location Z</label></b>
+            <td class="column quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line?) %> colspan="2">
+              <b class="quote_product_line_service-options"<%= hide_unless(@quote.product_private_line?) %>><label for="quote_addresses_2_street">Location Z</label></b>
               <%= text_area_tag('quote[addresses_attributes][][street]', addresses[1] ? addresses[1].street : 'Street', :alt => 'Street', :class => 'block replace small', :id => 'quote_addresses_2_street') %>
               <%= text_field_tag('quote[addresses_attributes][][city]', addresses[1] ? addresses[1].city : 'City', :alt => 'City', :class => 'block medium replace text', :id => 'quote_addresses_2_city') %>
               <%= select_tag('quote[addresses_attributes][][state]', options_for_select([['--', ''], *state_options], addresses[1] ? addresses[1].state : nil), :id => 'quote_addresses_2_state') %>
@@ -59,11 +58,12 @@
     </div>
   </fieldset>
   <fieldset class="collapsible toggled">
-    <legend><b>4</b> Notes and special instructions</legend>
+    <legend><b>3</b> Notes and special instructions</legend>
     <div class="pad">
       <%= text_area(:quote, :note) %>
     </div>
   </fieldset>
+  <%= render :partial => 'main/contact', :locals => {:number => 4} %>
   <div class="center"><%= button('Submit this Quote') %></div>
 <% end %>
 <table style="display:none;">

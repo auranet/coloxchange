@@ -39,7 +39,7 @@ module Base
           redirect_to "http://#{request.env["HTTP_X_FORWARDED_HOST"]}#{request.env["REQUEST_PATH"]}" and return false
         end
         @css = ['screen', 'print']
-        @js = ['http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', 'application']
+        @js = [RAILS_ENV == 'production' ? 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' : 'libraries', 'application']
         if Configuration.first_load && Rails.plugins[:admin] && params[:action] != "setup"
           redirect_to :controller => "admin",:action => "setup" and return false
         else

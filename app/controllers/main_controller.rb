@@ -110,11 +110,11 @@ class MainController < ApplicationController
     return deny unless @quote.is_a?(Quote)
     @quote.type = params[:quote][:type]
     @contact.update_attributes(params[:contact])
+    session[:contact_id] = @contact.id
     @quote.contact = @contact
     if @quote.valid? && @contact.valid? && @quote.save && @contact.save
       session[:data_centers] = nil
       session[:location] = nil
-      session[:contact_id] = @contact.id
       flash[:notice] = 'Thank you for submitting your quote request!'
       flash[:quote_type] = @quote.type.to_s.tableize
       return redirect_to(quote_sent_path)

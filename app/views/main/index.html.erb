@@ -9,24 +9,24 @@
       </p>
       <p><%= link_to('Learn More &raquo;', '/solutions/colocation') %></p>
     </div>
-    <div class="item bandwidth">
+    <!-- <div class="item bandwidth">
       <h2>Bandwidth</h2>
       <p>
         Whether you are looking for Private Line, Internet Access, MPLS or Dark Fiber ColocationXchange can help you reduce your network expenditure.
       </p>
       <p><%= link_to('Learn More &raquo;', '/solutions/bandwidth') %></p>
-    </div>
-    <div class="item networx">
+    </div> -->
+    <div class="item bandwidth">
       <h2>NetworXchange</h2>
       <p>
         Real-time access to network providers at 70,000+ fiber connected building.
       </p>
-      <p><%= link_to('Learn More &raquo;', '/solutions/equipment') %></p>
+      <p><%= link_to('Learn More &raquo;', '/solutions/bandwidth') %></p>
     </div>
     <div class="item managed-services">
       <h2>Managed Services</h2>
       <p>
-        One stop hosting for simple or complex data base applications.
+        Complete Suite of Managed Infrastructure Services and Cloud Computing.
       </p>
       <p><%= link_to('Learn More &raquo;', '/solutions/managed-services') %></p>
     </div>
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div id="submenu">
-    <%= link_to('Colocation', '', :class => 'active first', :rel => 'colocation') %><%= link_to('Bandwidth', '', :rel => 'bandwidth') %><%= link_to('NetworXchange', '', :rel => 'networx') %><%= link_to('Managed Services', '', :rel => 'managed-services') %><%= link_to('Equipment', '', :rel => 'equipment') %>
+    <%= link_to('Colocation', '', :class => 'active first', :rel => 'colocation') %><%= link_to('Bandwidth', '', :rel => 'bandwidth') %><%#= link_to('NetworXchange', '', :rel => 'networx') %><%= link_to('Managed Services', '', :rel => 'managed-services') %><%= link_to('Equipment', '', :rel => 'equipment') %>
   </div>
 <% end -%>
 <a class="square-button colocation" href="<%= colocation_quote_path %>">Colocation<span class="learn-more">Get a Quote &raquo;</span></a>

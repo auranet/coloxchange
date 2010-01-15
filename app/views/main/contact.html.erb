@@ -1,34 +1,43 @@
-<% form_tag(contact_send_path) do %>
-  <div class="important">
-    <input class="text" name="website" value="http://">
-  </div>
-  <table class="form">
-    <tr class="top">
-      <td class="column">
+<table class="form">
+  <tr class="top">
+    <td class="column">
+      <% if @page  -%>
+        <%= @page.body %>
+        <% @page = nil -%>
+      <% end -%>
+    </td>
+    <td class="column">
+      <% form_tag(contact_send_path) do %>
         <label class="block" for="contact_first_name">Your name</label>
         <div class="float-left half"><%= text_field(:contact, :first_name, :class => 'oversized text') %></div>
         <div class="float-left half"><%= text_field(:contact, :last_name, :class => 'oversized text') %></div>
         <br />
         <div class="float-left half quiet">First</div>
         <div class="float-left half quiet">Last</div>
+        <%= errors_on(:contact, :name) %>
         <label class="block" for="contact_email">E-mail</label>
         <%= text_field(:contact, :email, :class => 'email text') %>
+        <%= errors_on(:contact, :email) %>
         <label class="block" for="contact_title">Title</label>
         <%= text_field(:contact, :title, :class => 'text') %>
         <label class="block" for="contact_company_name">Company</label>
         <%= text_field(:contact, :company_name, :class => 'text') %>
+        <%= errors_on(:contact, :company_name) %>
         <label class="block" for="contact_phone">Phone</label>
         <%= text_field(:contact, :phone, :class => 'phone text') %>
-      </td>
-      <td class="column">
+        <%= errors_on(:contact, :phone) %>
         <label class="block" for="contact_note"><%= notes ||= 'How can we help you?' %></label>
-        <%= text_area(:contact, :note, :style => 'height:257px;') %>
-      </td>
-    </tr>
-    <tr>
-      <td class="center" colspan="2">
-        <%= button("Contact #{site_name}") %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+        <%= text_area(:contact, :note) %>
+        <%= errors_on(:contact, :note) %>
+        <div class="important">
+          <input class="text" name="website" value="http://">
+        </div>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="center" colspan="2">
+      <%= button("Contact #{site_name}") %>
+    </td>
+  </tr>
+</table>

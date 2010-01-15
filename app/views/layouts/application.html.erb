@@ -9,6 +9,7 @@
   <!--[if IE]><%= stylesheet_link_tag('ie') %><![endif]-->
   <!--[if lte IE 6]><%= stylesheet_link_tag('ie6') %><![endif]-->
   <!--[if lte IE 7]><%= stylesheet_link_tag('ie67') %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag('ie7') %><![endif]-->
   <%= javascript_include_tag(*@js) if @js %>
   <!--[if lte IE 7]><%= javascript_include_tag('ie67') %><![endif]-->
   <meta name="keywords" content="<%= @meta_keywords %>" />
@@ -25,10 +26,10 @@
   <div id="main">
     <div id="header">
       <a href="/" id="logo"><span></span></a>
-      <form action="<%= search_path %>" method="get" id="search">
+      <!-- <form action="<%= search_path %>" method="get" id="search">
         <%= link_to('Live Chat &raquo;') %>
         <input alt="Search..." class="replace search" name="q" type="text" value="<%= params[:q] || 'Search...' %>" /><input id="search-button" name="commit" src="/images/search-button.gif" type="image" />
-      </form>
+      </form> -->
     </div>
 <% cache(:controller => "main",:action => "main_menu") do -%>
     <div id="menu">
@@ -49,6 +50,11 @@
 <% if @advertisement_top -%>
         <%= @advertisement_top %>
         <div class="advertisement quiet">Advertisement</div>
+<% end -%>
+<% if @page && @page.url != '/' -%>
+        <div id="breadcrumb">
+          <%= link_to('Homepage', '/') %>&nbsp;&raquo;&nbsp;<%= @page.self_and_ancestors.reverse.map{|page| link_to(page.name, page.url) }.join('&nbsp;&raquo;&nbsp;') %>
+        </div>
 <% end -%>
 <% if @title && !@notitle -%>
         <h1 id="title"><%= @title %></h1>

@@ -10,6 +10,10 @@
   width:366px;
 }
 
+#menu ul li:hover a, #menu ul li a:hover {
+  zoom:1;
+}
+
 #menu ul li a:hover ul {
   width:198px;
 }
@@ -19,8 +23,12 @@
 }
 
 #menu ul li ul li a span, #menu ul li ul li a:hover span {
-  background-image:url(../images/ie/background-dropdown-menu-item.gif);
+  position:relative;
   zoom:1;
+}
+
+#menu ul li a img {
+  position:static;
 }
 
 #left, #right {

@@ -1,6 +1,12 @@
 /* HTML Elements */
 a {
+  color:#00f;
   cursor:pointer;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
 }
 
 a img {
@@ -157,6 +163,9 @@ ul ul {
   top:4px;
 }
 
+
+
+
 #menu {
   background:url(../images/background-menu.png) repeat-x;
   height:31px;
@@ -172,23 +181,17 @@ ul ul {
 }
 
 #menu ul li {
-/*  border-left:1px solid #292929;*/
   display:inline-block;
   margin:0;
   padding:0;
   position:relative;
-  text-align:center;
   z-index:3;
-}
-
-#menu ul:first-child li, #menu ul li.first {
-  border-left-width:0;
 }
 
 #menu ul li a {
   background:url(../images/background-menu-item-right.gif) right 3px no-repeat;
   color:#fff;
-  display:inline-block;
+  display:block;
   float:left;
   font:normal 14px Arial, sans-serif;
   line-height:28px;
@@ -200,19 +203,16 @@ ul ul {
 }
 
 #menu ul li a img {
-  margin:0 -4px 0 -2px;
+/*  margin:0 -4px 0 -2px;*/
   position:relative;
-  top:3px;
+  top:2px;
 }
 
-#menu ul li:hover a, #menu ul li a:hover {
-/*  background:url(../images/background-menu-item.png) repeat-x;*/
-/*  color:#fff;*/
-}
 
 #menu ul li a span {
   display:block;
   background:url(../images/background-menu-item-left.gif) left 3px no-repeat;
+  height:31px;
   padding:0 10px 0 19px;
 }
 
@@ -223,10 +223,6 @@ ul ul {
 
 #menu ul li table td {
   padding:0;
-}
-
-#menu ul li a:hover {
-/*  background-color:transparent;*/
 }
 
 #menu ul li ul {
@@ -242,7 +238,7 @@ ul ul {
   padding:0;
   position:absolute;
   top:31px;
-  width:180px;
+  width:200px;
   z-index:5;
 }
 
@@ -255,10 +251,10 @@ ul ul {
 
 #menu ul li ul li a {
   color:#fff;
-  display:block;
   float:none !important;
   font:normal 10pt Arial, sans-serif;
-  line-height:110%;
+  height:17px;
+/*  line-height:110%;*/
   padding:5px;
   text-align:left;
 }
@@ -291,6 +287,9 @@ ul ul {
 #menu ul li:hover ul li:hover ul,#menu ul li a:hover ul li a:hover ul {
   visibility:visible;
 }
+
+
+
 
 #submenu {
   background:url(../images/background-submenu.gif) repeat-x;
@@ -339,6 +338,10 @@ ul ul {
 
 #left p {
   line-height:20px;
+}
+
+#breadcrumb {
+  margin-bottom:1.5em;
 }
 
 #right {

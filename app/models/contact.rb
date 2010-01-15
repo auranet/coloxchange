@@ -58,14 +58,12 @@ class Contact < User
 
   def validate
     if self.contact_request
-      self.errors.add(:email, "can't be blank") if self.email.blank?
       self.errors.add(:phone, "can't be blank") if self.phone.blank?
       self.errors.add(:note, "can't be blank") if self.note.blank?
     end
-    if self.first_name.blank? && self.last_name.blank?
-      self.errors.add(:first_name, "Name can't be blank")
-      self.errors.add(:last_name, "Name can't be blank")
-    end
+    self.errors.add(:first_name, "First name can't be blank") if self.first_name.blank?
+    self.errors.add(:last_name, "Last name can't be blank") if self.last_name.blank?
+    self.errors.add(:name, "First and last name can't be blank") if self.first_name.blank? || self.last_name.blank?
     super
   end
 end

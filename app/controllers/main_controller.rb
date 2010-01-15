@@ -13,9 +13,9 @@ class MainController < ApplicationController
       flash[:notice] = 'Your request has been sent'
       return redirect_to(contact_sent_path)
     end
+    @page = Page.find_by_action('contact')
     flash[:error] = 'Your request could not be sent'
-    flash[:error_list] = @contact.error_list
-    render :contact
+    render :action => :contact
   end
 
   def contact_sent

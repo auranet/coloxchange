@@ -1,0 +1,5 @@
+#menu ul li a img {
+  position:relative;
+  top:-1px;
+  vertical-align:top;
+}

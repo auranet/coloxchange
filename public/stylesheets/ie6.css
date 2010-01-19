@@ -18,6 +18,11 @@
   width:198px;
 }
 
+#menu ul li a span {
+  display:inline;
+  zoom:1;
+}
+
 #menu ul li ul li {
   zoom:1;
 }
@@ -27,8 +32,12 @@
   zoom:1;
 }
 
+#menu ul li a {
+  line-height:25px;
+}
+
 #menu ul li a img {
-  position:static;
+  top:4px;
 }
 
 #left, #right {

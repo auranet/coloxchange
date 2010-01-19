@@ -395,6 +395,7 @@ ul ul {
   font-size:14px;
   display:-moz-inline-stack;
   display:inline-block;
+  height:34px;
   line-height:34px;
   margin:0;
 	overflow:visible;
@@ -408,6 +409,7 @@ ul ul {
   background-image:url(../images/background-button-small.gif);
   font-size:11px;
   font-weight:bold;
+  height:18px;
   line-height:18px;
 }
 

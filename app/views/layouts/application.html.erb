@@ -53,7 +53,7 @@
 <% end -%>
 <% if @page && @page.url != '/' -%>
         <div id="breadcrumb">
-          <%= link_to('Homepage', '/') %>&nbsp;&raquo;&nbsp;<%= @page.self_and_ancestors.reverse.map{|page| link_to(page.name, page.url) }.join('&nbsp;&raquo;&nbsp;') %>
+          <%= link_to('Homepage', '/') %>&nbsp;/&nbsp;<%= @page.self_and_ancestors.reverse.map{|page| link_to(page.name, page.url) }.join('&nbsp;/&nbsp;') %>
         </div>
 <% end -%>
 <% if @title && !@notitle -%>

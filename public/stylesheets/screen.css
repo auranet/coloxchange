@@ -251,9 +251,7 @@ ul ul {
 #menu ul li ul li a {
   color:#fff;
   float:none !important;
-  font:normal 10pt Arial, sans-serif;
-  height:17px;
-/*  line-height:110%;*/
+  font:normal 12px Arial, sans-serif;
   padding:5px;
   text-align:left;
 }

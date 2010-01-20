@@ -2,7 +2,7 @@ $(function() {
   var duration = 500;
   var items = $('#carousel .item');
   var links = $('#submenu a'), timeout, timeoutIndex = 0, timeoutLength = 5000;
-  links.click(function(event) {
+  links.mouseenter(function(event) {
     if (timeout) {
       clearTimeout(timeout);
     }

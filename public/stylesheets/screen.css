@@ -41,9 +41,8 @@ form {
 }
 
 h1 {
-  color:#292828;
-  font:normal 19px Arial, sans-serif;
-  font-weight:200;
+  color:#036;
+  font:bold 18px Arial, sans-serif;
   margin:0 0 30px 0;
 }
 
@@ -71,8 +70,9 @@ h1 {
 }
 
 h2 {
-	color:#036;
-  font:bold 18px Arial, sans-serif;
+  color:#292828;
+  font:normal 18px Arial, sans-serif;
+  font-weight:200;
   margin:0 0 10px 0;
 }
 

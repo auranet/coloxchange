@@ -32,7 +32,7 @@ $(function() {
   var changeLinks = function() {
     timeoutIndex++;
     if (!links[timeoutIndex]) timeoutIndex = 0;
-    $(links[timeoutIndex]).click();
+    $(links[timeoutIndex]).mouseenter();
     timeout = setTimeout(changeLinks, timeoutLength);
   };
   timeout = setTimeout(changeLinks, timeoutLength);

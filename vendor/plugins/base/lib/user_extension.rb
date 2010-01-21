@@ -5,7 +5,7 @@ module UserExtension
   self.admin_browse_column_array = [:name,:email]
   self.admin_condition_array = ["(users.type IS NULL OR users.type = ?)","User"]
   self.admin_deletable_boolean = false
-  self.admin_field_array = []#["photo","first_name","last_name","username","email","active","admin","verified","created_at","updated_at","last_login"]
+  self.admin_field_array = ["first_name","last_name","email","active","admin","created_at","updated_at","last_login"]
   self.admin_filter_array = [{:name => [:first_name,:last_name]},:email,:username,:active,:admin,:created_at]
   self.admin_include_array = [:photo]
   self.admin_order_string = "users.first_name ASC,users.last_name ASC"

@@ -1,5 +1,5 @@
 class ColocationQuote < Quote
-  has_many :quote_data_centers, :dependent => :destroy
+  has_many :quote_data_centers, :dependent => :destroy, :foreign_key => :quote_id
 
   class << self
     def bandwidth_options

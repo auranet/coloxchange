@@ -50,7 +50,7 @@
   <h3>News and Updates</h3>
   <div id="news-content">
     <% @news_items.each do |news_item| -%>
-    <%= link_to("<b>#{news_item.date.strftime('%B')} #{news_item.date.strftime("%d").gsub(/^0/, '')}, #{news_item.date.strftime('%Y')}</b> - #{news_item.name.shorten(110)}", {:controller => 'main', :action => 'news_item', :id => news_item.slug}) %>
+    <%= link_to("<b>#{news_item.date.strftime('%B')} #{news_item.date.strftime("%d").gsub(/^0/, '')}, #{news_item.date.strftime('%Y')}</b> - #{news_item.name.shorten(110)}", news_item.url) %>
     <% end -%>
   </div>
 </div>

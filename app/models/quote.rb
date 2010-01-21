@@ -1,7 +1,11 @@
 class Quote < ActiveRecord::Base
-  admin :order => ["created_at"]
+  admin :browse_columns => [:name, 'contact.name'], :order => ["created_at"]
   belongs_to :contact
   has_and_belongs_to_many :notes, :order => 'notes.created_at'
+
+  def name
+    "#{self.class.to_s.titleize} ##{id}"
+  end
 
   def note
     (self.notes.first || Note.new).body

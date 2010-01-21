@@ -1,4 +1,5 @@
-<%= start_form({:controller => "admin",:action => "edit",:id => @instance.new_record? ? nil : @instance.id,:model => @model_class.singularize,:external => params[:external],:many => params[:many]},:class => "edit-form",:multipart => true) %><% begin %>
+<%= start_form({:controller => "admin",:action => "edit",:id => @instance.new_record? ? nil : @instance.id,:model => @model_class.singularize,:external => params[:external],:many => params[:many]},:class => "edit-form",:multipart => true) %>
+<% begin -%>
 <%= render :partial => "admin/forms/#{@model_class.singularize}" -%>
 <% rescue ActionView::ActionViewError %>
 <%# render :partial => "admin/forms/#{@model_class.singularize}" %>
@@ -36,4 +37,10 @@
     </div>
   <%= end_form %>
 </div>
-<% end %><% end %><% if params[:id] %><% begin %><%= render :partial => "admin/forms/#{@model_class.singularize}_extra" %><% rescue; end %><% end %>
+<% end -%>
+<% end -%>
+<% if params[:id] -%>
+  <% begin -%>
+    <%= render :partial => "admin/forms/#{@model_class.singularize}_extra" %>
+  <% rescue; end -%>
+<% end -%>

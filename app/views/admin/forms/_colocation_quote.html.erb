@@ -1,0 +1,5 @@
+  <tr><th>Space requirements</th><td><%= h(@instance.space) %></td></tr>
+  <tr><th>Bandwidth requirements</th><td><%= h(@instance.bandwidth) %></td></tr>
+  <tr><th>Power requirements</th><td><%= h(@instance.power) %></td></tr>
+  <tr><th>Target date</th><td><%= @instance.target_date ? @instance.target_date.pretty : 'n/a' %></td></tr>
+  <tr><th>Data centers</td><td><%= @instance.quote_data_centers.map{|data_center| link_to(data_center.name, 'http://www.findadatcenter.com/data-centers/' + data_center.data_center_slug)}.join('<br />') %></td></tr>

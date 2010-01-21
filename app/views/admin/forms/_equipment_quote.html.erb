@@ -1,0 +1,7 @@
+<% unless @instance.product.blank? -%>
+  <tr><th>Brand / model number</th><td><%= @instance.product %></td></tr>
+<% end -%>
+<% unless @instance.price_target.blank? -%>
+  <tr><th>Price target</th><td><%= @instance.price_target %></td></tr>
+<% end -%>
+  <tr><th>Refurbished okay?</th><td><%= @instance.new_equipment ? 'Yes' : 'No' %></td></tr>

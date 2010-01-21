@@ -1,0 +1,5 @@
+  <tr><th>Product</th><td><%= @instance.product == 'other' ? @instance.attributes['product'] : @instance.product %></td></tr>
+<% unless @instance.product == 'other' %>
+  <tr><th>Bandwidth requirements</th><td><%= @instance.bandwidth_requirements %></td></tr>
+<% end %>
+  <tr><th>Address<%= 'es' if !@instance.product_internet? && @instance.addresses.length > 1 %></th><td><%= @instance.addresses[0, @instance.product_internet? ? 1 : 2].map(&:address).join('<br /><br />') %></td></tr>

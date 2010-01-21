@@ -1,6 +1,6 @@
 class NewsItem < ActiveRecord::Base
   acts_as_slug
-  admin :fields => [:name,:slug,:body,:date,{:kind => {:class => "option'",:choices => ["General News","Press Release"],:label => "Type"}}]#,:reflections => [:news_item_contacts]
+  admin :fields => [:name,:slug,:body,:date,{:kind => {:class => "option'",:choices => ["General News","Press Release"],:label => "Type"}}, {:url => {:label => 'URL'}}]#,:reflections => [:news_item_contacts]
   has_many :news_item_contacts
   validates_presence_of :name
 
@@ -9,7 +9,7 @@ class NewsItem < ActiveRecord::Base
   end
 
   def url
-    {:controller => "main",:action => self.press_release? ? "press_release" : "news_item",:id => self.slug.blank? ? 'not-found' : self.slug}
+    attributes['url'].blank? ? {:controller => "main",:action => self.press_release? ? "press_release" : "news_item",:id => self.slug.blank? ? 'not-found' : self.slug} : attributes['url']
   end
 
   protected

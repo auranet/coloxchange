@@ -1,0 +1,4 @@
+<table class="form">
+  <%= render :partial => 'admin/forms/quote_contact' %>
+  <%= render :partial => "admin/forms/#{@instance.type.to_s.tableize.singularize}" %>
+</table>

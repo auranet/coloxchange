@@ -1,4 +1,6 @@
 <% form_tag(quote_path) do %>
+  <b>*</b> indicates a required field
+  <br /><br />
   <%= hidden_field(:quote, :type) %>
   <fieldset class="collapsible toggled">
     <legend><b>1</b> Bandwidth requirements</legend>
@@ -34,7 +36,7 @@
               <%= text_area_tag('quote[addresses_attributes][][street]', addresses[0] ? addresses[0].street : 'Street', :alt => 'Street', :class => 'block replace small', :id => 'quote_addresses_1_street') %>
               <%= text_field_tag('quote[addresses_attributes][][city]', addresses[0] ? addresses[0].city : 'City', :alt => 'City', :class => 'block medium replace text', :id => 'quote_addresses_1_city') %>
               <%= select_tag('quote[addresses_attributes][][state]', options_for_select([['--', ''], *state_options], addresses[0] ? addresses[0].state : nil), :id => 'quote_addresses_1_state') %>
-              <%= text_field_tag('quote[addresses_attributes][][postal_code]', addresses[0] ? addresses[0].postal_code : 'Zip', :alt => 'Zip', :class => 'replace small text', :id => 'quote_addresses_1_postal_code') %>
+              <%= text_field_tag('quote[addresses_attributes][][postal_code]', addresses[0] ? addresses[0].postal_code : 'Zip', :alt => 'Zip', :class => 'replace text small', :id => 'quote_addresses_1_postal_code') %>
             </td>
             <td class="column quote_product_mpls-options quote_product_line_service-options"<%= hide_unless(@quote.product_mpls? || @quote.product_private_line?) %> colspan="2">
               <b class="quote_product_line_service-options"<%= hide_unless(@quote.product_private_line?) %>><label for="quote_addresses_2_street">Location Z</label></b>

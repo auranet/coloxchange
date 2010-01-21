@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  include UserExtension
   admin :search_fields => [:first_name, :last_name]
+  include UserExtension
   attr_accessor :old_enable_email, :old_password, :send_creation_email
   belongs_to :photo
   has_many :advertisements, :foreign_key => :manager_id

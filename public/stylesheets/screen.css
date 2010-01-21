@@ -176,9 +176,6 @@ ul ul {
   top:4px;
 }
 
-
-
-
 #menu {
   background:url(../images/background-menu.png) repeat-x;
   height:31px;
@@ -237,7 +234,7 @@ ul ul {
   padding:0;
 }
 
-#menu ul li ul {
+#menu ul li ul, #menu ul li a ul {
   display:none;
 }
 
@@ -384,10 +381,10 @@ ul ul {
 }
 
 /* Non-layout elements */
-#data-center-search {
+/*#data-center-search {
   line-height:35px;
 }
-
+*/
 #market-container {
   height:400px;
   overflow:auto;
@@ -399,31 +396,29 @@ ul ul {
 }
 
 .button {
-  background:url(../images/background-button.gif) repeat-x;
+  background:none;
   border:0;
-  border-left:1px solid #698336;
-  border-right:1px solid #698336;
   color:#fff;
   cursor:pointer;
   font-size:14px;
+  font-weight:bold;
   display:-moz-inline-stack;
   display:inline-block;
   height:34px;
-  line-height:34px;
   margin:0;
 	overflow:visible;
-  padding:0 19px !important;
+  padding:0;
   position:relative;
   text-decoration:none !important;
+  -moz-text-shadow:#5b7a1b 0 1px 1px;
+  text-shadow:#5b7a1b 0 1px 1px;
   text-transform:uppercase;
 }
 
 .button.small {
-  background-image:url(../images/background-button-small.gif);
-  font-size:11px;
-  font-weight:bold;
-  height:18px;
-  line-height:18px;
+  font-size:8pt;
+  height:21px;
+  line-height:21px;
 }
 
 .button.disabled {
@@ -434,6 +429,37 @@ ul ul {
 .button::-moz-focus-inner {
   border:none;
   padding:0;
+}
+
+.button .button-inner {
+  background:url(../images/background-button-left.png) left top no-repeat;
+  display:block;
+  line-height:34px;
+  margin:0 7px 0 0;
+  padding:0 10px 2px 17px !important;
+  text-align:center;
+  white-space:nowrap;
+}
+
+.button.small .button-inner {
+  background:url(../images/background-button-small-left.png) left top no-repeat;
+  line-height:21px;
+}
+
+.button .button-right {
+  background:url(../images/background-button-right.png) right top no-repeat;
+  display:block;
+  height:34px;
+  position:absolute;
+  right:0;
+  top:0;
+  width:7px;
+}
+
+.button.small .button-right {
+  background:url(../images/background-button-small-right.png) right top no-repeat;
+  height:21px;
+  width:7px;
 }
 
 .center {

@@ -1,4 +1,6 @@
 <% form_tag(quote_path) do %>
+  <b>*</b> indicates a required field
+  <br /><br />
   <%= hidden_field(:quote, :type) %>
   <fieldset class="collapsible toggled">
 <% @data_centers ||= session[:data_centers] -%>

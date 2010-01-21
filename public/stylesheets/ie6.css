@@ -15,6 +15,7 @@
 }
 
 #menu ul li a:hover ul {
+  top:30px;
   width:198px;
 }
 
@@ -58,4 +59,24 @@ fieldset.collapsible.toggled div, fieldset.collapsible.toggled table {
 
 ul.list a:hover {
   background:#414141;
+}
+
+button.button-small .button-right {
+  top:0 !important;
+}
+
+.button .button-inner {
+  background-image:url(../images/ie/background-button-left.gif);
+}
+
+.button.small .button-inner {
+  background-image:url(../images/ie/background-button-small-left.gif);
+}
+
+.button .button-right {
+  background-image:url(../images/ie/background-button-right.gif);
+}
+
+.button.small .button-right {
+  background-image:url(../images/ie/background-button-small-right.gif);
 }

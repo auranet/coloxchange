@@ -6,7 +6,7 @@
   <br /><div style="float:left;font-weight:bold;width:200px;">Target date</div><div style="float:left;"><%= @quote.target_date ? @quote.target_date.pretty : 'n/a' %></div>
   <br /><div style="float:left;font-weight:bold;width:200px;">Data centers</div>
   <div style="float:left;">
-    <%= @quote.quote_data_centers.map{|data_center| link_to(data_center.name, 'http://www.findadatcenter.com/data-centers/' + data_center.data_center_slug).join('<br />')} %>
+    <%= @quote.quote_data_centers.map{|data_center| link_to(data_center.name, 'http://www.findadatcenter.com/data-centers/' + data_center.data_center_slug)}.join('<br />') %>
   </div>
   <div style="clear:both;"></div>
 </p>

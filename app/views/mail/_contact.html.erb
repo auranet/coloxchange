@@ -10,8 +10,11 @@
 <% unless @contact.phone.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Phone</div><div style="float:left;"><%= @contact.phone %></div>
 <% end %>
-<% unless @contact.referer.blank? %>
-  <br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><a href="<%= @contact.referer %>"><%= @contact.referer %></a></div>
+<% unless @contact.referrer.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Heard about from:</div><div style="float:left;"><a href="<%= @contact.referrer %>"><%= @contact.referrer %></a></div>
+<% end %>
+<% unless @contact.referring_site.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><a href="<%= @contact.referring_site %>"><%= @contact.referring_site %></a></div>
 <% end %>
 <% unless @contact.note.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Note</div><div style="float:left;"><%= h(@contact.note).gsub("\n", '<br />') %></div>

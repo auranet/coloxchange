@@ -1,7 +1,7 @@
-  <tr><th>Name</th><td><%= @instance.contact ? @instance.contact.name : 'n/a' %></td></tr>
+  <tr class="top"><th>Name</th><td><%= @instance.contact ? @instance.contact.name : 'n/a' %></td></tr>
   <% if contact = @instance.contact -%>
   <% unless contact.contact_method.blank? %>
-    <tr><th>Preferred contact method</th><td><%= contact.contact_method_name %></td></tr>
+    <tr><th>Preferred contact method</th><td><%= Contact::ContactMethod.hash[contact.contact_method] %></td></tr>
   <% end %>
   <% unless contact.email.blank? %>
     <tr><th>E-mail</th><td><%= mail_to(contact.email) %></td></tr>
@@ -9,8 +9,14 @@
   <% unless contact.phone.blank? %>
     <tr><th>Phone</th><td><%= contact.phone %></td></tr>
   <% end %>
-  <% unless contact.referer.blank? %>
-    <tr><th>Referring URL:</th><td><a href="<%= contact.referer %>"><%= contact.referer %></a></td></tr>
+  <% unless contact.referrer.blank? %>
+    <tr><th>Heard about <%= site_name %> from:</th><td><%= contact.referrer %></td></tr>
+  <% end %>
+  <% unless contact.referring_site.blank? %>
+    <tr><th>Referring URL:</th><td><%= link_to contact.referring_site, contact.referring_site %></td></tr>
+  <% unless contact.search_term.blank? -%>
+    <tr><th>Search keywords:</th><td><%= contact.search_term %></td></tr>
+  <% end -%>
   <% end %>
   <% unless contact.note.blank? %>
     <tr><th>Note</th><td><%= h(contact.note).gsub("\n", '<br />') %></td></tr>

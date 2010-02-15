@@ -29,6 +29,9 @@
         <label class="block" for="contact_note"><%= notes ||= 'How can we help you?' %></label>
         <%= text_area(:contact, :note) %>
         <%= errors_on(:contact, :note) %>
+        <label class="block" for="contact_referrer">How did you hear about <%= site_name %>?</label>
+        <%= select(:contact, :referrer, ['', 'Conference', 'Web search', 'Publication', 'Referral', 'Other'], {}, :class => 'large other') %>
+        <br />
         <div class="important">
           <input class="text" name="website" value="http://">
         </div>

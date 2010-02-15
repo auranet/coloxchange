@@ -1,5 +1,5 @@
 class Market < ActiveRecord::Base
-  admin :browse_columns => [:city, :state], :fields => [:city, :state], :order => 'state, city'
+  admin :browse_columns => [:city, :state], :fields => [:city, :state], :order => 'city, state'
   validates_presence_of :city
 
   def name

@@ -27,17 +27,23 @@ class FindADataCenter
 
     private
     def api_key
-      # Production
-      'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
-      # Development
-      # 'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
+      if RAILS_ENV == 'production'
+        # Production
+        'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
+      else
+        # Development
+        '74d8c284ad91ad823a327e18787cf9fbebb5a925'
+      end
     end
 
     def remote_url
-      # Production
-      'http://www.findadatacenter.com/'
-      # Development
-      # 'http://127.0.0.1:3001/'
+      if RAILS_ENV == 'production'
+        # Production
+        'http://www.findadatacenter.com/'
+      else
+        # Development
+        'http://127.0.0.1:3001/'
+      end
     end
   end
 end

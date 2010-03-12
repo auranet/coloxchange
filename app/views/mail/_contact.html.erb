@@ -1,6 +1,9 @@
 <p>
   <b>Contact Details</b>
   <br /><div style="float:left;font-weight:bold;width:200px;">Name</div><div style="float:left;"><%= @contact.name %></div>
+<% unless @contact.customer_code.blank? %>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Customer Code</div><div style="float:left;"><%= h(@contact.customer_code) %></div>
+<% end %>
 <% unless @contact.contact_method.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Preferred contact method</div><div style="float:left;"><%= @contact.contact_method_name %></div>
 <% end %>

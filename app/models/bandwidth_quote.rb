@@ -37,6 +37,6 @@ class BandwidthQuote < Quote
   end
 
   def validate
-    self.errors.add(:addresses, self.product_internet_service? ? 'You must supply an address to connect' : 'You must supply one or more connection addresses') if self.quote_addresses.empty?
+    self.errors.add(:addresses, self.product_internet? ? 'You must supply an address to connect' : 'You must supply one or more connection addresses') if self.quote_addresses.empty?
   end
 end

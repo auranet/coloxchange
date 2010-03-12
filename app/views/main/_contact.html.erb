@@ -1,4 +1,4 @@
-<fieldset class="collapsible<%= ' toggled' unless @contact && !@contact.new_record? %>">
+<fieldset class="collapsible<%= ' toggled' unless @contact && !@contact.new_record? && @contact.valid? %>">
   <legend<%= ' class="checked"' if @contact && !@contact.new_record? %>><b><%= number %></b> Contact information</legend>
   <table class="form">
     <tr class="top">
@@ -13,6 +13,8 @@
         <label class="block" for="contact_phone">Your phone</label>
         <%= text_field(:contact, :phone, :class => 'phone text') %>
         <%= errors_on(:contact, :phone) %>
+        <label class="block" for="contact_customer_code">Customer code (optional)</label>
+        <%= text_field(:contact, :customer_code, :class => 'text', :maxlength => 7) %>
       </td>
       <td class="column">
         <label class="block" for="contact_company_name">Company*</label>

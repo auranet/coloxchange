@@ -53,12 +53,14 @@ module Base
             session[:referer] = request.env["HTTP_REFERER"]
             if session[:referer] =~ /(google|msn|yahoo|\?q=)/
               session[:keywords] = []
-              for keyword in session[:referer].split(/\?[q|p]=/)[1].split("&")[0].split(/(\%20|\+)/).without("+")
-                keywords = keyword.strip.downcase
-                if !["the","a","in","for"].include?(keyword)
-                  keyword = Keyword.find_or_initialize_by_name(keyword.strip.downcase) 
-                  keyword.update_attribute(:hits,keyword.hits + 1)
-                  session[:keywords].push(keyword.id)
+              if keywords = session[:referer].split(/(\?|&)[q|p]=/).pop
+                for keyword in CGI.unescape(keywords.split("&").shift).split(' ')
+                  keywords = keyword.strip.downcase
+                  if !["the","a","in","for"].include?(keyword)
+                    keyword = Keyword.find_or_initialize_by_name(keyword.strip.downcase) 
+                    keyword.update_attribute(:hits,keyword.hits + 1)
+                    session[:keywords].push(keyword.id)
+                  end
                 end
               end
             end

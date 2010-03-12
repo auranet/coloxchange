@@ -1,3 +1,4 @@
+require 'cgi'
 class Contact < User
   admin :conditions => ["users.type = ?", "Contact"], :filters => [:name, :email], :include => [:emails], :order => ["first_name, last_name"], :name => "Contact"
   attr_accessor :contact_request, :hidden
@@ -37,6 +38,12 @@ class Contact < User
   def phone=(number)
     phone = Phone.new(:kind => "Work",:number => number,:user => self)
     self.phones.push(phone) if phone.valid?
+  end
+
+  def search_term
+    if referring_site && keywords = referring_site.split(/(\?|&)[q|p]=/).pop
+      CGI.unescape(keywords.split("&").shift)
+    end
   end
 
   protected

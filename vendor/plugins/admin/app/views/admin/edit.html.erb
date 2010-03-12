@@ -1,8 +1,8 @@
 <%= start_form({:controller => "admin",:action => "edit",:id => @instance.new_record? ? nil : @instance.id,:model => @model_class.singularize,:external => params[:external],:many => params[:many]},:class => "edit-form",:multipart => true) %>
 <% begin -%>
 <%= render :partial => "admin/forms/#{@model_class.singularize}" -%>
-<% rescue ActionView::ActionViewError %>
-<%# render :partial => "admin/forms/#{@model_class.singularize}" %>
+<% rescue ActionView::ActionViewError => e %>
+<% raise $! if RAILS_ENV != 'production' && $!.message!=~ /^No template found for/ %>
 <% if @ownership_required %><%= hidden_field("instance","user_id",:value => @user.id) %><% end %>
 <% if @fieldsets %><% for fieldset in @fieldsets %>
   <fieldset><legend><%= fieldset.first.to_s.titleize %></legend><% for @field in fieldset[1] %>

@@ -2,4 +2,15 @@
   <tr><th>Bandwidth requirements</th><td><%= h(@instance.bandwidth) %></td></tr>
   <tr><th>Power requirements</th><td><%= h(@instance.power) %></td></tr>
   <tr><th>Target date</th><td><%= @instance.target_date ? @instance.target_date.pretty : 'n/a' %></td></tr>
-  <tr><th>Data centers</td><td><%= @instance.quote_data_centers.map{|data_center| link_to(data_center.name, 'http://www.findadatcenter.com/data-centers/' + data_center.data_center_slug)}.join('<br />') %></td></tr>
+  <tr><th>Data centers</td><td>
+  <% @instance.quote_data_centers.each do |quote_data_center| -%>
+    <% if data_center = FindADataCenter.get("data-centers/#{quote_data_center.data_center_slug}") -%>
+    <% data_center = data_center['data_center'] -%>
+    <b><%= data_center['private_name'] %></b>
+    <br /><%= data_center['address'] %>
+    <% else -%>
+    <%= link_to(quote_data_center.name, 'http://www.findadatcenter.com/data-centers/' + quote_data_center.data_center_slug) %>
+    <% end %>
+    <br />
+  <% end -%>
+  </td></tr>

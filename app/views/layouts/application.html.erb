@@ -76,28 +76,26 @@
         </div>
       </div>
 <% if right.blank? -%>
-<% if defined?(MARKETS) -%>
-        <div class="container">
-          <h3><span>Data Center Markets</span></h3>
-          <div class="inner-container">
-            <div id="market-container">
-              <ul class="list">
-<% for market in MARKETS -%>
-                <li><%= link_to("#{market[:city]}, #{market[:state]}", market_quote_path(:city => market[:city].gsub(' ', '+'), :state => market[:state]), :class => 'go') %></li>
+      <div class="container">
+        <h3><span>Data Center Markets</span></h3>
+        <div class="inner-container">
+          <div id="market-container">
+            <ul class="list">
+<% Market.find(:all, :order => 'city, state').each do |market| %>
+              <li><%= link_to(market.name, market_quote_path(:city => market.city.gsub(' ', '+'), :state => market.state), :class => 'go') %></li>
 <% end -%>
-                <li><%= link_to('International Site', colocation_quote_path, :class => 'go') %></li>
-              </ul>
-            </div>
-            <%= button_link('Get a Quote!', quote_path, :class => 'block center toggle', :rel => 'quote-types', :style => 'margin:5px;')%>
-            <ul class="hidden list" id="quote-types">
-              <li><%= link_to('Colocation Quote', colocation_quote_path, :class => 'go') %></li>
-              <li><%= link_to('Bandwidth Quote', bandwidth_quote_path, :class => 'go') %></li>
-              <li><%= link_to('Managed Services Quote', managed_services_quote_path, :class => 'go') %></li>
-              <li><%= link_to('Equipment Quote', equipment_quote_path, :class => 'go') %></li>
+              <li><%= link_to('International Site', colocation_quote_path, :class => 'go') %></li>
             </ul>
           </div>
+          <%= button_link('Get a Quote!', quote_path, :class => 'block center toggle', :rel => 'quote-types', :style => 'margin:5px;')%>
+          <ul class="hidden list" id="quote-types">
+            <li><%= link_to('Colocation Quote', colocation_quote_path, :class => 'go') %></li>
+            <li><%= link_to('Bandwidth Quote', bandwidth_quote_path, :class => 'go') %></li>
+            <li><%= link_to('Managed Services Quote', managed_services_quote_path, :class => 'go') %></li>
+            <li><%= link_to('Equipment Quote', equipment_quote_path, :class => 'go') %></li>
+          </ul>
         </div>
-<% end -%>
+      </div>
 <% else -%>
         <%= right %>
 <% end -%>

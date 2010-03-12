@@ -24,8 +24,8 @@
         <%= text_field(:contact, :title, :class => 'text') %>
         <label class="block" for="contact_contact_method">How would you like to be contacted?</label>
         <%= select(:contact, :contact_method, Contact::ContactMethod.options, {}, :class => 'large') %>
-        <label class="block" for="contact_referer">How did you hear about <%= site_name %>?</label>
-        <%= select(:contact, :referer, ['', 'Conference', 'Web search', 'Publication', 'Referral', 'Other'], {}, :class => 'large other') %>
+        <label class="block" for="contact_referrer">How did you hear about <%= site_name %>?</label>
+        <%= select(:contact, :referrer, ['', 'Conference', 'Web search', 'Publication', 'Referral', 'Other'], {}, :class => 'large other') %>
       </td>
     </tr>
   </table>

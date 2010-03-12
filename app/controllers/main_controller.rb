@@ -2,6 +2,7 @@ class MainController < ApplicationController
   layout :check_layout
   skip_before_filter :context_data ,:only => [:advertisement, :clickthrough]
   before_filter :find_contact, :only => [:contact, :contact_send, :quote, :quote_bandwidth, :quote_colocation, :quote_equipment, :quote_managed_services, :quote_send]
+  caches_page :data_center
 
   def contact
     @title ||= 'Contact Us'
@@ -9,7 +10,8 @@ class MainController < ApplicationController
 
   def contact_send
     return deny if params[:website] != 'http://'
-    if @contact.update_attributes(params[:contact].merge(:contact_request => true, :referer => session[:referer]))
+    if save_contact
+      session[:contact_id] = @contact.id
       flash[:notice] = 'Your request has been sent'
       return redirect_to(contact_sent_path)
     end
@@ -106,10 +108,10 @@ class MainController < ApplicationController
     if existing_contact = Contact.find_by_email(params[:contact][:email])
       @contact = existing_contact
     end
-    # Stupid security bug, but it's the quickest way to a single method
+    # Stupid security hack, but it's the quickest way to a single method w/updating multiple classes
     return deny unless @quote.is_a?(Quote)
     @quote.type = params[:quote][:type]
-    @contact.update_attributes(params[:contact])
+    save_contact
     session[:contact_id] = @contact.id
     @quote.contact = @contact
     if @quote.valid? && @contact.valid? && @quote.save && @contact.save
@@ -149,5 +151,9 @@ class MainController < ApplicationController
   def find_contact
     @contact = Contact.find_by_id(session[:contact_id]) if session[:contact_id]
     @contact ||= Contact.new(:subscriber => true)
+  end
+
+  def save_contact
+    @contact.update_attributes(params[:contact].merge(:contact_request => true, :referring_site => @contact.referring_site || session[:referer]))
   end
 end

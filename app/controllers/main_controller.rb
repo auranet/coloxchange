@@ -10,7 +10,7 @@ class MainController < ApplicationController
 
   def contact_send
     return deny if params[:website] != 'http://'
-    if save_contact
+    if save_contact(:contact_request => true)
       session[:contact_id] = @contact.id
       flash[:notice] = 'Your request has been sent'
       return redirect_to(contact_sent_path)
@@ -153,7 +153,7 @@ class MainController < ApplicationController
     @contact ||= Contact.new(:subscriber => true)
   end
 
-  def save_contact
-    @contact.update_attributes(params[:contact].merge(:contact_request => true, :referring_site => @contact.referring_site || session[:referer]))
+  def save_contact(options = {})
+    @contact.update_attributes(params[:contact].merge(:referring_site => @contact.referring_site || session[:referer]).merge(options))
   end
 end

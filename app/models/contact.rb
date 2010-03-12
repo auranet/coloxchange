@@ -65,7 +65,7 @@ class Contact < User
 
   def validate
     if self.contact_request
-      # self.errors.add(:phone, "can't be blank") if self.phone.blank?
+      self.errors.add(:phone, "can't be blank") if self.phone.blank?
       self.errors.add(:note, "can't be blank") if self.note.blank?
     end
     self.errors.add(:first_name, "First name can't be blank") if self.first_name.blank?

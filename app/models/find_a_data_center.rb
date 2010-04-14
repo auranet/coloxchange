@@ -25,6 +25,16 @@ class FindADataCenter
       end
     end
 
+    def remote_url
+      if RAILS_ENV == 'production'
+        # Production
+        'http://www.findadatacenter.com/'
+      else
+        # Development
+        'http://127.0.0.1:3001/'
+      end
+    end
+
     private
     def api_key
       if RAILS_ENV == 'production'
@@ -33,16 +43,6 @@ class FindADataCenter
       else
         # Development
         '74d8c284ad91ad823a327e18787cf9fbebb5a925'
-      end
-    end
-
-    def remote_url
-      if RAILS_ENV == 'production'
-        # Production
-        'http://www.findadatacenter.com/'
-      else
-        # Development
-        'http://127.0.0.1:3001/'
       end
     end
   end

@@ -1,5 +1,5 @@
 class Quote < ActiveRecord::Base
-  admin :browse_columns => [:name, 'contact.name'], :order => ["created_at"]
+  admin :browse_columns => [:name, 'contact.name', {'contact.customer_code' => 'Code'}, {'created_at.pretty_short' => 'Date'}], :order => ["created_at DESC"]
   belongs_to :contact
   has_and_belongs_to_many :notes, :order => 'notes.created_at'
 

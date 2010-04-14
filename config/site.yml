@@ -1,4 +1,7 @@
 --- 
+:newsletter: false
+:meta_description: ""
+:meta_robots: FOLLOW,INDEX
 :site_tag_line: ""
 :first_load: false
 :meta_author: ""
@@ -8,6 +11,3 @@
 :site_name: ColocationXchange
 :meta_copyright: "Copyright \xC2\xA9 %Y ColocationXchange"
 :site_name_legal: ColocationXchange
-:newsletter: false
-:meta_description: ""
-:meta_robots: FOLLOW,INDEX

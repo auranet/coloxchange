@@ -1,5 +1,9 @@
+  <tr><th>Opened</th><td><%= @instance.created_at.pretty %></td></tr>
   <tr class="top"><th>Name</th><td><%= @instance.contact ? @instance.contact.name : 'n/a' %></td></tr>
   <% if contact = @instance.contact -%>
+  <% unless contact.customer_code.blank? %>
+    <tr><th>Customer Code</th><td><%= h(contact.customer_code) %></td></tr>
+  <% end %>
   <% unless contact.contact_method.blank? %>
     <tr><th>Preferred contact method</th><td><%= Contact::ContactMethod.hash[contact.contact_method] %></td></tr>
   <% end %>
@@ -10,7 +14,7 @@
     <tr><th>Phone</th><td><%= contact.phone %></td></tr>
   <% end %>
   <% unless contact.referrer.blank? %>
-    <tr><th>Heard about <%= site_name %> from:</th><td><%= contact.referrer %></td></tr>
+    <tr><th>Heard about <%= site_name %> from:</th><td><%= h contact.referrer %></td></tr>
   <% end %>
   <% unless contact.referring_site.blank? %>
     <tr><th>Referring URL:</th><td><%= link_to contact.referring_site, contact.referring_site %></td></tr>

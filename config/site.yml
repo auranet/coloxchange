@@ -1,6 +1,8 @@
 --- 
+:site_tag_line: ""
+:first_load: false
 :meta_author: ""
-:google_analytics_key: ""
+:google_analytics_key: UA-15198490-1
 :google_maps_key: ""
 :meta_keywords: ""
 :site_name: ColocationXchange
@@ -9,5 +11,3 @@
 :newsletter: false
 :meta_description: ""
 :meta_robots: FOLLOW,INDEX
-:site_tag_line: ""
-:first_load: false

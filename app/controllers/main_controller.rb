@@ -115,6 +115,10 @@ class MainController < ApplicationController
     session[:contact_id] = @contact.id
     @quote.contact = @contact
     if @quote.valid? && @contact.valid? && @quote.save && @contact.save
+      client = ActionWebService::Client::XmlRpc.new(FindADataCenterAPI, FindADataCenter.remote_url)
+      client
+      persons = soap_client.find_all
+      
       session[:data_centers] = nil
       session[:location] = nil
       flash[:notice] = 'Thank you for submitting your quote request!'

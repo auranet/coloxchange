@@ -16,7 +16,11 @@ class FindADataCenter
         response = Net::HTTP.post_form(URI.parse("#{remote_url}#{url}.json"), post_params)
         if response.is_a?(Net::HTTPOK)
           begin
-            JSON.parse(response.body)
+            response = JSON.parse(response.body)
+            if response['error']
+              RAILS_DEFAULT_LOGGER.warn("\nFindADataCenter API error: #{response['error']}\n\n")
+            end
+            response
           rescue JSON::ParserError
           end
         end
@@ -26,24 +30,24 @@ class FindADataCenter
     end
 
     def remote_url
-      if RAILS_ENV == 'production'
+      # if RAILS_ENV == 'production'
         # Production
         'http://www.findadatacenter.com/'
-      else
+      # else
         # Development
-        'http://127.0.0.1:3001/'
-      end
+        # 'http://127.0.0.1:3001/'
+      # end
     end
 
     private
     def api_key
-      if RAILS_ENV == 'production'
+      # if RAILS_ENV == 'production'
         # Production
         'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
-      else
+      # else
         # Development
-        '74d8c284ad91ad823a327e18787cf9fbebb5a925'
-      end
+        # '74d8c284ad91ad823a327e18787cf9fbebb5a925'
+      # end
     end
   end
 end

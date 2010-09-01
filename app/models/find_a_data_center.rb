@@ -41,13 +41,13 @@ class FindADataCenter
 
     private
     def api_key
-      # if RAILS_ENV == 'production'
+      if RAILS_ENV == 'production'
         # Production
         'f4f8149350ec21ae9be3f3d9911d2cceac971f68'
-      # else
+      else
         # Development
-        # '74d8c284ad91ad823a327e18787cf9fbebb5a925'
-      # end
+        'c5e17e0110f3aa751d04fb52f0b5df17e1849f4e'
+      end
     end
   end
 end

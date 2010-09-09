@@ -1,46 +1,47 @@
 <%= start_form({:controller => "admin",:action => "edit",:id => @instance.new_record? ? nil : @instance.id,:model => @model_class.singularize,:external => params[:external],:many => params[:many]},:class => "edit-form",:multipart => true) %>
 <% begin -%>
-<%= render :partial => "admin/forms/#{@model_class.singularize}" -%>
+  <%= render :partial => "admin/forms/#{@model_class.singularize}" -%>
 <% rescue ActionView::ActionViewError => e %>
-<% raise $! if RAILS_ENV != 'production' && $!.message!=~ /^No template found for/ %>
-<% if @ownership_required %><%= hidden_field("instance","user_id",:value => @user.id) %><% end %>
-<% if @fieldsets %><% for fieldset in @fieldsets %>
-  <fieldset><legend><%= fieldset.first.to_s.titleize %></legend><% for @field in fieldset[1] %>
-    <%= render :partial => "admin/field" %><% end %>
-  </fieldset><% end %><% else %><% if !@many_to_many.empty? || (!@instance.new_record? && !@has_many.empty?) %>
-  <div class="box"><% end %>
-    <table class="form"><% for field in @fields %><% if !field.is_a?(Array) && field.values[0][:type] == "hidden" %><%= hidden_field("instance",field.keys[0]) %><% else %>
-      <%= render :partial => "admin/field",:locals => {:field => field} %><% end %><% end %>
-    </table><% if !@many_to_many.empty? || (!@instance.new_record? && !@has_many.empty?) %>
-  </div><% end %><% end %><% end %><% for reflection in @many_to_many %><% model_class = reflection.class_name.constantize %>
-  <div class="box" id="<%= reflection.name.to_s %>">
-    <%= render :partial => "many_to_many",:locals => {:class_name => model_class.name.tableize,:model_class => model_class,:model_name => model_class.admin_name,:reflection_name => reflection.name.to_s,:selected => @instance.send(reflection.name.to_s.singularize + "_ids"),:size => model_class.count} %>
-  </div><% end if @many_to_many %>
-  <div class="toolbar"><% unless @external %>
-    <div class="float-right">
-      <%= admin_button_link("Delete",{:controller => "admin",:action => "delete",:model => @model_class.singularize,:id => @instance.id}) if @model.admin_deletable && !@instance.new_record? %>
-      <%= admin_button_link("Cancel",{:controller => "admin",:action => "browse",:model => @model_class},:id => "admin-form-cancel-button") %>
-    </div><% end %>
-    <%= admin_button("Save",:name => "save") %>
-    <%= admin_button("Save and return",:id => "admin-form-save-and-return-button",:name => "return") unless @external %>
-    <%= admin_button("Save and add another",:id => "admin-form-save-and-add-another-button",:name => "add_more") unless @external %>
-    <%= admin_button_link("Cancel",{},:onclick => "window.close();") if @external %>
-  </div>
-<%= end_form %><% unless @instance.new_record? %><% for reflection in @has_many %>
-<% model_class = reflection.class_name.constantize; class_name = model_class.name.tableize; instance = model_class.new; model_name = model_class.admin_name; -%>
-<div id="<%= class_name %>_container">
-  <br /><%= link_to "Add a#{(model_name[0,1].downcase =~ /[a,e,i,o]/).nil? ? "" : "n"} #{model_name.singularize.downcase}",{:action => "edit",:model => class_name.singularize,:id => nil,:external => "yes",reflection.primary_key_name => @instance.id},:class => "add-link float-right external",:rel => class_name,:style => "margin-top:10px;" %>
-  <h2><%= h model_name.pluralize %></h2>
-  <%= start_form :action => "deleteall",:model => class_name,:id => nil %>
-    <div id="<%= class_name %>">
-      <%= render :partial => "browse_table",:locals => {:class_name => class_name,:external => true,:model_name => model_name,:order => nil,:order_sort => nil,:instances => @instance.send(reflection.name),:options => model_class.admin_options,:sortable => instance.respond_to?(:move_to_top),:tree => instance.respond_to?(:children)} %>
+  <% logger.info e.message %>
+  <% logger.info "Using default template instead." %>
+  <% if @ownership_required %><%= hidden_field("instance","user_id",:value => @user.id) %><% end %>
+  <% if @fieldsets %><% for fieldset in @fieldsets %>
+    <fieldset><legend><%= fieldset.first.to_s.titleize %></legend><% for @field in fieldset[1] %>
+      <%= render :partial => "admin/field" %><% end %>
+    </fieldset><% end %><% else %><% if !@many_to_many.empty? || (!@instance.new_record? && !@has_many.empty?) %>
+    <div class="box"><% end %>
+      <table class="form"><% for field in @fields %><% if !field.is_a?(Array) && field.values[0][:type] == "hidden" %><%= hidden_field("instance",field.keys[0]) %><% else %>
+        <%= render :partial => "admin/field",:locals => {:field => field} %><% end %><% end %>
+      </table><% if !@many_to_many.empty? || (!@instance.new_record? && !@has_many.empty?) %>
+    </div><% end %><% end %><% end %><% for reflection in @many_to_many %><% model_class = reflection.class_name.constantize %>
+    <div class="box" id="<%= reflection.name.to_s %>">
+      <%= render :partial => "many_to_many",:locals => {:class_name => model_class.name.tableize,:model_class => model_class,:model_name => model_class.admin_name,:reflection_name => reflection.name.to_s,:selected => @instance.send(reflection.name.to_s.singularize + "_ids"),:size => model_class.count} %>
+    </div><% end if @many_to_many %>
+    <div class="toolbar"><% unless @external %>
+      <div class="float-right">
+        <%= admin_button_link("Delete",{:controller => "admin",:action => "delete",:model => @model_class.singularize,:id => @instance.id}) if @model.admin_deletable && !@instance.new_record? %>
+        <%= admin_button_link("Cancel",{:controller => "admin",:action => "browse",:model => @model_class},:id => "admin-form-cancel-button") %>
+      </div><% end %>
+      <%= admin_button("Save",:name => "save") %>
+      <%= admin_button("Save and return",:id => "admin-form-save-and-return-button",:name => "return") unless @external %>
+      <%= admin_button("Save and add another",:id => "admin-form-save-and-add-another-button",:name => "add_more") unless @external %>
+      <%= admin_button_link("Cancel",{},:onclick => "window.close();") if @external %>
     </div>
-  <%= end_form %>
-</div>
-<% end -%>
-<% end -%>
-<% if params[:id] -%>
-  <% begin -%>
-    <%= render :partial => "admin/forms/#{@model_class.singularize}_extra" %>
-  <% rescue; end -%>
+  <%= end_form %><% unless @instance.new_record? %><% for reflection in @has_many %>
+  <% model_class = reflection.class_name.constantize; class_name = model_class.name.tableize; instance = model_class.new; model_name = model_class.admin_name; -%>
+  <div id="<%= class_name %>_container">
+    <br /><%= link_to "Add a#{(model_name[0,1].downcase =~ /[a,e,i,o]/).nil? ? "" : "n"} #{model_name.singularize.downcase}",{:action => "edit",:model => class_name.singularize,:id => nil,:external => "yes",reflection.primary_key_name => @instance.id},:class => "add-link float-right external",:rel => class_name,:style => "margin-top:10px;" %>
+    <h2><%= h model_name.pluralize %></h2>
+    <%= start_form :action => "deleteall",:model => class_name,:id => nil %>
+      <div id="<%= class_name %>">
+        <%= render :partial => "browse_table",:locals => {:class_name => class_name,:external => true,:model_name => model_name,:order => nil,:order_sort => nil,:instances => @instance.send(reflection.name),:options => model_class.admin_options,:sortable => instance.respond_to?(:move_to_top),:tree => instance.respond_to?(:children)} %>
+      </div>
+    <%= end_form %>
+  </div>
+  <% end -%>
+  <% end -%>
+  <% if params[:id] -%>
+    <% begin -%>
+      <%= render :partial => "admin/forms/#{@model_class.singularize}_extra" %>
+    <% rescue; end -%>
 <% end -%>

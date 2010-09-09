@@ -211,6 +211,10 @@ class AdminController < ApplicationController
           session[:delete_return] = nil
           flash[:delete] = "#{@model_count_name} ha#{params[:models].size == 1 ? "s" : "ve"} been deleted."
           return
+        elsif params[:confirmed] == "no"
+          redirect_to session[:delete_return]
+          session[:delete_return] = nil
+          return
         end
         @title = "Delete #{@model_count_name}"
         @breadcrumb.push({:label => @title,:url => {:action => "browse",:model => @model_class}})
@@ -289,7 +293,7 @@ class AdminController < ApplicationController
   end
 
   def export
-    
+
   end
 
   def filter
@@ -531,7 +535,7 @@ class AdminController < ApplicationController
         else
           flash[:error] = "Your configuration could not be saved. You must supply a site name."
         end
-      end      
+      end
     else
       redirect_to :action => "settings" and return false
     end
@@ -596,7 +600,7 @@ class AdminController < ApplicationController
       if request.get?
         for key in params.without(:controller,:action,:id).keys
           @instance.send("#{key}=",params[key]) if @instance.respond_to?("#{key}=")
-        end 
+        end
         @instance.send(:defaults) if @instance.new_record? && @instance.respond_to?(:defaults)
       end
       @fields = @instance.admin_fields(nil,@ownership_required)

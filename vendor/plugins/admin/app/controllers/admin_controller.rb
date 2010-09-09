@@ -15,7 +15,7 @@ class AdminController < ApplicationController
   before_filter :start_context_data
   before_filter :require_admin,:except => [:setup]
   before_filter :more_context_data
-  before_filter :set_model,:only => [:browse,:bulk_add,:delete,:deleteall,:edit,:editall,:filter,:help,:import,:list,:reports,:reorder,:search,Admin.extensions.values].flatten
+  before_filter :set_model,:only => [:browse,:bulk_add,:delete,:deleteall,:edit,:editall,:export,:filter,:help,:import,:list,:reports,:reorder,:search,Admin.extensions.values].flatten
   before_filter :set_instance,:only => [:browse,:bulk_add,:delete,:edit,:filter,:list,:reports,Admin.extensions.values].flatten
   before_filter :set_filters,:only => [:browse,:filter]
   cache_sweeper :admin_sweeper,:only => [:edit,:delete,:deleteall,:reorder,Admin.extensions.values].flatten if Rails.plugins[:cms]
@@ -293,7 +293,16 @@ class AdminController < ApplicationController
   end
 
   def export
-
+    require_library_or_gem "fastercsv" unless Object.const_defined?(:FasterCSV)
+    columns = @model.columns.collect{ |c| c.name.to_sym }
+    csv_string = FasterCSV.generate do |csv|
+      csv << columns
+      @model.find(:all).each do |record|
+        csv << columns.collect{ |c| record.send(c) }
+      end
+    end
+    send_data(csv_string, :type => 'text/csv',
+      :disposition => "attachment; filename=#{@model.name}.csv")
   end
 
   def filter

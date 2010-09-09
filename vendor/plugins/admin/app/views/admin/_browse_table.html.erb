@@ -13,6 +13,9 @@
     <%= link_to "&raquo;",{:overwrite_params => {:page => pages.current.next}} unless pages.current.last? %>
     <br /><%= pagination_links_each(pages,{:window_size => 5}){|page| link_to(page, :page => page)} %>
   </div><% end %>
-  <%= admin_button("Delete selected") if model_class.admin_deletable %><% for label,action in model_class.admin_actions %><%= admin_button(label,:name => action) %><% end %>
+  <%= admin_button("Delete selected") if model_class.admin_deletable %>
+  <% for label, action in model_class.admin_actions %>
+    <%= admin_button_link(label, :action => action) %>
+  <% end %>
 </div>
 <% end %>

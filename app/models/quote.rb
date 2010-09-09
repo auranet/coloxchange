@@ -16,6 +16,12 @@ class Quote < ActiveRecord::Base
     self.notes.push(note) if note.valid?
   end
 
+  def self.admin_actions
+    [
+      ['Export', 'export'],
+    ]
+  end
+
   protected
   def after_create
     Mail.deliver_quote(self)

@@ -1,6 +1,6 @@
 <li>
-  <%= link_to page.name, page.slug %><% unless page.children.empty? %>
-  <ul><% for child in page.children %>
+  <%= link_to page.name, page.url %><% unless page.children.empty? %>
+  <ul><% for child in page.children.find_all{ |c| c.appears_on_sitemap } %>
     <%= render :partial => "sitemap_item", :locals => {:page => child} %><% end %>
   </ul><% end %>
 </li>

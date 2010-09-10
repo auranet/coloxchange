@@ -1,6 +1,10 @@
 <div class="box">
   <table class="form">
-    <tr><th><label class="bold" for="instance_name">Title:</label></th><td><%= text_field("instance","name",:class => "oversize text",:value => !@instance.name && params[:slug] ? params[:slug].titleize : nil) %><br /><label for="instance_suppress_title"><%= check_box("instance","suppress_title") %> Hide this title in the browser's page</label></td></tr>
+    <tr><th>
+      <label class="bold" for="instance_name">Title:</label></th><td><%= text_field("instance","name",:class => "oversize text",:value => !@instance.name && params[:slug] ? params[:slug].titleize : nil) %>
+      <br /><%= check_box("instance","suppress_title") %> <label for="instance_suppress_title">Hide this title in the browser's page</label>
+      <br /><%= check_box("instance","appears_on_sitemap") %> <label for="instance_appears_on_sitemap">Should this page appear on the sitemap?</label>
+    </td></tr>
     <tr><th><label class="bold" for="instance_slug">URL:</label></th><td><%= domain %><%= @instance.parent.url if @instance.parent %>/<%= @instance.attached ? url_for(@instance.url)[1,100] : text_field("instance","slug",:class => "#{"slug " if @instance.new_record?} text",:rel => "instance_name") %></td></tr>
   </table>
   <div class="tabset">

@@ -121,7 +121,13 @@ class MainController < ApplicationController
 
   def sitemap
     @title ||= "Site map"
-    @pages = Page.find(:all,:conditions => ["pages.active = ? AND pages.parent_id IS NULL",true],:include => [:children],:order => "pages.position ASC")
+    @pages = Page.find(:all,
+      :conditions => {
+        :active => true,
+        :parent_id => nil,
+        :appears_on_sitemap => true,
+      },
+      :include => [:children],:order => "pages.position ASC")
   end
 
   def unsubscribe

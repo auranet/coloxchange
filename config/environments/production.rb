@@ -17,6 +17,16 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings =
+{
+  :address        => "mail.authsmtp.com",
+  :port           => 2525,
+  :domain         => "colocationxchange.com",
+  :authentication => :login,
+  :user_name      => "ac52402",
+  :password       => "mudjhny6vvrwva"
+}
 
 config.after_initialize do
   require 'thinking_sphinx'

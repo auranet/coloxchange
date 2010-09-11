@@ -16,4 +16,14 @@ config.action_view.cache_template_extensions         = false
 
 # Don't care if the mailer can't send
 #config.action_mailer.raise_delivery_errors = false
-config.action_mailer.delivery_method = :test
+#config.action_mailer.delivery_method = :test
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings =
+{
+  :address        => "mail.authsmtp.com",
+  :port           => 2525,
+  :domain         => "colocationxchange.com",
+  :authentication => :login,
+  :user_name      => "ac52402",
+  :password       => "mudjhny6vvrwva"
+}

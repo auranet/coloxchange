@@ -18,10 +18,10 @@ module Base
   #  Site Configuration  #
   ########################
   mattr_accessor :admin_email,:apps,:domain,:domain_short,:emails,:email_support,:google_maps_api_key,:urls
-  self.admin_email = "support@sasserinteractive.com"
-  self.domain = "http://www.example.com"
-  self.domain_short = "example.com"
-  self.emails = {:robot => "no-reply",:support => "support"}
+  self.admin_email = "support@aura-software.com"
+  self.domain = "http://www.aura-software.com"
+  self.domain_short = "aura-software.com"
+  self.emails = {:robot => "no-reply", :support => "support"}
   self.email_support = false
 
   #####################

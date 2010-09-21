@@ -1,7 +1,7 @@
 module MailExtension
   module InstanceMethods
     def contact_confirmation(contact)
-      from(Base.emails[:robot])
+      from('sales@coloxchange.net')
       recipients(contact.name_with_email)
       subject("Thank you for your recent request")
       body(:contact => contact)

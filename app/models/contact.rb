@@ -8,6 +8,10 @@ class Contact < User
   validates_presence_of :company_name, :message => "Company can't be blank"
   validates_presence_of :email
 
+  def contact_method_preference
+    Contact::ContactMethod.hash[contact_method]
+  end
+
   def email
     (self.emails.first || Email.new(:address => self.attributes["email"])).address
   end
@@ -44,6 +48,10 @@ class Contact < User
     if referring_site && keywords = referring_site.split(/(\?|&)[q|p]=/).pop
       CGI.unescape(keywords.split("&").shift)
     end
+  end
+
+  def to_s
+    name_with_email
   end
 
   protected

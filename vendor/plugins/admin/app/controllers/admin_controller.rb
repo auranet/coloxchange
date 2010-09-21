@@ -294,11 +294,22 @@ class AdminController < ApplicationController
 
   def export
     require_library_or_gem "fastercsv" unless Object.const_defined?(:FasterCSV)
-    columns = @model.columns.collect{ |c| c.name.to_sym }
+    columns = @model.export_columns
     csv_string = FasterCSV.generate do |csv|
       csv << columns
       @model.find(:all).each do |record|
-        csv << columns.collect{ |c| record.send(c) }
+        csv << columns.collect do |c|
+          if c.include? '.'
+            # We have a chain of methods, e.g quote.contact.customer_code
+            result = record
+            c.split('.').each do |method|
+                result = result.send(method)
+            end
+            result
+          else
+            record.send(c)
+          end
+        end
       end
     end
     send_data(csv_string, :type => 'text/csv',

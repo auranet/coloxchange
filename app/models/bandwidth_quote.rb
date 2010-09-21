@@ -23,6 +23,10 @@ class BandwidthQuote < Quote
     end
   end
 
+  def address_description
+    addresses.collect{|a| a.address_one_line}.join('; ')
+  end
+
   def product
     BandwidthQuote::Product.hash.keys.include?(self.attributes['product']) ? self.attributes['product'] : 'other'
   end

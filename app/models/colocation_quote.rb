@@ -21,6 +21,10 @@ class ColocationQuote < Quote
     end
   end
 
+  def data_centers_description
+    quote_data_centers.collect{|dc| dc.name}.join('; ')
+  end
+
   protected
   def validate
     self.errors.add(:data_centers, 'You must select at least one data center') if self.quote_data_centers.empty?

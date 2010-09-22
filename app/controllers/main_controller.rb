@@ -123,7 +123,7 @@ class MainController < ApplicationController
       session[:location] = nil
       flash[:notice] = 'Thank you for submitting your quote request!'
       flash[:quote_type] = @quote.type.to_s.tableize
-      QuoteMailer.deliver_quote_request_received(@quote)
+      Mail.deliver_contact_confirmation(@contact)
       return redirect_to(quote_sent_path)
     end
     session[:data_centers] = params[:quote][:data_centers].select{|slug, data_center| data_center['include'] == 'true' } if params[:quote][:data_centers]

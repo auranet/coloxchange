@@ -55,10 +55,6 @@ class Contact < User
   end
 
   protected
-  def after_create
-    Mail.deliver_contact_confirmation(self)
-  end
-
   def after_save
     if self.contact_request
       Mail.deliver_contact_request(self)

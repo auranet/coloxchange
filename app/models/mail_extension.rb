@@ -1,7 +1,7 @@
 module MailExtension
   module InstanceMethods
     def contact_confirmation(contact)
-      from("no-reply@colocationxchange.com")
+      from("sales@colocationxchange.com")
       recipients(contact.name_with_email)
       subject("Thank you for your recent request")
       body(:contact => contact)

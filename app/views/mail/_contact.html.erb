@@ -8,19 +8,18 @@
   <br /><div style="float:left;font-weight:bold;width:200px;">Preferred contact method</div><div style="float:left;"><%= @contact.contact_method_name %></div>
 <% end %>
 <% unless @contact.email.blank? %>
-  <br /><div style="float:left;font-weight:bold;width:200px;">E-mail</div><div style="float:left;"><%= mail_to(@contact.email) %></div>
+  <br /><div style="float:left;font-weight:bold;width:200px;">E-mail</div><div style="float:left;"><%= h(@contact.email) %></div>
 <% end %>
 <% unless @contact.phone.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Phone</div><div style="float:left;"><%= @contact.phone %></div>
 <% end %>
 <% unless @contact.referrer.blank? %>
-  <br /><div style="float:left;font-weight:bold;width:200px;">Heard about from:</div><div style="float:left;"><a href="<%= @contact.referrer %>"><%= @contact.referrer %></a></div>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Heard about from:</div><div style="float:left;"><%= @contact.referrer %></div>
 <% end %>
 <% unless @contact.referring_site.blank? %>
-  <br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><a href="<%= @contact.referring_site %>"><%= @contact.referring_site %></a></div>
+  <br /><div style="float:left;font-weight:bold;width:200px;">Referring URL:</div><div style="float:left;"><%= @contact.referring_site %></div>
 <% end %>
 <% unless @contact.note.blank? %>
   <br /><div style="float:left;font-weight:bold;width:200px;">Note</div><div style="float:left;"><%= h(@contact.note).gsub("\n", '<br />') %></div>
 <% end %>
-  <br /><a href="<%= domain %>/admin/contacts/<%= @contact.id %>">View this contact</a>
 </p>
